@@ -33,112 +33,103 @@ export default function MarketPage() {
     <div className="conspiracy-site">
       <style jsx>{`
         .conspiracy-site {
-          font-family: Verdana, Arial, sans-serif;
-          background: linear-gradient(to bottom, #e6e6fa 0%, #d3d3d3 100%);
-          min-height: 100vh;
+          font-family: "Times New Roman", Times, serif;
+          background-color: #c0c0c0;
           margin: 0;
           padding: 0;
+          min-height: 100vh;
         }
 
         .header {
-          background: linear-gradient(to bottom, #4169e1 0%, #191970 100%);
-          color: white;
-          padding: 15px;
+          background-color: #000080;
+          color: #ffff00;
+          padding: 10px;
           text-align: center;
-          border-bottom: 3px solid #000080;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+          border: 3px outset #c0c0c0;
         }
 
         .nav-bar {
-          background: linear-gradient(to bottom, #f0f0f0 0%, #d0d0d0 100%);
-          padding: 10px;
-          border-bottom: 2px solid #999;
+          background-color: #c0c0c0;
+          padding: 8px;
+          border: 2px inset #c0c0c0;
         }
 
         .nav-bar a {
-          color: #000080;
-          text-decoration: none;
-          font-weight: bold;
-          padding: 5px 10px;
-          border-radius: 3px;
+          color: #0000ff;
+          text-decoration: underline;
+          font-weight: normal;
+          padding: 2px 5px;
+          font-size: 12px;
         }
 
         .nav-bar a:hover {
-          background-color: #e0e0e0;
-          text-decoration: underline;
+          color: #ff0000;
         }
 
         .container {
-          max-width: 1000px;
+          max-width: 800px;
           margin: 0 auto;
-          padding: 20px;
+          padding: 10px;
+          background-color: #ffffff;
+          border: 2px inset #c0c0c0;
         }
 
         .market-header {
-          background: linear-gradient(to bottom, #fffacd 0%, #f0e68c 100%);
-          border: 2px solid #daa520;
-          border-radius: 8px;
-          padding: 20px;
-          margin-bottom: 20px;
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+          background-color: #ffff99;
+          border: 2px solid #000000;
+          padding: 15px;
+          margin-bottom: 15px;
         }
 
         .price-display {
           display: flex;
           justify-content: center;
-          gap: 30px;
-          margin: 15px 0;
-          padding: 15px;
-          background: linear-gradient(to right, #f0f8ff 0%, #e6f3ff 100%);
-          border-radius: 6px;
-          border: 2px solid #b0c4de;
+          gap: 20px;
+          margin: 10px 0;
+          padding: 10px;
+          background-color: #e0e0e0;
+          border: 2px inset #c0c0c0;
         }
 
         .price-box {
           text-align: center;
-          padding: 10px 20px;
-          border-radius: 5px;
-          border: 2px solid;
-          background: white;
-          min-width: 100px;
+          padding: 8px 15px;
+          border: 2px outset #c0c0c0;
+          background-color: #ffffff;
+          min-width: 80px;
         }
 
         .price-yes {
-          border-color: #228b22;
-          color: #228b22;
+          color: #008000;
         }
 
         .price-no {
-          border-color: #dc143c;
-          color: #dc143c;
+          color: #ff0000;
         }
 
         .trading-panel {
-          background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
-          border: 2px solid #4169e1;
-          border-radius: 8px;
-          padding: 20px;
-          margin-bottom: 20px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          background-color: #f0f0f0;
+          border: 2px inset #c0c0c0;
+          padding: 15px;
+          margin-bottom: 15px;
         }
 
         .panel-header {
-          background: linear-gradient(to right, #4169e1 0%, #191970 100%);
-          color: white;
-          padding: 10px 15px;
-          margin: -20px -20px 15px -20px;
-          border-radius: 6px 6px 0 0;
+          background-color: #000080;
+          color: #ffffff;
+          padding: 5px 10px;
+          margin: -15px -15px 10px -15px;
           font-weight: bold;
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+          border-bottom: 2px solid #000000;
         }
 
         .form-row {
-          margin-bottom: 15px;
+          margin-bottom: 10px;
         }
 
         .form-label {
           display: inline-block;
-          width: 100px;
+          width: 80px;
           font-weight: bold;
           vertical-align: top;
         }
@@ -149,94 +140,91 @@ export default function MarketPage() {
 
         .radio-option {
           display: block;
-          margin-bottom: 5px;
+          margin-bottom: 3px;
+          font-size: 12px;
         }
 
         .amount-input {
-          padding: 5px;
-          border: 2px solid #ccc;
-          border-radius: 3px;
-          font-family: monospace;
-          font-size: 14px;
+          padding: 2px;
+          border: 2px inset #c0c0c0;
+          font-family: "Courier New", monospace;
+          font-size: 12px;
         }
 
         .bet-button {
-          background: linear-gradient(to bottom, #228b22 0%, #006400 100%);
-          color: white;
-          border: 2px solid #006400;
-          border-radius: 5px;
-          padding: 10px 25px;
+          background-color: #c0c0c0;
+          color: #000000;
+          border: 2px outset #c0c0c0;
+          padding: 6px 15px;
           font-weight: bold;
           cursor: pointer;
-          font-size: 14px;
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+          font-size: 12px;
         }
 
         .bet-button:hover {
-          background: linear-gradient(to bottom, #32cd32 0%, #228b22 100%);
+          border: 2px inset #c0c0c0;
         }
 
         .evidence-panel {
-          background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
-          border: 2px solid #2e8b57;
-          border-radius: 8px;
-          padding: 20px;
-          margin-bottom: 20px;
+          background-color: #f0f0f0;
+          border: 2px inset #c0c0c0;
+          padding: 15px;
+          margin-bottom: 15px;
         }
 
         .discussion-panel {
-          background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
-          border: 2px solid #8b4513;
-          border-radius: 8px;
-          padding: 20px;
+          background-color: #f0f0f0;
+          border: 2px inset #c0c0c0;
+          padding: 15px;
         }
 
         .post {
-          background: #f8f8f8;
-          border: 1px solid #ddd;
-          border-radius: 4px;
-          padding: 10px;
-          margin-bottom: 10px;
+          background-color: #ffffff;
+          border: 1px solid #000000;
+          padding: 8px;
+          margin-bottom: 8px;
         }
 
         .post-author {
-          color: #000080;
+          color: #0000ff;
           font-weight: bold;
         }
 
         .post-time {
-          color: #666;
-          font-size: 11px;
+          color: #808080;
+          font-size: 10px;
         }
 
         .reply-area {
-          background: linear-gradient(to bottom, #fffacd 0%, #f0e68c 100%);
-          border: 1px solid #daa520;
-          border-radius: 4px;
-          padding: 15px;
-          margin-top: 15px;
+          background-color: #ffff99;
+          border: 1px solid #000000;
+          padding: 10px;
+          margin-top: 10px;
         }
 
         .reply-textarea {
           width: 100%;
-          height: 80px;
-          padding: 5px;
-          border: 2px solid #ccc;
-          border-radius: 3px;
-          font-family: Verdana, Arial, sans-serif;
-          font-size: 11px;
-          resize: vertical;
+          height: 60px;
+          padding: 2px;
+          border: 2px inset #c0c0c0;
+          font-family: "Times New Roman", Times, serif;
+          font-size: 12px;
+          resize: none;
         }
 
         .reply-button {
-          background: linear-gradient(to bottom, #4169e1 0%, #191970 100%);
-          color: white;
-          border: 2px solid #000080;
-          border-radius: 4px;
-          padding: 6px 15px;
+          background-color: #c0c0c0;
+          color: #000000;
+          border: 2px outset #c0c0c0;
+          padding: 4px 10px;
           font-weight: bold;
           cursor: pointer;
-          margin-top: 10px;
+          margin-top: 5px;
+          font-size: 11px;
+        }
+
+        .reply-button:hover {
+          border: 2px inset #c0c0c0;
         }
       `}</style>
 
@@ -372,10 +360,7 @@ export default function MarketPage() {
 
           <div className="reply-area">
             <strong>Post a Reply:</strong>
-            <textarea
-              className="reply-textarea"
-              placeholder="Enter your thoughts on this conspiracy theory..."
-            ></textarea>
+            <textarea className="reply-textarea" placeholder="Enter your thoughts on this conspiracy theory..." />
             <button className="reply-button">📝 POST REPLY</button>
           </div>
         </div>

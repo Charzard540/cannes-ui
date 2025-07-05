@@ -94,239 +94,210 @@ export default function HomePage() {
     <div className="conspiracy-site">
       <style jsx>{`
         .conspiracy-site {
-          font-family: Verdana, Arial, sans-serif;
-          background: linear-gradient(to bottom, #e6e6fa 0%, #d3d3d3 100%);
-          min-height: 100vh;
+          font-family: "Times New Roman", Times, serif;
+          background-color: #c0c0c0;
           margin: 0;
           padding: 0;
+          min-height: 100vh;
         }
 
         .header {
-          background: linear-gradient(to bottom, #4169e1 0%, #191970 100%);
-          color: white;
-          padding: 20px;
+          background-color: #000080;
+          color: #ffff00;
+          padding: 15px;
           text-align: center;
-          border-bottom: 3px solid #000080;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+          border: 3px outset #c0c0c0;
         }
 
         .header h1 {
           margin: 0;
-          font-size: 28px;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-          letter-spacing: 2px;
+          font-size: 24px;
+          font-weight: bold;
         }
 
         .header .tagline {
           font-size: 12px;
           font-style: italic;
           margin-top: 5px;
-          opacity: 0.9;
+          color: #ffffff;
         }
 
         .nav-bar {
-          background: linear-gradient(to bottom, #f0f0f0 0%, #d0d0d0 100%);
-          padding: 10px;
-          border-bottom: 2px solid #999;
+          background-color: #c0c0c0;
+          padding: 8px;
+          border: 2px inset #c0c0c0;
           text-align: center;
         }
 
         .nav-bar a {
-          color: #000080;
-          text-decoration: none;
-          font-weight: bold;
-          margin: 0 15px;
-          padding: 5px 10px;
-          border-radius: 3px;
-          transition: background-color 0.2s;
+          color: #0000ff;
+          text-decoration: underline;
+          font-weight: normal;
+          margin: 0 10px;
+          font-size: 12px;
         }
 
         .nav-bar a:hover {
-          background-color: #e0e0e0;
-          text-decoration: underline;
+          color: #ff0000;
         }
 
         .container {
-          max-width: 1200px;
+          max-width: 800px;
           margin: 0 auto;
-          padding: 20px;
+          padding: 10px;
+          background-color: #ffffff;
+          border: 2px inset #c0c0c0;
         }
 
         .welcome-box {
-          background: linear-gradient(to bottom, #fffacd 0%, #f0e68c 100%);
-          border: 2px solid #daa520;
-          border-radius: 8px;
-          padding: 15px;
-          margin-bottom: 25px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          background-color: #ffff99;
+          border: 2px solid #000000;
+          padding: 10px;
+          margin-bottom: 15px;
+          font-size: 12px;
         }
 
         .stats-bar {
-          background: linear-gradient(to bottom, #e0e0e0 0%, #c0c0c0 100%);
-          border: 1px solid #999;
-          border-radius: 5px;
-          padding: 8px;
+          background-color: #e0e0e0;
+          border: 1px solid #000000;
+          padding: 5px;
           text-align: center;
-          font-size: 11px;
-          margin-bottom: 20px;
+          font-size: 10px;
+          margin-bottom: 15px;
         }
 
         .category-section {
-          margin-bottom: 30px;
+          margin-bottom: 20px;
         }
 
         .category-header {
-          background: linear-gradient(to right, #2e8b57 0%, #228b22 100%);
-          color: white;
-          padding: 12px 15px;
-          border-radius: 6px 6px 0 0;
+          background-color: #008000;
+          color: #ffffff;
+          padding: 8px;
           font-weight: bold;
           font-size: 14px;
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-          border: 2px solid #006400;
-          border-bottom: none;
+          border: 2px outset #c0c0c0;
         }
 
         .cards-container {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: 15px;
-          background: #f8f8f8;
-          border: 2px solid #006400;
-          border-top: none;
-          border-radius: 0 0 6px 6px;
-          padding: 15px;
+          background-color: #f0f0f0;
+          border: 2px inset #c0c0c0;
+          padding: 10px;
         }
 
         .market-card {
-          background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
-          border: 2px solid #ccc;
-          border-radius: 8px;
-          padding: 15px;
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-          transition: transform 0.1s, box-shadow 0.1s;
-          position: relative;
+          background-color: #ffffff;
+          border: 2px outset #c0c0c0;
+          margin-bottom: 15px;
+          padding: 10px;
         }
 
         .market-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-          border-color: #4169e1;
+          background-color: #ffffcc;
         }
 
         .trending-badge {
-          position: absolute;
-          top: -5px;
-          right: -5px;
-          background: linear-gradient(to bottom, #ff6347 0%, #dc143c 100%);
-          color: white;
-          padding: 3px 8px;
-          border-radius: 10px;
+          background-color: #ff0000;
+          color: #ffffff;
+          padding: 2px 6px;
           font-size: 10px;
           font-weight: bold;
-          border: 1px solid #b22222;
-          animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-          0% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.7;
-          }
-          100% {
-            opacity: 1;
-          }
+          float: right;
+          border: 1px solid #000000;
         }
 
         .card-title {
           font-size: 14px;
           font-weight: bold;
-          color: #000080;
-          margin-bottom: 8px;
-          text-decoration: none;
-        }
-
-        .card-title:hover {
+          color: #0000ff;
+          margin-bottom: 5px;
           text-decoration: underline;
         }
 
+        .card-title:hover {
+          color: #ff0000;
+        }
+
         .card-description {
-          font-size: 11px;
-          color: #333;
-          margin-bottom: 12px;
-          line-height: 1.4;
+          font-size: 12px;
+          color: #000000;
+          margin-bottom: 10px;
         }
 
         .price-section {
+          background-color: #e0e0e0;
+          border: 1px solid #000000;
+          padding: 5px;
+          margin-bottom: 8px;
           display: flex;
           justify-content: space-between;
-          margin-bottom: 10px;
-          padding: 8px;
-          background: linear-gradient(to right, #f0f8ff 0%, #e6f3ff 100%);
-          border-radius: 4px;
-          border: 1px solid #b0c4de;
         }
 
         .price-yes {
-          color: #228b22;
+          color: #008000;
           font-weight: bold;
-          font-size: 13px;
+          font-size: 12px;
         }
 
         .price-no {
-          color: #dc143c;
+          color: #ff0000;
           font-weight: bold;
-          font-size: 13px;
+          font-size: 12px;
         }
 
         .card-stats {
           display: flex;
           justify-content: space-between;
           font-size: 10px;
-          color: #666;
-          margin-bottom: 10px;
+          color: #000000;
+          margin-bottom: 8px;
         }
 
         .trade-button {
-          background: linear-gradient(to bottom, #4169e1 0%, #191970 100%);
-          color: white;
-          border: 2px solid #000080;
-          border-radius: 4px;
-          padding: 6px 12px;
+          background-color: #c0c0c0;
+          color: #000000;
+          border: 2px outset #c0c0c0;
+          padding: 4px 8px;
           font-size: 11px;
           font-weight: bold;
           cursor: pointer;
           width: 100%;
-          text-decoration: none;
           text-align: center;
           display: block;
-          transition: background 0.2s;
+          text-decoration: none;
         }
 
         .trade-button:hover {
-          background: linear-gradient(to bottom, #5a7ae6 0%, #2e4bc7 100%);
-          text-decoration: none;
-          color: white;
+          border: 2px inset #c0c0c0;
         }
 
         .footer {
-          background: linear-gradient(to bottom, #2f4f4f 0%, #1c1c1c 100%);
-          color: #ddd;
+          background-color: #808080;
+          color: #ffffff;
           text-align: center;
-          padding: 20px;
-          margin-top: 40px;
-          border-top: 3px solid #000;
+          padding: 15px;
+          margin-top: 20px;
+          border: 2px inset #c0c0c0;
+          font-size: 11px;
         }
 
         .footer a {
-          color: #87ceeb;
-          text-decoration: none;
+          color: #ffff00;
+          text-decoration: underline;
         }
 
         .footer a:hover {
-          text-decoration: underline;
+          color: #ffffff;
+        }
+
+        .blink {
+          animation: blink 1s linear infinite;
+        }
+
+        @keyframes blink {
+          0% { opacity: 1; }
+          50% { opacity: 0; }
+          100% { opacity: 1; }
         }
       `}</style>
 
@@ -349,18 +320,29 @@ export default function HomePage() {
       <div className="container">
         {/* Welcome Message */}
         <div className="welcome-box">
-          <strong>Welcome to the Conspiracy Prediction Exchange!</strong>
-          <br />
-          <br />
-          Put your money where your theories are! Trade shares in historical conspiracy theories and profit from the
-          truth. Each market represents a different theory about past events. Buy "YES" if you believe the conspiracy
-          theory is true, or "NO" if you think the official story is correct.
+          <center>
+            <b>*** WELCOME TO THE CONSPIRACY PREDICTION EXCHANGE ***</b>
+            <br />
+            <br />
+            <span style={{ color: "red" }}>NEW!</span> Put your money where your theories are! Trade shares in
+            historical conspiracy theories and profit from the truth. Each market represents a different theory about
+            past events. Buy "YES" if you believe the conspiracy theory is true, or "NO" if you think the official story
+            is correct.
+            <br />
+            <br />
+            <span className="blink">*** UPDATED DAILY ***</span>
+          </center>
         </div>
 
         {/* Stats */}
         <div className="stats-bar">
-          <strong>Live Stats:</strong> Users Online: 1,337 | Active Markets: 42 | 24h Volume: $89,420 | Total Trades:
-          156,789
+          <center>
+            <b>*** LIVE STATS ***</b>
+            <br />
+            Users Online: 1,337 | Active Markets: 42 | 24h Volume: $89,420 | Total Trades: 156,789
+            <br />
+            <span style={{ fontSize: "10px" }}>Last Updated: {new Date().toLocaleString()}</span>
+          </center>
         </div>
 
         {/* Market Categories */}
