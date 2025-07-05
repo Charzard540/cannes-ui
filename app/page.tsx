@@ -2,6 +2,28 @@
 
 export default function HomePage() {
   const categories = {
+    "Space & UFOs": [
+      {
+        id: 2,
+        title: "Did the moon landing happen?",
+        description: "Did NASA really land on the moon in 1969, or was it filmed on a sound stage?",
+        yesPrice: 0.89,
+        noPrice: 0.11,
+        volume: 8930,
+        posts: 1203,
+        trending: false,
+      },
+      {
+        id: 3,
+        title: "Area 51: Alien Technology Reverse Engineering",
+        description: "Is the US government reverse engineering alien technology at Area 51?",
+        yesPrice: 0.23,
+        noPrice: 0.77,
+        volume: 12100,
+        posts: 592,
+        trending: true,
+      },
+    ],
     "Government & Politics": [
       {
         id: 1,
@@ -21,68 +43,6 @@ export default function HomePage() {
         noPrice: 0.82,
         volume: 22340,
         posts: 2156,
-        trending: false,
-      },
-      {
-        id: 6,
-        title: "Watergate: Nixon's Full Knowledge",
-        description: "Did President Nixon know about the Watergate break-in from the beginning?",
-        yesPrice: 0.73,
-        noPrice: 0.27,
-        volume: 8900,
-        posts: 445,
-        trending: false,
-      },
-      {
-        id: 9,
-        title: "MLK Assassination: FBI Involvement",
-        description: "Was the FBI involved in the assassination of Martin Luther King Jr.?",
-        yesPrice: 0.42,
-        noPrice: 0.58,
-        volume: 13200,
-        posts: 623,
-        trending: true,
-      },
-    ],
-    "Space & UFOs": [
-      {
-        id: 2,
-        title: "Moon Landing: Real or Hollywood Production?",
-        description: "Did NASA really land on the moon in 1969, or was it filmed on a sound stage?",
-        yesPrice: 0.89,
-        noPrice: 0.11,
-        volume: 8930,
-        posts: 1203,
-        trending: false,
-      },
-      {
-        id: 3,
-        title: "Area 51: Alien Technology Reverse Engineering",
-        description: "Is the US government reverse engineering alien technology at Area 51?",
-        yesPrice: 0.23,
-        noPrice: 0.77,
-        volume: 12100,
-        posts: 592,
-        trending: true,
-      },
-      {
-        id: 5,
-        title: "Roswell Incident: Weather Balloon or UFO Crash",
-        description: "What really crashed in Roswell, New Mexico in 1947?",
-        yesPrice: 0.41,
-        noPrice: 0.59,
-        volume: 6780,
-        posts: 334,
-        trending: false,
-      },
-      {
-        id: 10,
-        title: "Phoenix Lights: Military Exercise or UFO Fleet",
-        description: "Were the 1997 Phoenix Lights a military operation or mass UFO sighting?",
-        yesPrice: 0.36,
-        noPrice: 0.64,
-        volume: 9450,
-        posts: 412,
         trending: false,
       },
     ],
@@ -106,26 +66,6 @@ export default function HomePage() {
         volume: 5600,
         posts: 289,
         trending: false,
-      },
-      {
-        id: 11,
-        title: "Lincoln Assassination: Wider Conspiracy",
-        description: "Was John Wilkes Booth part of a larger Confederate conspiracy?",
-        yesPrice: 0.67,
-        noPrice: 0.33,
-        volume: 7800,
-        posts: 356,
-        trending: false,
-      },
-      {
-        id: 12,
-        title: "Oklahoma City Bombing: Additional Conspirators",
-        description: "Were there additional conspirators beyond Timothy McVeigh and Terry Nichols?",
-        yesPrice: 0.31,
-        noPrice: 0.69,
-        volume: 10500,
-        posts: 534,
-        trending: true,
       },
     ],
   }
@@ -222,16 +162,22 @@ export default function HomePage() {
         .cards-container {
           background-color: #f0f0f0;
           border: 2px inset #c0c0c0;
-          padding: 10px;
+          padding: 15px;
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 15px;
+          align-items: stretch;
         }
 
         .market-card {
           background-color: #ffffff;
           border: 2px outset #c0c0c0;
-          padding: 10px;
+          padding: 12px;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          min-height: 200px;
+          position: relative;
         }
 
         .market-card:hover {
@@ -244,17 +190,29 @@ export default function HomePage() {
           padding: 2px 6px;
           font-size: 10px;
           font-weight: bold;
-          float: right;
+          position: absolute;
+          top: 8px;
+          right: 8px;
           border: 1px solid #000000;
+        }
+
+        .card-content {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          padding-top: ${({ trending }) => (trending ? "20px" : "0")};
         }
 
         .card-title {
           font-size: 14px;
           font-weight: bold;
           color: #0000ff;
-          margin-bottom: 5px;
+          margin-bottom: 8px;
           text-decoration: underline;
-          clear: both;
+          line-height: 1.2;
+          min-height: 34px;
+          display: flex;
+          align-items: flex-start;
         }
 
         .card-title:hover {
@@ -264,16 +222,21 @@ export default function HomePage() {
         .card-description {
           font-size: 12px;
           color: #000000;
-          margin-bottom: 10px;
+          margin-bottom: 12px;
+          line-height: 1.3;
+          flex-grow: 1;
+          min-height: 48px;
         }
 
         .price-section {
           background-color: #e0e0e0;
           border: 1px solid #000000;
-          padding: 5px;
+          padding: 6px;
           margin-bottom: 8px;
           display: flex;
           justify-content: space-between;
+          align-items: center;
+          height: 24px;
         }
 
         .price-yes {
@@ -293,14 +256,16 @@ export default function HomePage() {
           justify-content: space-between;
           font-size: 10px;
           color: #000000;
-          margin-bottom: 8px;
+          margin-bottom: 10px;
+          height: 16px;
+          align-items: center;
         }
 
         .trade-button {
           background-color: #c0c0c0;
           color: #000000;
           border: 2px outset #c0c0c0;
-          padding: 4px 8px;
+          padding: 6px 8px;
           font-size: 11px;
           font-weight: bold;
           cursor: pointer;
@@ -308,6 +273,9 @@ export default function HomePage() {
           text-align: center;
           display: block;
           text-decoration: none;
+          height: 28px;
+          line-height: 16px;
+          margin-top: auto;
         }
 
         .trade-button:hover {
@@ -360,11 +328,10 @@ export default function HomePage() {
       {/* Navigation */}
       <div className="nav-bar">
         <a href="/">HOME</a>
-        <a href="/markets">MARKETS</a>
         <a href="/portfolio">MY PORTFOLIO</a>
         <a href="/forum">FORUM</a>
-        <a href="/leaderboard">LEADERBOARD</a>
-        <a href="/login">LOGIN</a>
+        <a href="/create">CREATE A MARKET</a>
+        <a href="/connect">CONNECT WALLET</a>
       </div>
 
       <div className="container">
@@ -404,25 +371,27 @@ export default function HomePage() {
                 <div key={market.id} className="market-card">
                   {market.trending && <div className="trending-badge">🔥 HOT</div>}
 
-                  <a href={`/market/${market.id}`} className="card-title">
-                    {market.title}
-                  </a>
+                  <div className="card-content" style={{ paddingTop: market.trending ? "20px" : "0" }}>
+                    <a href={`/market/${market.id}`} className="card-title">
+                      {market.title}
+                    </a>
 
-                  <div className="card-description">{market.description}</div>
+                    <div className="card-description">{market.description}</div>
 
-                  <div className="price-section">
-                    <div className="price-yes">YES: ${market.yesPrice.toFixed(2)}</div>
-                    <div className="price-no">NO: ${market.noPrice.toFixed(2)}</div>
+                    <div className="price-section">
+                      <div className="price-yes">YES: ${market.yesPrice.toFixed(2)}</div>
+                      <div className="price-no">NO: ${market.noPrice.toFixed(2)}</div>
+                    </div>
+
+                    <div className="card-stats">
+                      <span>💰 Volume: ${market.volume.toLocaleString()}</span>
+                      <span>💬 Posts: {market.posts}</span>
+                    </div>
+
+                    <a href={`/trade/${market.id}`} className="trade-button">
+                      🎯 TRADE NOW
+                    </a>
                   </div>
-
-                  <div className="card-stats">
-                    <span>💰 Volume: ${market.volume.toLocaleString()}</span>
-                    <span>💬 Posts: {market.posts}</span>
-                  </div>
-
-                  <a href={`/trade/${market.id}`} className="trade-button">
-                    🎯 TRADE NOW
-                  </a>
                 </div>
               ))}
             </div>

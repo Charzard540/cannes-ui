@@ -7,27 +7,92 @@ export default function MarketPage() {
   const params = useParams()
   const [betAmount, setBetAmount] = useState("")
   const [betType, setBetType] = useState("YES")
+  const [selectedTimeframe, setSelectedTimeframe] = useState("1d")
+  const [newPost, setNewPost] = useState("")
 
+  // Mock data for different markets - in real app this would come from API/database
   const marketData = {
     1: {
-      title: "JFK Assassination: Lone Gunman vs Multiple Shooters",
-      description:
-        "Was Lee Harvey Oswald acting alone, or was there a larger conspiracy involving multiple shooters, the CIA, the Mafia, or other government agencies?",
-      yesPrice: 0.34,
-      noPrice: 0.66,
-      volume: 15420,
-      posts: 847,
-      category: "Government & Politics",
+      title: "[Market Title from Create Form]",
+      description: "[Market Description from Create Form - explaining the conspiracy theory and resolution criteria]",
+      yesPrice: 0.5,
+      noPrice: 0.5,
+      volume: 0,
+      posts: 0,
+      category: "[Category Selected from Create Form]",
+      dateCreated: "[Date Market was Created]",
       evidence: [
-        "Magic bullet theory inconsistencies",
-        "Witness testimony of shots from grassy knoll",
-        "Zapruder film frame analysis",
-        "Oswald's connections to intelligence agencies",
+        "[Evidence Point 1 - Key supporting argument]",
+        "[Evidence Point 2 - Historical documentation]",
+        "[Evidence Point 3 - Witness testimony or analysis]",
+        "[Evidence Point 4 - Official records or reports]",
+        "[Evidence Point 5 - Scientific or technical evidence]",
+        "[Evidence Point 6 - Additional supporting material]",
+      ],
+      recentPosts: [
+        {
+          author: "[Username]",
+          time: "[Time ago]",
+          content: "[User comment about the conspiracy theory and their trading position]",
+        },
+        {
+          author: "[Username]",
+          time: "[Time ago]",
+          content: "[User response or counterargument to previous posts]",
+        },
+        {
+          author: "[Username]",
+          time: "[Time ago]",
+          content: "[User sharing new evidence or analysis related to the market]",
+        },
+        {
+          author: "[Username]",
+          time: "[Time ago]",
+          content: "[User discussing market trends and price movements]",
+        },
+      ],
+    },
+    2: {
+      title: "[Alternative Market Title]",
+      description: "[Alternative Market Description]",
+      yesPrice: 0.5,
+      noPrice: 0.5,
+      volume: 0,
+      posts: 0,
+      category: "[Alternative Category]",
+      dateCreated: "[Alternative Date]",
+      evidence: [
+        "[Alternative Evidence Point 1]",
+        "[Alternative Evidence Point 2]",
+        "[Alternative Evidence Point 3]",
+        "[Alternative Evidence Point 4]",
+        "[Alternative Evidence Point 5]",
+        "[Alternative Evidence Point 6]",
       ],
     },
   }
 
-  const market = marketData[1]
+  const market = marketData[params.id] || marketData[1]
+
+  const handleBetSubmit = (e) => {
+    e.preventDefault()
+    if (!betAmount || Number.parseFloat(betAmount) <= 0) {
+      alert("Please enter a valid bet amount!")
+      return
+    }
+    alert(`Bet placed: $${betAmount} on ${betType}`)
+    setBetAmount("")
+  }
+
+  const handlePostSubmit = (e) => {
+    e.preventDefault()
+    if (!newPost.trim()) {
+      alert("Please enter a message!")
+      return
+    }
+    alert("Post submitted!")
+    setNewPost("")
+  }
 
   return (
     <div className="conspiracy-site">
@@ -67,7 +132,7 @@ export default function MarketPage() {
         }
 
         .container {
-          max-width: 800px;
+          max-width: 900px;
           margin: 0 auto;
           padding: 10px;
           background-color: #ffffff;
@@ -81,11 +146,34 @@ export default function MarketPage() {
           margin-bottom: 15px;
         }
 
+        .market-title {
+          font-size: 18px;
+          font-weight: bold;
+          color: #000080;
+          margin-bottom: 10px;
+        }
+
+        .market-meta {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 11px;
+          margin-bottom: 10px;
+          color: #000000;
+        }
+
+        .market-description {
+          font-size: 12px;
+          line-height: 1.4;
+          margin: 10px 0;
+          color: #000000;
+        }
+
         .price-display {
           display: flex;
           justify-content: center;
           gap: 20px;
-          margin: 10px 0;
+          margin: 15px 0;
           padding: 10px;
           background-color: #e0e0e0;
           border: 2px inset #c0c0c0;
@@ -101,93 +189,181 @@ export default function MarketPage() {
 
         .price-yes {
           color: #008000;
+          font-weight: bold;
         }
 
         .price-no {
           color: #ff0000;
+          font-weight: bold;
         }
 
-        .trading-panel {
+        .stats-row {
+          display: flex;
+          justify-content: space-around;
+          font-size: 11px;
+          color: #000000;
           background-color: #f0f0f0;
-          border: 2px inset #c0c0c0;
-          padding: 15px;
+          border: 1px solid #000000;
+          padding: 5px;
+        }
+
+        .section {
+          background-color: #f0f0f0;
+          border: 2px outset #c0c0c0;
           margin-bottom: 15px;
         }
 
-        .panel-header {
-          background-color: #000080;
+        .section-header {
+          background-color: #008000;
           color: #ffffff;
-          padding: 5px 10px;
-          margin: -15px -15px 10px -15px;
+          padding: 8px;
           font-weight: bold;
+          font-size: 14px;
           border-bottom: 2px solid #000000;
         }
 
-        .form-row {
+        .section-content {
+          padding: 15px;
+          background-color: #ffffff;
+        }
+
+        .trading-form {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 15px;
+          align-items: start;
+        }
+
+        .form-group {
           margin-bottom: 10px;
         }
 
         .form-label {
-          display: inline-block;
-          width: 80px;
+          display: block;
           font-weight: bold;
-          vertical-align: top;
+          font-size: 12px;
+          margin-bottom: 5px;
+          color: #000080;
         }
 
         .radio-group {
-          display: inline-block;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
         }
 
         .radio-option {
-          display: block;
-          margin-bottom: 3px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
           font-size: 12px;
         }
 
         .amount-input {
-          padding: 2px;
+          padding: 5px;
           border: 2px inset #c0c0c0;
           font-family: "Courier New", monospace;
           font-size: 12px;
+          width: 120px;
         }
 
         .bet-button {
-          background-color: #c0c0c0;
-          color: #000000;
-          border: 2px outset #c0c0c0;
-          padding: 6px 15px;
+          background-color: #008000;
+          color: #ffffff;
+          border: 2px outset #008000;
+          padding: 8px 15px;
           font-weight: bold;
           cursor: pointer;
           font-size: 12px;
+          margin-top: 10px;
         }
 
         .bet-button:hover {
+          border: 2px inset #008000;
+        }
+
+        .chart-container {
+          background-color: #ffffff;
+          border: 2px inset #c0c0c0;
+          padding: 10px;
+          margin-bottom: 10px;
+        }
+
+        .timeframe-buttons {
+          display: flex;
+          gap: 5px;
+          margin-bottom: 10px;
+        }
+
+        .timeframe-btn {
+          background-color: #c0c0c0;
+          color: #000000;
+          border: 2px outset #c0c0c0;
+          padding: 3px 8px;
+          font-size: 10px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+
+        .timeframe-btn:hover {
           border: 2px inset #c0c0c0;
         }
 
-        .evidence-panel {
-          background-color: #f0f0f0;
+        .timeframe-btn.active {
+          background-color: #000080;
+          color: #ffffff;
           border: 2px inset #c0c0c0;
-          padding: 15px;
-          margin-bottom: 15px;
         }
 
-        .discussion-panel {
-          background-color: #f0f0f0;
-          border: 2px inset #c0c0c0;
-          padding: 15px;
+        .chart-placeholder {
+          width: 100%;
+          height: 200px;
+          background-color: #f8f8f8;
+          border: 1px solid #000000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 12px;
+          color: #666666;
+        }
+
+        .evidence-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .evidence-item {
+          background-color: #ffffff;
+          border: 1px solid #000000;
+          padding: 8px;
+          margin-bottom: 5px;
+          font-size: 12px;
+        }
+
+        .evidence-item:before {
+          content: "📋 ";
+          margin-right: 5px;
         }
 
         .post {
           background-color: #ffffff;
           border: 1px solid #000000;
-          padding: 8px;
-          margin-bottom: 8px;
+          padding: 10px;
+          margin-bottom: 10px;
+        }
+
+        .post-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 5px;
         }
 
         .post-author {
           color: #0000ff;
           font-weight: bold;
+          font-size: 12px;
         }
 
         .post-time {
@@ -195,28 +371,34 @@ export default function MarketPage() {
           font-size: 10px;
         }
 
-        .reply-area {
+        .post-content {
+          font-size: 11px;
+          line-height: 1.4;
+          color: #000000;
+        }
+
+        .reply-form {
           background-color: #ffff99;
-          border: 1px solid #000000;
+          border: 2px solid #000000;
           padding: 10px;
-          margin-top: 10px;
+          margin-top: 15px;
         }
 
         .reply-textarea {
           width: 100%;
           height: 60px;
-          padding: 2px;
+          padding: 5px;
           border: 2px inset #c0c0c0;
           font-family: "Times New Roman", Times, serif;
           font-size: 12px;
-          resize: none;
+          resize: vertical;
         }
 
         .reply-button {
           background-color: #c0c0c0;
           color: #000000;
           border: 2px outset #c0c0c0;
-          padding: 4px 10px;
+          padding: 5px 10px;
           font-weight: bold;
           cursor: pointer;
           margin-top: 5px;
@@ -226,142 +408,241 @@ export default function MarketPage() {
         .reply-button:hover {
           border: 2px inset #c0c0c0;
         }
+
+        .potential-payout {
+          background-color: #e0ffe0;
+          border: 1px solid #008000;
+          padding: 8px;
+          margin-top: 10px;
+          font-size: 11px;
+          text-align: center;
+        }
+
+        .warning-text {
+          background-color: #ffe0e0;
+          border: 1px solid #ff0000;
+          padding: 5px;
+          margin-top: 5px;
+          font-size: 10px;
+          text-align: center;
+        }
+
+        .resolution-button {
+          background-color: #c0c0c0;
+          color: #000000;
+          border: 2px outset #c0c0c0;
+          padding: 10px 20px;
+          font-weight: bold;
+          cursor: pointer;
+          font-size: 12px;
+          font-family: "Times New Roman", Times, serif;
+        }
+
+        .resolution-button:hover {
+          border: 2px inset #c0c0c0;
+        }
+
+        .vote-button {
+          background-color: #008000;
+          color: #ffffff;
+        }
+
+        .create-button {
+          background-color: #ff8000;
+          color: #ffffff;
+        }
       `}</style>
 
       {/* Header */}
       <div className="header">
-        <h2 style={{ margin: 0, fontSize: "20px" }}>MARKET DETAILS</h2>
+        <h2 style={{ margin: 0, fontSize: "20px" }}>CONSPIRACY MARKET DETAILS</h2>
+        <div style={{ fontSize: "12px", fontStyle: "italic", marginTop: "5px" }}>
+          Trade on the Truth Behind History's Mysteries
+        </div>
       </div>
 
       {/* Navigation */}
       <div className="nav-bar">
         <a href="/">← BACK TO MARKETS</a>
+        <a href="/markets">ALL MARKETS</a>
+        <a href="/portfolio">MY PORTFOLIO</a>
+        <a href="/forum">FORUM</a>
+        <a href="/connect">CONNECT WALLET</a>
       </div>
 
       <div className="container">
-        {/* Market Info */}
+        {/* Market Header */}
         <div className="market-header">
-          <h1 style={{ margin: "0 0 10px 0", color: "#000080", fontSize: "18px" }}>{market.title}</h1>
-          <div style={{ fontSize: "12px", marginBottom: "10px" }}>
-            <strong>Category:</strong> {market.category}
+          <div className="market-title">{market.title}</div>
+          <div className="market-meta">
+            <span>
+              <strong>Category:</strong> {market.category}
+            </span>
+            <span>
+              <strong>Created:</strong> {market.dateCreated}
+            </span>
           </div>
-          <p style={{ fontSize: "12px", lineHeight: "1.4", margin: "10px 0" }}>{market.description}</p>
+          <div className="market-description">{market.description}</div>
 
           <div className="price-display">
-            <div className="price-box price-yes">
+            <div className="price-box">
               <div style={{ fontSize: "11px" }}>YES</div>
-              <div style={{ fontSize: "18px", fontWeight: "bold" }}>${market.yesPrice.toFixed(2)}</div>
+              <div className="price-yes" style={{ fontSize: "18px" }}>
+                ${market.yesPrice.toFixed(2)}
+              </div>
+              <div style={{ fontSize: "10px" }}>Conspiracy TRUE</div>
             </div>
-            <div className="price-box price-no">
+            <div className="price-box">
               <div style={{ fontSize: "11px" }}>NO</div>
-              <div style={{ fontSize: "18px", fontWeight: "bold" }}>${market.noPrice.toFixed(2)}</div>
+              <div className="price-no" style={{ fontSize: "18px" }}>
+                ${market.noPrice.toFixed(2)}
+              </div>
+              <div style={{ fontSize: "10px" }}>Official Story TRUE</div>
             </div>
           </div>
 
-          <div style={{ textAlign: "center", fontSize: "11px" }}>
-            <strong>Total Volume:</strong> ${market.volume.toLocaleString()} | <strong>Discussion Posts:</strong>{" "}
-            {market.posts}
+          <div className="stats-row">
+            <span>
+              <strong>24h Volume:</strong> ${market.volume.toLocaleString()}
+            </span>
+            <span>
+              <strong>Total Posts:</strong> {market.posts}
+            </span>
+            <span>
+              <strong>Market ID:</strong> #{params.id}
+            </span>
           </div>
         </div>
 
-        {/* Trading Interface */}
-        <div className="trading-panel">
-          <div className="panel-header">🎯 PLACE YOUR BET</div>
+        {/* Trading Section */}
+        <div className="section">
+          <div className="section-header">🎯 PLACE YOUR BET</div>
+          <div className="section-content">
+            <form onSubmit={handleBetSubmit}>
+              <div className="trading-form">
+                <div>
+                  <div className="form-group">
+                    <label className="form-label">Choose Your Position:</label>
+                    <div className="radio-group">
+                      <label className="radio-option">
+                        <input
+                          type="radio"
+                          name="position"
+                          value="YES"
+                          checked={betType === "YES"}
+                          onChange={(e) => setBetType(e.target.value)}
+                        />
+                        <strong style={{ color: "#008000" }}>YES</strong> - Conspiracy Theory is TRUE
+                      </label>
+                      <label className="radio-option">
+                        <input
+                          type="radio"
+                          name="position"
+                          value="NO"
+                          checked={betType === "NO"}
+                          onChange={(e) => setBetType(e.target.value)}
+                        />
+                        <strong style={{ color: "#ff0000" }}>NO</strong> - Official Story is TRUE
+                      </label>
+                    </div>
+                  </div>
 
-          <form>
-            <div className="form-row">
-              <span className="form-label">Position:</span>
-              <div className="radio-group">
-                <label className="radio-option">
-                  <input
-                    type="radio"
-                    name="position"
-                    value="YES"
-                    checked={betType === "YES"}
-                    onChange={(e) => setBetType(e.target.value)}
-                  />{" "}
-                  <strong style={{ color: "#228b22" }}>YES</strong> - Conspiracy Theory is TRUE
-                </label>
-                <label className="radio-option">
-                  <input
-                    type="radio"
-                    name="position"
-                    value="NO"
-                    checked={betType === "NO"}
-                    onChange={(e) => setBetType(e.target.value)}
-                  />{" "}
-                  <strong style={{ color: "#dc143c" }}>NO</strong> - Official Story is TRUE
-                </label>
+                  <div className="form-group">
+                    <label className="form-label">Bet Amount (USDC):</label>
+                    <span style={{ fontSize: "14px", fontWeight: "bold" }}>$</span>
+                    <input
+                      type="number"
+                      className="amount-input"
+                      value={betAmount}
+                      onChange={(e) => setBetAmount(e.target.value)}
+                      placeholder="0.00"
+                      min="0.01"
+                      step="0.01"
+                    />
+                  </div>
+
+                  <button type="submit" className="bet-button">
+                    💰 PLACE BET
+                  </button>
+                </div>
+
+                <div>
+                  {betAmount && Number.parseFloat(betAmount) > 0 && (
+                    <div className="potential-payout">
+                      <strong>Potential Payout:</strong>
+                      <br />$
+                      {(Number.parseFloat(betAmount) / (betType === "YES" ? market.yesPrice : market.noPrice)).toFixed(
+                        2,
+                      )}
+                      <br />
+                      <small>
+                        Profit: $
+                        {(
+                          Number.parseFloat(betAmount) / (betType === "YES" ? market.yesPrice : market.noPrice) -
+                          Number.parseFloat(betAmount)
+                        ).toFixed(2)}
+                      </small>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        {/* Price Chart */}
+        <div className="section">
+          <div className="section-header">📈 PRICE CHART</div>
+          <div className="section-content">
+            <div className="chart-container">
+              <div className="timeframe-buttons">
+                {["1hr", "6hr", "1d", "1w", "1m"].map((timeframe) => (
+                  <button
+                    key={timeframe}
+                    className={`timeframe-btn ${selectedTimeframe === timeframe ? "active" : ""}`}
+                    onClick={() => setSelectedTimeframe(timeframe)}
+                  >
+                    {timeframe.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+              <div className="chart-placeholder">
+                <div style={{ textAlign: "center" }}>
+                  <strong>PRICE CHART - {selectedTimeframe.toUpperCase()}</strong>
+                  <br />
+                  <br />📊 Trading activity for the last {selectedTimeframe}
+                  <br />
+                  <small>(Interactive chart would display here)</small>
+                  <br />
+                  <br />
+                  <div style={{ fontSize: "10px", color: "#000080" }}>
+                    Current Spread: ${Math.abs(market.yesPrice - market.noPrice).toFixed(2)} | Volume: $
+                    {market.volume.toLocaleString()}
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <div className="form-row">
-              <span className="form-label">Amount:</span>
-              <span style={{ fontSize: "14px", fontWeight: "bold" }}>$</span>
-              <input
-                type="text"
-                className="amount-input"
-                value={betAmount}
-                onChange={(e) => setBetAmount(e.target.value)}
-                placeholder="0.00"
-                style={{ width: "100px", marginLeft: "5px" }}
-              />
-            </div>
-
-            <div className="form-row">
-              <button type="submit" className="bet-button">
-                💰 PLACE BET
+        {/* Evidence Section */}
+        <div className="section">
+          <div className="section-header">⚖️ HOW TO RESOLVE THIS MARKET</div>
+          <div className="section-content">
+            <div style={{ display: "flex", gap: "15px", justifyContent: "center" }}>
+              <button
+                className="resolution-button vote-button"
+                onClick={() => alert("Vote functionality coming soon!")}
+              >
+                🗳️ VOTE
+              </button>
+              <button
+                className="resolution-button create-button"
+                onClick={() => (window.location.href = `/resolution/${params.id}`)}
+              >
+                ⚙️ CREATE A RESOLUTION MECHANISM
               </button>
             </div>
-          </form>
-        </div>
-
-        {/* Evidence */}
-        <div className="evidence-panel">
-          <div className="panel-header" style={{ background: "linear-gradient(to right, #2e8b57 0%, #228b22 100%)" }}>
-            📋 KEY EVIDENCE & ARGUMENTS
-          </div>
-          <ul style={{ fontSize: "12px", lineHeight: "1.5" }}>
-            {market.evidence.map((item, index) => (
-              <li key={index} style={{ marginBottom: "8px" }}>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Discussion */}
-        <div className="discussion-panel">
-          <div className="panel-header" style={{ background: "linear-gradient(to right, #8b4513 0%, #a0522d 100%)" }}>
-            💬 RECENT DISCUSSION ({market.posts} posts)
-          </div>
-
-          <div className="post">
-            <span className="post-author">ConspiracyKing</span> <span className="post-time">- 5 minutes ago</span>
-            <div style={{ fontSize: "11px", marginTop: "5px" }}>
-              The ballistics evidence clearly shows multiple shooters. How can anyone still believe the lone gunman
-              theory?
-            </div>
-          </div>
-
-          <div className="post">
-            <span className="post-author">SkepticalSam</span> <span className="post-time">- 12 minutes ago</span>
-            <div style={{ fontSize: "11px", marginTop: "5px" }}>
-              @ConspiracyKing The Warren Commission thoroughly investigated this. Oswald acted alone.
-            </div>
-          </div>
-
-          <div className="post">
-            <span className="post-author">TruthSeeker99</span> <span className="post-time">- 1 hour ago</span>
-            <div style={{ fontSize: "11px", marginTop: "5px" }}>
-              New documents released under FOIA show CIA involvement. This market is going to flip soon!
-            </div>
-          </div>
-
-          <div className="reply-area">
-            <strong>Post a Reply:</strong>
-            <textarea className="reply-textarea" placeholder="Enter your thoughts on this conspiracy theory..." />
-            <button className="reply-button">📝 POST REPLY</button>
           </div>
         </div>
       </div>
