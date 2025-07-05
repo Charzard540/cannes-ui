@@ -33,6 +33,16 @@ export default function HomePage() {
         posts: 445,
         trending: false,
       },
+      {
+        id: 9,
+        title: "MLK Assassination: FBI Involvement",
+        description: "Was the FBI involved in the assassination of Martin Luther King Jr.?",
+        yesPrice: 0.42,
+        noPrice: 0.58,
+        volume: 13200,
+        posts: 623,
+        trending: true,
+      },
     ],
     "Space & UFOs": [
       {
@@ -65,6 +75,16 @@ export default function HomePage() {
         posts: 334,
         trending: false,
       },
+      {
+        id: 10,
+        title: "Phoenix Lights: Military Exercise or UFO Fleet",
+        description: "Were the 1997 Phoenix Lights a military operation or mass UFO sighting?",
+        yesPrice: 0.36,
+        noPrice: 0.64,
+        volume: 9450,
+        posts: 412,
+        trending: false,
+      },
     ],
     "Historical Events": [
       {
@@ -86,6 +106,26 @@ export default function HomePage() {
         volume: 5600,
         posts: 289,
         trending: false,
+      },
+      {
+        id: 11,
+        title: "Lincoln Assassination: Wider Conspiracy",
+        description: "Was John Wilkes Booth part of a larger Confederate conspiracy?",
+        yesPrice: 0.67,
+        noPrice: 0.33,
+        volume: 7800,
+        posts: 356,
+        trending: false,
+      },
+      {
+        id: 12,
+        title: "Oklahoma City Bombing: Additional Conspirators",
+        description: "Were there additional conspirators beyond Timothy McVeigh and Terry Nichols?",
+        yesPrice: 0.31,
+        noPrice: 0.69,
+        volume: 10500,
+        posts: 534,
+        trending: true,
       },
     ],
   }
@@ -183,12 +223,14 @@ export default function HomePage() {
           background-color: #f0f0f0;
           border: 2px inset #c0c0c0;
           padding: 10px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 15px;
         }
 
         .market-card {
           background-color: #ffffff;
           border: 2px outset #c0c0c0;
-          margin-bottom: 15px;
           padding: 10px;
         }
 
@@ -212,6 +254,7 @@ export default function HomePage() {
           color: #0000ff;
           margin-bottom: 5px;
           text-decoration: underline;
+          clear: both;
         }
 
         .card-title:hover {
@@ -298,6 +341,13 @@ export default function HomePage() {
           0% { opacity: 1; }
           50% { opacity: 0; }
           100% { opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+          .cards-container {
+            grid-template-columns: 1fr;
+          }
         }
       `}</style>
 
