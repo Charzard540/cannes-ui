@@ -41,7 +41,11 @@ export default function CreateMarketPage() {
       <style jsx>{`
         .conspiracy-site {
           font-family: "Times New Roman", Times, serif;
-          background-color: #c0c0c0;
+          background-image: url('/pyramids.jpeg');
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+          background-repeat: no-repeat;
           margin: 0;
           padding: 0;
           min-height: 100vh;
@@ -398,9 +402,7 @@ export default function CreateMarketPage() {
                 >
                   {marketName.length}/100 characters
                 </div>
-                <div className="help-text">
-                  Choose a clear, engaging title 
-                </div>
+                <div className="help-text">Choose a clear, engaging title</div>
               </div>
             </div>
           </div>

@@ -1,74 +1,96 @@
 "use client"
 
-export default function HomePage() {
-  const categories = {
-    "Space & UFOs": [
-      {
-        id: 2,
-        title: "The Moon Landing: Real or Fake?",
-        description: "Did NASA really land on the moon in 1969?",
-        yesPrice: 0.89,
-        noPrice: 0.11,
-        volume: 8930,
-        posts: 1203,
-        trending: false,
-      },
-      {
-        id: 3,
-        title: "Area 51: Alien Technology Reverse Engineering",
-        description: "Is the US government reverse engineering alien technology at Area 51?",
-        yesPrice: 0.23,
-        noPrice: 0.77,
-        volume: 12100,
-        posts: 592,
-        trending: true,
-      },
-    ],
-    "Government & Politics": [
-      {
-        id: 1,
-        title: "JFK Assassination: Lone Gunman vs Multiple Shooters",
-        description: "Was Lee Harvey Oswald acting alone, or was there a larger conspiracy?",
-        yesPrice: 0.34,
-        noPrice: 0.66,
-        volume: 15420,
-        posts: 847,
-        trending: true,
-      },
-      {
-        id: 4,
-        title: "9/11: Inside Job or Foreign Attack",
-        description: "Was 9/11 carried out solely by foreign terrorists or was there government involvement?",
-        yesPrice: 0.18,
-        noPrice: 0.82,
-        volume: 22340,
-        posts: 2156,
-        trending: false,
-      },
-    ],
-    "Historical Events": [
-      {
-        id: 7,
-        title: "Pearl Harbor: Advance Warning Ignored",
-        description: "Did FDR have advance knowledge of the Pearl Harbor attack?",
-        yesPrice: 0.29,
-        noPrice: 0.71,
-        volume: 11200,
-        posts: 678,
-        trending: false,
-      },
-      {
-        id: 8,
-        title: "Titanic: Insurance Fraud Conspiracy",
-        description: "Was the Titanic disaster an elaborate insurance fraud scheme?",
-        yesPrice: 0.15,
-        noPrice: 0.85,
-        volume: 5600,
-        posts: 289,
-        trending: false,
-      },
-    ],
-  }
+export default function MarketsPage() {
+  const allMarkets = [
+    {
+      id: 1,
+      title: "JFK Assassination: Lone Gunman vs Multiple Shooters",
+      description: "Was Lee Harvey Oswald acting alone, or was there a larger conspiracy?",
+      yesPrice: 0.34,
+      noPrice: 0.66,
+      volume: 15420,
+      posts: 847,
+      trending: true,
+      category: "Government & Politics",
+    },
+    {
+      id: 2,
+      title: "The Moon Landing: Real or Fake?",
+      description: "Did NASA really land on the moon in 1969?",
+      yesPrice: 0.89,
+      noPrice: 0.11,
+      volume: 8930,
+      posts: 1203,
+      trending: false,
+      category: "Space & UFOs",
+    },
+    {
+      id: 3,
+      title: "Area 51: Alien Technology Reverse Engineering",
+      description: "Is the US government reverse engineering alien technology at Area 51?",
+      yesPrice: 0.23,
+      noPrice: 0.77,
+      volume: 12100,
+      posts: 592,
+      trending: true,
+      category: "Space & UFOs",
+    },
+    {
+      id: 4,
+      title: "9/11: Inside Job or Foreign Attack",
+      description: "Was 9/11 carried out solely by foreign terrorists or was there government involvement?",
+      yesPrice: 0.18,
+      noPrice: 0.82,
+      volume: 22340,
+      posts: 2156,
+      trending: false,
+      category: "Government & Politics",
+    },
+    {
+      id: 7,
+      title: "Pearl Harbor: Advance Warning Ignored",
+      description: "Did FDR have advance knowledge of the Pearl Harbor attack?",
+      yesPrice: 0.29,
+      noPrice: 0.71,
+      volume: 11200,
+      posts: 678,
+      trending: false,
+      category: "Historical Events",
+    },
+    {
+      id: 8,
+      title: "Titanic: Insurance Fraud Conspiracy",
+      description: "Was the Titanic disaster an elaborate insurance fraud scheme?",
+      yesPrice: 0.15,
+      noPrice: 0.85,
+      volume: 5600,
+      posts: 289,
+      trending: false,
+      category: "Historical Events",
+    },
+    {
+      id: 9,
+      title: "Roswell UFO Crash: Cover-up or Weather Balloon?",
+      description: "Was the 1947 Roswell incident really a crashed UFO or just a weather balloon?",
+      yesPrice: 0.41,
+      noPrice: 0.59,
+      volume: 9800,
+      posts: 734,
+      trending: true,
+      category: "Space & UFOs",
+    },
+    {
+      id: 10,
+      title: "Princess Diana: Accident or Assassination?",
+      description: "Was Princess Diana's death in 1997 a tragic accident or planned assassination?",
+      yesPrice: 0.27,
+      noPrice: 0.73,
+      volume: 13450,
+      posts: 1089,
+      trending: false,
+      category: "Government & Politics",
+    },
+  ]
 
   return (
     <div className="conspiracy-site">
@@ -192,12 +214,13 @@ export default function HomePage() {
           backdrop-filter: blur(10px);
         }
 
-        .welcome-box {
+        .page-header {
           background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1));
           border: 2px solid #00ff41;
           padding: 15px;
           margin-bottom: 20px;
           font-size: 13px;
+          text-align: center;
           color: #00ff41;
           text-shadow: 0 0 5px #00ff41;
           box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
@@ -226,36 +249,11 @@ export default function HomePage() {
           100% { border-color: #ff00ff; }
         }
 
-        .category-section {
-          margin-bottom: 25px;
-        }
-
-        .category-header {
-          background: linear-gradient(135deg, #8b008b, #4b0082, #000080);
-          color: #00ff41;
-          padding: 12px;
-          font-weight: bold;
-          font-size: 16px;
-          border: 2px solid #00ff41;
-          text-shadow: 0 0 10px #00ff41;
-          box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
-          animation: categoryHeaderGlow 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes categoryHeaderGlow {
-          0% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.4); }
-          100% { box-shadow: 0 0 30px rgba(255, 0, 255, 0.4); }
-        }
-
-        .cards-container {
-          background: rgba(0, 0, 0, 0.6);
-          border: 2px solid #00ff41;
-          padding: 20px;
+        .markets-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 20px;
-          align-items: stretch;
-          backdrop-filter: blur(5px);
+          margin-bottom: 25px;
         }
 
         .market-card {
@@ -264,8 +262,7 @@ export default function HomePage() {
           padding: 15px;
           display: flex;
           flex-direction: column;
-          height: 100%;
-          min-height: 220px;
+          min-height: 200px;
           position: relative;
           transition: all 0.3s ease;
           box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
@@ -298,29 +295,13 @@ export default function HomePage() {
           50% { transform: scale(1.1); }
         }
 
-        .card-content {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          padding-top: ${({ trending }) => (trending ? "25px" : "0")};
-        }
-
-        .card-header {
-          display: flex;
-          gap: 12px;
-          margin-bottom: 15px;
-        }
-
-        .card-left {
-          flex: 1;
-        }
-
         .card-image {
-          width: 120px;
-          height: 90px;
+          width: 100%;
+          height: 80px;
           object-fit: cover;
           border: 2px solid #00ff41;
-          flex-shrink: 0;
+          margin-bottom: 10px;
+          margin-top: 25px;
           filter: hue-rotate(30deg) saturate(1.2);
           transition: all 0.3s ease;
         }
@@ -330,6 +311,14 @@ export default function HomePage() {
           box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
         }
 
+        .card-category {
+          font-size: 10px;
+          color: #ff00ff;
+          font-style: italic;
+          margin-bottom: 6px;
+          text-shadow: 0 0 3px #ff00ff;
+        }
+
         .card-title {
           font-size: 15px;
           font-weight: bold;
@@ -337,9 +326,6 @@ export default function HomePage() {
           margin-bottom: 10px;
           text-decoration: none;
           line-height: 1.3;
-          min-height: 40px;
-          display: flex;
-          align-items: flex-start;
           text-shadow: 0 0 5px #00ff41;
           transition: all 0.3s ease;
         }
@@ -353,10 +339,9 @@ export default function HomePage() {
         .card-description {
           font-size: 12px;
           color: #00ffff;
-          margin-bottom: 15px;
+          margin-bottom: 10px;
           line-height: 1.4;
           flex-grow: 1;
-          min-height: 50px;
           text-shadow: 0 0 3px #00ffff;
         }
 
@@ -397,8 +382,6 @@ export default function HomePage() {
           font-size: 11px;
           color: #00ffff;
           margin-bottom: 12px;
-          height: 18px;
-          align-items: center;
           text-shadow: 0 0 3px #00ffff;
         }
 
@@ -416,7 +399,6 @@ export default function HomePage() {
           text-decoration: none;
           height: 32px;
           line-height: 16px;
-          margin-top: auto;
           transition: all 0.3s ease;
           text-shadow: 0 0 5px #00ff41;
           box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
@@ -456,61 +438,14 @@ export default function HomePage() {
           text-shadow: 0 0 10px #00ffff;
         }
 
-        .blink {
-          animation: blink 1.5s linear infinite;
-        }
-
-        @keyframes blink {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
-        }
-
-        .matrix-rain {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-          z-index: 0;
-          opacity: 0.1;
-        }
-
         /* Responsive adjustments */
         @media (max-width: 600px) {
-          .cards-container {
+          .markets-grid {
             grid-template-columns: 1fr;
           }
           .header h1 {
             font-size: 22px;
           }
-        }
-      `}</style>
-
-      {/* Matrix Rain Effect */}
-      <div className="matrix-rain">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animation: `matrixFall ${3 + Math.random() * 4}s linear infinite`,
-              color: "#00ff41",
-              fontSize: "12px",
-              fontFamily: "Courier New, monospace",
-            }}
-          >
-            {String.fromCharCode(0x30a0 + Math.random() * 96)}
-          </div>
-        ))}
-      </div>
-
-      <style jsx>{`
-        @keyframes matrixFall {
-          0% { transform: translateY(-100vh); opacity: 1; }
-          100% { transform: translateY(100vh); opacity: 0; }
         }
       `}</style>
 
@@ -530,135 +465,55 @@ export default function HomePage() {
       </div>
 
       <div className="container">
-        {/* Welcome Message */}
-        <div className="welcome-box">
+        {/* Page Header */}
+        <div className="page-header">
           <center>
-            <b>🌟 *** WELCOME TO THE CONSPIRACY PREDICTION EXCHANGE *** 🌟</b>
+            <b>🌟 *** ALL CONSPIRACY MARKETS *** 🌟</b>
             <br />
             <br />
-            <span style={{ color: "#ff00ff" }}>🚀 NEW!</span> Put your money where your theories are! Trade shares in
-            historical conspiracy theories and profit from the truth. Each market represents a different theory about
-            past events. Buy "YES" if you believe the conspiracy theory is true, or "NO" if you think the official story
-            is correct.
-            <br />
-            <br />
-            <span className="blink">✨ *** UPDATED DAILY *** ✨</span>
+            Browse all active prediction markets and place your bets on history's greatest mysteries!
           </center>
         </div>
 
         {/* Stats */}
         <div className="stats-bar">
           <center>
-            <b>📈 *** LIVE STATS *** 📈</b>
-            <br />👥 Users Online: 1,337 | 🎯 Active Markets: 42 | 💰 24h Volume: $89,420 | 📊 Total Trades: 156,789
+            <b>📈 *** MARKET STATS *** 📈</b>
+            <br />🎯 Total Markets: {allMarkets.length} | 👥 Active Traders: 2,847 | 💰 24h Volume: $156,890
             <br />
             <span style={{ fontSize: "10px" }}>⏰ Last Updated: {new Date().toLocaleString()}</span>
           </center>
         </div>
 
-        {/* Market Categories */}
-        {Object.entries(categories).map(([categoryName, markets]) => (
-          <div key={categoryName} className="category-section">
-            <div className="category-header">🗂️ {categoryName.toUpperCase()}</div>
-            <div className="cards-container">
-              {markets.map((market) => (
-                <div key={market.id} className="market-card">
-                  {market.trending && <div className="trending-badge">🔥 HOT</div>}
+        {/* Markets Grid */}
+        <div className="markets-grid">
+          {allMarkets.map((market) => (
+            <div key={market.id} className="market-card">
+              {market.trending && <div className="trending-badge">🔥 HOT</div>}
 
-                  <div className="card-content" style={{ paddingTop: market.trending ? "25px" : "0" }}>
-                    <div className="card-header">
-                      <div className="card-left">
-                        <a href={`/market/${market.id}`} className="card-title">
-                          {market.title}
-                        </a>
-                        <div className="card-description">{market.description}</div>
-                      </div>
-                      {market.id === 2 && <img src="/moon-landing.jpg" alt="Moon Landing" className="card-image" />}
-                    </div>
+              {market.id === 2 && <img src="/moon-landing.jpg" alt="Moon Landing" className="card-image" />}
 
-                    <div className="price-section">
-                      <div className="price-yes">✅ YES: ${market.yesPrice.toFixed(2)}</div>
-                      <div className="price-no">❌ NO: ${market.noPrice.toFixed(2)}</div>
-                    </div>
+              <div className="card-category">📁 {market.category}</div>
+              <a href={`/market/${market.id}`} className="card-title">
+                {market.title}
+              </a>
+              <div className="card-description">{market.description}</div>
 
-                    <div className="card-stats">
-                      <span>💰 Volume: ${market.volume.toLocaleString()}</span>
-                      <span>💬 Posts: {market.posts}</span>
-                    </div>
+              <div className="price-section">
+                <div className="price-yes">✅ YES: ${market.yesPrice.toFixed(2)}</div>
+                <div className="price-no">❌ NO: ${market.noPrice.toFixed(2)}</div>
+              </div>
 
-                    <a href={`/trade/${market.id}`} className="trade-button">
-                      🎯 TRADE NOW
-                    </a>
-                  </div>
-                </div>
-              ))}
+              <div className="card-stats">
+                <span>💰 ${market.volume.toLocaleString()}</span>
+                <span>💬 {market.posts}</span>
+              </div>
+
+              <a href={`/trade/${market.id}`} className="trade-button">
+                🎯 TRADE NOW
+              </a>
             </div>
-          </div>
-        ))}
-
-        {/* Recent Activity */}
-        <div className="category-section">
-          <div className="category-header">📈 RECENT FORUM ACTIVITY</div>
-          <div
-            style={{
-              background: "rgba(0, 0, 0, 0.7)",
-              border: "2px solid #00ff41",
-              borderTop: "none",
-              padding: "20px",
-              backdropFilter: "blur(5px)",
-            }}
-          >
-            <div
-              style={{
-                background: "linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1))",
-                border: "1px solid #00ff41",
-                borderRadius: "8px",
-                padding: "12px",
-                marginBottom: "12px",
-                color: "#00ff41",
-                textShadow: "0 0 3px #00ff41",
-              }}
-            >
-              <strong style={{ color: "#ff00ff" }}>🕵️ TruthSeeker99</strong> <em>(2 min ago)</em>
-              <br />
-              <span style={{ fontSize: "11px", color: "#00ffff" }}>
-                New evidence in JFK case - Zapruder film analysis reveals inconsistencies...
-              </span>
-            </div>
-            <div
-              style={{
-                background: "linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1))",
-                border: "1px solid #00ff41",
-                borderRadius: "8px",
-                padding: "12px",
-                marginBottom: "12px",
-                color: "#00ff41",
-                textShadow: "0 0 3px #00ff41",
-              }}
-            >
-              <strong style={{ color: "#ff00ff" }}>🔬 SkepticalSarah</strong> <em>(15 min ago)</em>
-              <br />
-              <span style={{ fontSize: "11px", color: "#00ffff" }}>
-                Moon landing hoax debunked AGAIN - here's the science...
-              </span>
-            </div>
-            <div
-              style={{
-                background: "linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1))",
-                border: "1px solid #00ff41",
-                borderRadius: "8px",
-                padding: "12px",
-                color: "#00ff41",
-                textShadow: "0 0 3px #00ff41",
-              }}
-            >
-              <strong style={{ color: "#ff00ff" }}>👽 AlienHunter</strong> <em>(1 hour ago)</em>
-              <br />
-              <span style={{ fontSize: "11px", color: "#00ffff" }}>
-                Area 51 worker comes forward with new testimony about UFO tech...
-              </span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
