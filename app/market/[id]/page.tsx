@@ -6,6 +6,7 @@ import { useParams } from "next/navigation"
 export default function MarketPage() {
   const params = useParams()
   const [betAmount, setBetAmount] = useState("")
+  const [fundAmount, setFundAmount] = useState("")
   const [betType, setBetType] = useState("YES")
   const [selectedTimeframe, setSelectedTimeframe] = useState("1d")
   const [newPost, setNewPost] = useState("")
@@ -13,44 +14,15 @@ export default function MarketPage() {
   // Mock data for different markets - in real app this would come from API/database
   const marketData = {
     1: {
-      title: "[Market Title from Create Form]",
-      description: "[Market Description from Create Form - explaining the conspiracy theory and resolution criteria]",
-      yesPrice: 0.5,
-      noPrice: 0.5,
-      volume: 0,
-      posts: 0,
-      category: "[Category Selected from Create Form]",
-      dateCreated: "[Date Market was Created]",
-      evidence: [
-        "[Evidence Point 1 - Key supporting argument]",
-        "[Evidence Point 2 - Historical documentation]",
-        "[Evidence Point 3 - Witness testimony or analysis]",
-        "[Evidence Point 4 - Official records or reports]",
-        "[Evidence Point 5 - Scientific or technical evidence]",
-        "[Evidence Point 6 - Additional supporting material]",
-      ],
-      recentPosts: [
-        {
-          author: "[Username]",
-          time: "[Time ago]",
-          content: "[User comment about the conspiracy theory and their trading position]",
-        },
-        {
-          author: "[Username]",
-          time: "[Time ago]",
-          content: "[User response or counterargument to previous posts]",
-        },
-        {
-          author: "[Username]",
-          time: "[Time ago]",
-          content: "[User sharing new evidence or analysis related to the market]",
-        },
-        {
-          author: "[Username]",
-          time: "[Time ago]",
-          content: "[User discussing market trends and price movements]",
-        },
-      ],
+      title: "Apollo Moon Landing: Real Achievement vs Hollywood Hoax",
+      description:
+        "Did NASA really land astronauts on the moon in 1969, or was it an elaborate film production staged to win the Space Race against the Soviet Union?",
+      yesPrice: 0.11,
+      noPrice: 0.89,
+      volume: 8930,
+      posts: 1203,
+      category: "Space & UFOs",
+      dateCreated: "February 8, 2024",
     },
     2: {
       title: "[Alternative Market Title]",
@@ -61,27 +33,73 @@ export default function MarketPage() {
       posts: 0,
       category: "[Alternative Category]",
       dateCreated: "[Alternative Date]",
-      evidence: [
-        "[Alternative Evidence Point 1]",
-        "[Alternative Evidence Point 2]",
-        "[Alternative Evidence Point 3]",
-        "[Alternative Evidence Point 4]",
-        "[Alternative Evidence Point 5]",
-        "[Alternative Evidence Point 6]",
-      ],
     },
   }
 
+  // Mock resolution mechanisms data
+  const resolutionMechanisms = [
+    {
+      id: 1,
+      name: "NASA Archive Document Release",
+      description:
+        "Market resolves YES if NASA releases classified documents that confirm the moon landing was staged. Market resolves NO if documents confirm authentic lunar missions or no new evidence emerges by December 2025.",
+      type: "Government Document Release",
+      votes: 23,
+    },
+    {
+      id: 2,
+      name: "Independent Lunar Probe",
+      description:
+        "A probe is sent to the moon to the coordinates of the supposed 1969 lunar landing. It searches for evidence including the flag, debris, or footprints.",
+      type: "Scientific Analysis",
+      votes: 18,
+    },
+    {
+      id: 3,
+      name: "Lunar Optical Satellite",
+      description:
+        "Independent Satellite captures images of the landing site and returns conclusive images.",
+      type: "Scientific Analysis",
+      votes: 12,
+    },
+  ]
+
   const market = marketData[params.id] || marketData[1]
 
-  const handleBetSubmit = (e) => {
-    e.preventDefault()
+  const handleBuyYes = () => {
     if (!betAmount || Number.parseFloat(betAmount) <= 0) {
-      alert("Please enter a valid bet amount!")
+      alert("Please enter a valid amount!")
       return
     }
-    alert(`Bet placed: $${betAmount} on ${betType}`)
+    alert(`Bought YES shares: $${betAmount}`)
     setBetAmount("")
+  }
+
+  const handleBuyNo = () => {
+    if (!betAmount || Number.parseFloat(betAmount) <= 0) {
+      alert("Please enter a valid amount!")
+      return
+    }
+    alert(`Bought NO shares: $${betAmount}`)
+    setBetAmount("")
+  }
+
+  const handleSellYes = () => {
+    alert("Sell YES functionality coming soon!")
+  }
+
+  const handleSellNo = () => {
+    alert("Sell NO functionality coming soon!")
+  }
+
+  const handleFundMarket = (e) => {
+    e.preventDefault()
+    if (!fundAmount || Number.parseFloat(fundAmount) <= 0) {
+      alert("Please enter a valid fund amount!")
+      return
+    }
+    alert(`Market funded with: $${fundAmount}`)
+    setFundAmount("")
   }
 
   const handlePostSubmit = (e) => {
@@ -275,11 +293,36 @@ export default function MarketPage() {
           font-weight: bold;
           cursor: pointer;
           font-size: 12px;
-          margin-top: 10px;
+          margin: 5px;
         }
 
         .bet-button:hover {
           border: 2px inset #008000;
+        }
+
+        .sell-button {
+          background-color: #ff0000;
+          color: #ffffff;
+          border: 2px outset #ff0000;
+        }
+
+        .sell-button:hover {
+          border: 2px inset #ff0000;
+        }
+
+        .fund-button {
+          background-color: #0000ff;
+          color: #ffffff;
+          border: 2px outset #0000ff;
+          padding: 8px 15px;
+          font-weight: bold;
+          cursor: pointer;
+          font-size: 12px;
+          margin-top: 10px;
+        }
+
+        .fund-button:hover {
+          border: 2px inset #0000ff;
         }
 
         .chart-container {
@@ -327,26 +370,114 @@ export default function MarketPage() {
           color: #666666;
         }
 
-        .evidence-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
+        .resolution-button {
+          background-color: #c0c0c0;
+          color: #000000;
+          border: 2px outset #c0c0c0;
+          padding: 10px 20px;
+          font-weight: bold;
+          cursor: pointer;
+          font-size: 12px;
+          font-family: "Times New Roman", Times, serif;
         }
 
-        .evidence-item {
+        .resolution-button:hover {
+          border: 2px inset #c0c0c0;
+        }
+
+        .vote-button {
+          background-color: #008000;
+          color: #ffffff;
+        }
+
+        .create-button {
+          background-color: #ff8000;
+          color: #ffffff;
+        }
+
+        .resolution-card {
           background-color: #ffffff;
           border: 1px solid #000000;
-          padding: 8px;
-          margin-bottom: 5px;
+          padding: 10px;
+          margin-bottom: 10px;
+        }
+
+        .resolution-card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+          padding-bottom: 5px;
+          border-bottom: 1px solid #cccccc;
+        }
+
+        .resolution-card-title {
+          font-weight: bold;
+          font-size: 13px;
+          color: #0000ff;
+        }
+
+        .resolution-card-description {
+          font-size: 11px;
+          line-height: 1.4;
+          margin-bottom: 8px;
+          color: #000000;
+        }
+
+        .resolution-card-meta {
+          display: flex;
+          justify-content: space-between;
+          font-size: 10px;
+          color: #666666;
+        }
+
+        .view-more-button {
+          background-color: #c0c0c0;
+          color: #000000;
+          border: 2px outset #c0c0c0;
+          padding: 5px 15px;
+          font-size: 11px;
+          cursor: pointer;
+          margin: 10px 0 15px 0;
+          font-weight: bold;
+        }
+
+        .view-more-button:hover {
+          border: 2px inset #c0c0c0;
+        }
+
+        .forum-form {
+          margin-top: 15px;
+          padding: 10px;
+          background-color: #f8f8f8;
+          border: 1px solid #cccccc;
+        }
+
+        .forum-textarea {
+          width: 100%;
+          height: 80px;
+          padding: 5px;
+          border: 1px solid #000000;
+          font-family: "Times New Roman", Times, serif;
           font-size: 12px;
+          resize: vertical;
         }
 
-        .evidence-item:before {
-          content: "📋 ";
-          margin-right: 5px;
+        .forum-button {
+          background-color: #e0e0e0;
+          border: 1px solid #000000;
+          padding: 5px 15px;
+          font-weight: bold;
+          cursor: pointer;
+          margin-top: 8px;
+          font-size: 11px;
         }
 
-        .post {
+        .forum-button:hover {
+          background-color: #d0d0d0;
+        }
+
+        .forum-post {
           background-color: #ffffff;
           border: 1px solid #000000;
           padding: 10px;
@@ -377,85 +508,17 @@ export default function MarketPage() {
           color: #000000;
         }
 
-        .reply-form {
-          background-color: #ffff99;
-          border: 2px solid #000000;
-          padding: 10px;
-          margin-top: 15px;
-        }
-
-        .reply-textarea {
-          width: 100%;
-          height: 60px;
-          padding: 5px;
-          border: 2px inset #c0c0c0;
-          font-family: "Times New Roman", Times, serif;
-          font-size: 12px;
-          resize: vertical;
-        }
-
-        .reply-button {
-          background-color: #c0c0c0;
-          color: #000000;
-          border: 2px outset #c0c0c0;
-          padding: 5px 10px;
-          font-weight: bold;
-          cursor: pointer;
-          margin-top: 5px;
-          font-size: 11px;
-        }
-
-        .reply-button:hover {
-          border: 2px inset #c0c0c0;
-        }
-
-        .potential-payout {
-          background-color: #e0ffe0;
-          border: 1px solid #008000;
-          padding: 8px;
+        .button-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 5px;
           margin-top: 10px;
-          font-size: 11px;
-          text-align: center;
-        }
-
-        .warning-text {
-          background-color: #ffe0e0;
-          border: 1px solid #ff0000;
-          padding: 5px;
-          margin-top: 5px;
-          font-size: 10px;
-          text-align: center;
-        }
-
-        .resolution-button {
-          background-color: #c0c0c0;
-          color: #000000;
-          border: 2px outset #c0c0c0;
-          padding: 10px 20px;
-          font-weight: bold;
-          cursor: pointer;
-          font-size: 12px;
-          font-family: "Times New Roman", Times, serif;
-        }
-
-        .resolution-button:hover {
-          border: 2px inset #c0c0c0;
-        }
-
-        .vote-button {
-          background-color: #008000;
-          color: #ffffff;
-        }
-
-        .create-button {
-          background-color: #ff8000;
-          color: #ffffff;
         }
       `}</style>
 
       {/* Header */}
       <div className="header">
-        <h2 style={{ margin: 0, fontSize: "20px" }}>CONSPIRACY MARKET DETAILS</h2>
+        <h2 style={{ margin: 0, fontSize: "20px" }}>MARKET DETAILS</h2>
         <div style={{ fontSize: "12px", fontStyle: "italic", marginTop: "5px" }}>
           Trade on the Truth Behind History's Mysteries
         </div>
@@ -482,22 +545,56 @@ export default function MarketPage() {
               <strong>Created:</strong> {market.dateCreated}
             </span>
           </div>
-          <div className="market-description">{market.description}</div>
-
-          <div className="price-display">
-            <div className="price-box">
-              <div style={{ fontSize: "11px" }}>YES</div>
-              <div className="price-yes" style={{ fontSize: "18px" }}>
-                ${market.yesPrice.toFixed(2)}
+          <div
+            style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginTop: "15px" }}
+          >
+            <div style={{ display: "flex", gap: "20px", alignItems: "flex-start", flex: 1 }}>
+              <div>
+                <div className="form-group">
+                  <label className="form-label">Fund This Market:</label>
+                  <form onSubmit={handleFundMarket} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                    <span style={{ fontSize: "14px", fontWeight: "bold" }}>$</span>
+                    <input
+                      type="number"
+                      className="amount-input"
+                      value={fundAmount}
+                      onChange={(e) => setFundAmount(e.target.value)}
+                      placeholder="0.00"
+                      min="0.01"
+                      step="0.01"
+                    />
+                    <button type="submit" className="fund-button">
+                      💰 FUND
+                    </button>
+                  </form>
+                  <div style={{ fontSize: "10px", color: "#666666", marginTop: "5px" }}>
+                    Connect wallet to fund market
+                  </div>
+                </div>
               </div>
-              <div style={{ fontSize: "10px" }}>Conspiracy TRUE</div>
+              <div style={{ flex: 1 }}>
+                <div className="market-description">{market.description}</div>
+              </div>
             </div>
-            <div className="price-box">
-              <div style={{ fontSize: "11px" }}>NO</div>
-              <div className="price-no" style={{ fontSize: "18px" }}>
-                ${market.noPrice.toFixed(2)}
+            <div style={{ marginLeft: "20px", minWidth: "150px" }}>
+              <div
+                style={{
+                  width: "150px",
+                  height: "100px",
+                  border: "2px inset #c0c0c0",
+                  backgroundColor: "#f0f0f0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "11px",
+                  color: "#666666",
+                  textAlign: "center",
+                }}
+              >
+                [Market Image]
+                <br />
+                <small>Upload evidence photo</small>
               </div>
-              <div style={{ fontSize: "10px" }}>Official Story TRUE</div>
             </div>
           </div>
 
@@ -518,75 +615,69 @@ export default function MarketPage() {
         <div className="section">
           <div className="section-header">🎯 PLACE YOUR BET</div>
           <div className="section-content">
-            <form onSubmit={handleBetSubmit}>
-              <div className="trading-form">
-                <div>
-                  <div className="form-group">
-                    <label className="form-label">Choose Your Position:</label>
-                    <div className="radio-group">
-                      <label className="radio-option">
-                        <input
-                          type="radio"
-                          name="position"
-                          value="YES"
-                          checked={betType === "YES"}
-                          onChange={(e) => setBetType(e.target.value)}
-                        />
-                        <strong style={{ color: "#008000" }}>YES</strong> - Conspiracy Theory is TRUE
-                      </label>
-                      <label className="radio-option">
-                        <input
-                          type="radio"
-                          name="position"
-                          value="NO"
-                          checked={betType === "NO"}
-                          onChange={(e) => setBetType(e.target.value)}
-                        />
-                        <strong style={{ color: "#ff0000" }}>NO</strong> - Official Story is TRUE
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Bet Amount (USDC):</label>
-                    <span style={{ fontSize: "14px", fontWeight: "bold" }}>$</span>
-                    <input
-                      type="number"
-                      className="amount-input"
-                      value={betAmount}
-                      onChange={(e) => setBetAmount(e.target.value)}
-                      placeholder="0.00"
-                      min="0.01"
-                      step="0.01"
-                    />
-                  </div>
-
-                  <button type="submit" className="bet-button">
-                    💰 PLACE BET
+            <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+              {/* YES Section */}
+              <div style={{ textAlign: "center", flex: 1 }}>
+                <div style={{ fontSize: "14px", fontWeight: "bold", color: "#008000", marginBottom: "5px" }}>
+                  YES - Moon Landing was FAKE
+                </div>
+                <div style={{ fontSize: "18px", fontWeight: "bold", color: "#008000", marginBottom: "10px" }}>
+                  ${market.yesPrice.toFixed(2)}
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Amount (USDC):</label>
+                  <span style={{ fontSize: "14px", fontWeight: "bold" }}>$</span>
+                  <input
+                    type="number"
+                    className="amount-input"
+                    value={betAmount}
+                    onChange={(e) => setBetAmount(e.target.value)}
+                    placeholder="0.00"
+                    min="0.01"
+                    step="0.01"
+                  />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+                  <button className="bet-button" onClick={handleBuyYes}>
+                    BUY YES
+                  </button>
+                  <button className="bet-button sell-button" onClick={handleSellYes}>
+                    SELL YES
                   </button>
                 </div>
+              </div>
 
-                <div>
-                  {betAmount && Number.parseFloat(betAmount) > 0 && (
-                    <div className="potential-payout">
-                      <strong>Potential Payout:</strong>
-                      <br />$
-                      {(Number.parseFloat(betAmount) / (betType === "YES" ? market.yesPrice : market.noPrice)).toFixed(
-                        2,
-                      )}
-                      <br />
-                      <small>
-                        Profit: $
-                        {(
-                          Number.parseFloat(betAmount) / (betType === "YES" ? market.yesPrice : market.noPrice) -
-                          Number.parseFloat(betAmount)
-                        ).toFixed(2)}
-                      </small>
-                    </div>
-                  )}
+              {/* NO Section */}
+              <div style={{ textAlign: "center", flex: 1 }}>
+                <div style={{ fontSize: "14px", fontWeight: "bold", color: "#ff0000", marginBottom: "5px" }}>
+                  NO - Moon Landing was REAL
+                </div>
+                <div style={{ fontSize: "18px", fontWeight: "bold", color: "#ff0000", marginBottom: "10px" }}>
+                  ${market.noPrice.toFixed(2)}
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Amount (USDC):</label>
+                  <span style={{ fontSize: "14px", fontWeight: "bold" }}>$</span>
+                  <input
+                    type="number"
+                    className="amount-input"
+                    value={betAmount}
+                    onChange={(e) => setBetAmount(e.target.value)}
+                    placeholder="0.00"
+                    min="0.01"
+                    step="0.01"
+                  />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+                  <button className="bet-button" onClick={handleBuyNo}>
+                    BUY NO
+                  </button>
+                  <button className="bet-button sell-button" onClick={handleSellNo}>
+                    SELL NO
+                  </button>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
 
@@ -625,11 +716,44 @@ export default function MarketPage() {
           </div>
         </div>
 
-        {/* Evidence Section */}
+        {/* Resolution Mechanisms */}
         <div className="section">
           <div className="section-header">⚖️ HOW TO RESOLVE THIS MARKET</div>
           <div className="section-content">
-            <div style={{ display: "flex", gap: "15px", justifyContent: "center" }}>
+            {/* Resolution Mechanism Cards */}
+            {resolutionMechanisms.map((mechanism) => (
+              <div key={mechanism.id} className="resolution-card">
+                <div className="resolution-card-header">
+                  <div className="resolution-card-title">{mechanism.name}</div>
+                </div>
+                <div className="resolution-card-content">
+                  <div className="resolution-card-description">{mechanism.description}</div>
+                  <div className="resolution-card-meta">
+                    <span>
+                      <strong>Type:</strong> {mechanism.type}
+                    </span>
+                    <span>
+                      <strong>Votes:</strong> {mechanism.votes}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            <button className="view-more-button" onClick={() => alert("View more resolution mechanisms")}>
+              View More
+            </button>
+
+            <div
+              style={{
+                display: "flex",
+                gap: "15px",
+                justifyContent: "center",
+                marginTop: "15px",
+                paddingTop: "15px",
+                borderTop: "1px solid #cccccc",
+              }}
+            >
               <button
                 className="resolution-button vote-button"
                 onClick={() => alert("Vote functionality coming soon!")}
@@ -642,6 +766,65 @@ export default function MarketPage() {
               >
                 ⚙️ CREATE A RESOLUTION MECHANISM
               </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Forum Section */}
+        <div className="section">
+          <div className="section-header">📋 FORUM</div>
+          <div className="section-content">
+            {/* Recent Posts */}
+            <div className="forum-post">
+              <div className="post-header">
+                <span className="post-author">SpaceSkeptic42</span>
+                <span className="post-time">2 minutes ago</span>
+              </div>
+              <div className="post-content">
+                The flag waving in the "lunar wind" is the smoking gun. There's no atmosphere on the moon, so how could
+                the flag move like that? Clear evidence of studio lighting and fans.
+              </div>
+            </div>
+
+            <div className="forum-post">
+              <div className="post-header">
+                <span className="post-author">ApolloBeliever</span>
+                <span className="post-time">15 minutes ago</span>
+              </div>
+              <div className="post-content">
+                The retroreflectors placed on the moon are still being used by observatories today. You can't fake that
+                kind of evidence. I'm betting NO on this one - the landing was real.
+              </div>
+            </div>
+
+            <div className="forum-post">
+              <div className="post-header">
+                <span className="post-author">FilmAnalyst99</span>
+                <span className="post-time">1 hour ago</span>
+              </div>
+              <div className="post-content">
+                Stanley Kubrick's 2001: A Space Odyssey came out in 1968. The technology to fake the moon landing
+                footage existed, and Kubrick had the skills to pull it off. Coincidence?
+              </div>
+            </div>
+
+            {/* Post Form */}
+            <div className="forum-form">
+              <form onSubmit={handlePostSubmit}>
+                <div className="form-group">
+                  <label className="form-label">Add your comment:</label>
+                  <textarea
+                    className="forum-textarea"
+                    value={newPost}
+                    onChange={(e) => setNewPost(e.target.value)}
+                    placeholder="Share your thoughts about the moon landing evidence..."
+                    required
+                  />
+                </div>
+                <button type="submit" className="forum-button">
+                  POST COMMENT
+                </button>
+              </form>
             </div>
           </div>
         </div>

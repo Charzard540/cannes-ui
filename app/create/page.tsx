@@ -399,7 +399,7 @@ export default function CreateMarketPage() {
                   {marketName.length}/100 characters
                 </div>
                 <div className="help-text">
-                  Choose a clear, engaging title that presents both sides of the conspiracy theory
+                  Choose a clear, engaging title 
                 </div>
               </div>
             </div>

@@ -9,8 +9,6 @@ export default function CreateResolutionPage() {
   const [resolutionDescription, setResolutionDescription] = useState("")
   const [resolutionType, setResolutionType] = useState("")
   const [evidenceRequired, setEvidenceRequired] = useState("")
-  const [timeframe, setTimeframe] = useState("")
-  const [votingMechanism, setVotingMechanism] = useState("")
   const [showPreview, setShowPreview] = useState(false)
 
   const resolutionTypes = [
@@ -25,20 +23,9 @@ export default function CreateResolutionPage() {
     "Other",
   ]
 
-  const votingMechanisms = [
-    "Simple Majority Vote",
-    "Weighted Expert Vote",
-    "Stake-Weighted Vote",
-    "Unanimous Consensus",
-    "2/3 Majority Required",
-    "Oracle-Based Resolution",
-  ]
-
-  const timeframes = ["1 Month", "3 Months", "6 Months", "1 Year", "2 Years", "5 Years", "10 Years", "No Time Limit"]
-
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!resolutionTitle || !resolutionDescription || !resolutionType || !votingMechanism) {
+    if (!resolutionTitle || !resolutionDescription || !resolutionType) {
       alert("Please fill in all required fields!")
       return
     }
@@ -50,8 +37,6 @@ export default function CreateResolutionPage() {
     setResolutionDescription("")
     setResolutionType("")
     setEvidenceRequired("")
-    setTimeframe("")
-    setVotingMechanism("")
     setShowPreview(false)
   }
 
@@ -318,7 +303,7 @@ export default function CreateResolutionPage() {
             Create a fair and objective way to resolve this market! Your mechanism should be:
             <br />• <strong>Verifiable</strong> - Based on evidence that can be checked
             <br />• <strong>Objective</strong> - Clear criteria that minimize subjective interpretation
-            <br />• <strong>Realistic</strong> - Achievable within the specified timeframe
+            <br />• <strong>Realistic</strong> - Achievable and practical to implement
           </center>
         </div>
 
@@ -412,7 +397,7 @@ export default function CreateResolutionPage() {
                   className="form-textarea"
                   value={evidenceRequired}
                   onChange={(e) => setEvidenceRequired(e.target.value)}
-                  placeholder="List specific documents, testimonies, or other evidence that would be required to resolve this market. For example: 'Declassified CIA documents from 1963-1964' 
+                  placeholder="List specific documents, testimonies, or other evidence that would be required to resolve this market. For example: 'Declassified CIA documents from 1963-1964'"
                   maxLength={400}
                 />
                 <div
@@ -427,85 +412,8 @@ export default function CreateResolutionPage() {
             </div>
           </div>
 
-          {/* Timeframe */}
-          <div className="form-section">
-            <div className="section-header">⏰ RESOLUTION TIMEFRAME</div>
-            <div className="section-content">
-              <div className="form-group">
-                <label className="form-label">Expected Resolution Timeframe</label>
-                <select className="form-select" value={timeframe} onChange={(e) => setTimeframe(e.target.value)}>
-                  <option value="">-- Select Timeframe --</option>
-                  {timeframes.map((time) => (
-                    <option key={time} value={time}>
-                      {time}
-                    </option>
-                  ))}
-                </select>
-                <div className="help-text">How long do you expect it might take for resolution evidence to emerge?</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Voting Mechanism */}
-          <div className="form-section">
-            <div className="section-header">🗳️ VOTING MECHANISM</div>
-            <div className="section-content">
-              <div className="form-group">
-                <label className="form-label">
-                  How Should This Be Decided? <span className="required">*</span>
-                </label>
-                <select
-                  className="form-select"
-                  value={votingMechanism}
-                  onChange={(e) => setVotingMechanism(e.target.value)}
-                  required
-                >
-                  <option value="">-- Select Voting Method --</option>
-                  {votingMechanisms.map((mechanism) => (
-                    <option key={mechanism} value={mechanism}>
-                      {mechanism}
-                    </option>
-                  ))}
-                </select>
-                <div className="help-text">
-                  Choose how the community will decide if the resolution criteria have been met
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Cost Information */}
-          <div className="form-section">
-            <div className="section-header">💰 RESOLUTION MECHANISM COST</div>
-            <div className="section-content">
-              <div
-                style={{
-                  background: "#ffff99",
-                  border: "2px solid #000000",
-                  padding: "15px",
-                  textAlign: "center",
-                  marginBottom: "10px",
-                }}
-              >
-                <div style={{ fontSize: "16px", fontWeight: "bold", color: "#000080", marginBottom: "8px" }}>
-                  ⚠️ RESOLUTION CREATION FEE: 5 USDC ⚠️
-                </div>
-                <div style={{ fontSize: "12px", lineHeight: "1.4" }}>
-                  Creating a resolution mechanism requires a one-time fee of <strong>5 USDC</strong>.
-                  <br />
-                  This helps ensure quality resolution mechanisms and prevents spam.
-                  <br />
-                  <br />
-                </div>
-              </div>
-              <div className="help-text" style={{ textAlign: "center", fontSize: "11px" }}>
-                💡 Tip: Well-designed resolution mechanisms help markets resolve fairly and build trust!
-              </div>
-            </div>
-          </div>
-
           {/* Preview */}
-          {showPreview && resolutionTitle && resolutionDescription && resolutionType && votingMechanism && (
+          {showPreview && resolutionTitle && resolutionDescription && resolutionType && (
             <div className="preview-section">
               <h3 style={{ margin: "0 0 10px 0", fontSize: "14px", color: "#000080" }}>📋 RESOLUTION PREVIEW</h3>
               <div className="preview-card">
@@ -520,18 +428,12 @@ export default function CreateResolutionPage() {
                     fontSize: "11px",
                   }}
                 >
-                  <strong>Type:</strong> {resolutionType} | <strong>Voting:</strong> {votingMechanism}
-                  {timeframe && (
-                    <>
-                      {" "}
-                      | <strong>Timeframe:</strong> {timeframe}
-                    </>
-                  )}
+                  <strong>Type:</strong> {resolutionType}
                 </div>
                 <div className="preview-meta">
                   <span>📊 Status: Pending Approval</span>
-                  <span>💰 Fee: 5 USDC</span>
                   <span>🗳️ Votes: 0</span>
+                  <span>📅 Created: Today</span>
                 </div>
               </div>
             </div>
@@ -543,7 +445,7 @@ export default function CreateResolutionPage() {
               type="button"
               className="form-btn secondary"
               onClick={() => setShowPreview(!showPreview)}
-              disabled={!resolutionTitle || !resolutionDescription || !resolutionType || !votingMechanism}
+              disabled={!resolutionTitle || !resolutionDescription || !resolutionType}
             >
               👁️ {showPreview ? "HIDE" : "SHOW"} PREVIEW
             </button>

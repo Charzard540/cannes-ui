@@ -5,8 +5,8 @@ export default function HomePage() {
     "Space & UFOs": [
       {
         id: 2,
-        title: "Did the moon landing happen?",
-        description: "Did NASA really land on the moon in 1969, or was it filmed on a sound stage?",
+        title: "The Moon Landing: Real or Fake?",
+        description: "Did NASA really land on the moon in 1969?",
         yesPrice: 0.89,
         noPrice: 0.11,
         volume: 8930,
@@ -329,7 +329,6 @@ export default function HomePage() {
       <div className="nav-bar">
         <a href="/">HOME</a>
         <a href="/portfolio">MY PORTFOLIO</a>
-        <a href="/forum">FORUM</a>
         <a href="/create">CREATE A MARKET</a>
         <a href="/connect">CONNECT WALLET</a>
       </div>
