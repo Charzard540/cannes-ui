@@ -1,6 +1,18 @@
 "use client"
 
+import { useState, useEffect } from "react"
+
 export default function HomePage() {
+  const [isVibeMode, setIsVibeMode] = useState(true)
+
+  // Load theme from localStorage on component mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("conspiracyTheme")
+    if (savedTheme !== null) {
+      setIsVibeMode(savedTheme === "vibe")
+    }
+  }, [])
+
   const categories = {
     "Space & UFOs": [
       {
@@ -70,10 +82,17 @@ export default function HomePage() {
     ],
   }
 
+  const toggleTheme = () => {
+    const newTheme = !isVibeMode
+    setIsVibeMode(newTheme)
+    localStorage.setItem("conspiracyTheme", newTheme ? "vibe" : "retro")
+  }
+
   return (
-    <div className="conspiracy-site">
+    <div className={isVibeMode ? "conspiracy-site-vibe" : "conspiracy-site-retro"}>
       <style jsx>{`
-        .conspiracy-site {
+        /* VIBE MODE STYLES */
+        .conspiracy-site-vibe {
           font-family: "Courier New", monospace;
           background: linear-gradient(45deg, #1a0033, #330066, #1a0033, #660033);
           background-size: 400% 400%;
@@ -85,7 +104,7 @@ export default function HomePage() {
           overflow-x: hidden;
         }
 
-        .conspiracy-site::before {
+        .conspiracy-site-vibe::before {
           content: '';
           position: fixed;
           top: 0;
@@ -106,12 +125,14 @@ export default function HomePage() {
           100% { background-position: 0% 50%; }
         }
 
-        .header {
+        .conspiracy-site-vibe .header {
           background: linear-gradient(135deg, #000080, #4b0082, #8b008b);
           color: #00ff41;
           padding: 20px;
           text-align: center;
-          border: 3px solid #00ff41;
+          border-width: 3px;
+          border-style: solid;
+          border-color: #00ff41;
           box-shadow: 0 0 20px rgba(0, 255, 65, 0.5), inset 0 0 20px rgba(0, 255, 65, 0.1);
           position: relative;
           z-index: 2;
@@ -123,7 +144,7 @@ export default function HomePage() {
           100% { box-shadow: 0 0 30px rgba(0, 255, 65, 0.8), inset 0 0 30px rgba(0, 255, 65, 0.2); }
         }
 
-        .header h1 {
+        .conspiracy-site-vibe .header h1 {
           margin: 0;
           font-size: 28px;
           font-weight: bold;
@@ -137,7 +158,7 @@ export default function HomePage() {
           100% { opacity: 1; }
         }
 
-        .header .tagline {
+        .conspiracy-site-vibe .header .tagline {
           font-size: 14px;
           font-style: italic;
           margin-top: 8px;
@@ -151,57 +172,200 @@ export default function HomePage() {
           100% { color: #00ffff; text-shadow: 0 0 10px #00ffff; }
         }
 
-        .nav-bar {
+        .conspiracy-site-vibe .nav-bar {
           background: linear-gradient(90deg, #2d2d2d, #1a1a1a, #2d2d2d);
           padding: 12px;
-          border: 2px solid #00ff41;
+          border-width: 2px;
+          border-style: solid;
+          border-color: #00ff41;
           text-align: center;
           position: relative;
           z-index: 2;
         }
 
-        .nav-bar a {
+        .conspiracy-site-vibe .nav-bar a {
           color: #00ff41;
           text-decoration: none;
           font-weight: bold;
           margin: 0 15px;
           font-size: 13px;
           padding: 5px 10px;
-          border: 1px solid transparent;
+          border-width: 1px;
+          border-style: solid;
+          border-color: transparent;
           transition: all 0.3s ease;
           text-shadow: 0 0 5px #00ff41;
         }
 
-        .nav-bar a:hover {
+        .conspiracy-site-vibe .nav-bar a:hover {
           color: #ff00ff;
-          border: 1px solid #ff00ff;
+          border-color: #ff00ff;
           box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
           text-shadow: 0 0 10px #ff00ff;
           transform: scale(1.05);
         }
 
-        .container {
+        .conspiracy-site-vibe .container {
           max-width: 900px;
           margin: 0 auto;
           padding: 15px;
           background: rgba(0, 0, 0, 0.8);
-          border: 2px solid #00ff41;
+          border-width: 2px;
+          border-style: solid;
+          border-color: #00ff41;
           box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
           position: relative;
           z-index: 2;
           backdrop-filter: blur(10px);
         }
 
+        /* RETRO MODE STYLES */
+        .conspiracy-site-retro {
+          font-family: "Times New Roman", Times, serif;
+          background-color: #c0c0c0;
+          background-image: url('/pyramids.jpeg');
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+          background-repeat: no-repeat;
+          margin: 0;
+          padding: 0;
+          min-height: 100vh;
+          position: relative;
+        }
+
+        .conspiracy-site-retro .header {
+          background-color: #000080;
+          color: #ffff00;
+          padding: 10px;
+          text-align: center;
+          border-width: 3px;
+          border-style: outset;
+          border-color: #c0c0c0;
+          position: relative;
+          z-index: 2;
+        }
+
+        .conspiracy-site-retro .header h1 {
+          margin: 0;
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        .conspiracy-site-retro .header .tagline {
+          font-size: 12px;
+          font-style: italic;
+          margin-top: 5px;
+        }
+
+        .conspiracy-site-retro .nav-bar {
+          background-color: #c0c0c0;
+          padding: 8px;
+          border-width: 2px;
+          border-style: inset;
+          border-color: #c0c0c0;
+          text-align: center;
+          position: relative;
+          z-index: 2;
+        }
+
+        .conspiracy-site-retro .nav-bar a {
+          color: #0000ff;
+          text-decoration: underline;
+          font-weight: normal;
+          padding: 2px 5px;
+          font-size: 12px;
+          margin: 0 5px;
+        }
+
+        .conspiracy-site-retro .nav-bar a:hover {
+          color: #ff0000;
+        }
+
+        .conspiracy-site-retro .container {
+          max-width: 900px;
+          margin: 0 auto;
+          padding: 10px;
+          background-color: rgba(255, 255, 255, 0.95);
+          border-width: 2px;
+          border-style: inset;
+          border-color: #c0c0c0;
+          position: relative;
+          z-index: 2;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          z-index: 1000;
+          padding: 10px 15px;
+          font-weight: bold;
+          cursor: pointer;
+          border-radius: 5px;
+          transition: all 0.3s ease;
+          font-family: "Courier New", monospace;
+          font-size: 12px;
+        }
+
+        .conspiracy-site-vibe .theme-toggle {
+          background: linear-gradient(135deg, #8b008b, #4b0082);
+          color: #00ff41;
+          border-width: 2px;
+          border-style: solid;
+          border-color: #00ff41;
+          text-shadow: 0 0 5px #00ff41;
+          box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+        }
+
+        .conspiracy-site-vibe .theme-toggle:hover {
+          background: linear-gradient(135deg, #ff00ff, #8b008b);
+          border-color: #ff00ff;
+          color: #ffffff;
+          text-shadow: 0 0 10px #ffffff;
+          box-shadow: 0 0 25px rgba(255, 0, 255, 0.6);
+          transform: scale(1.1);
+        }
+
+        .conspiracy-site-retro .theme-toggle {
+          background-color: #008000;
+          color: #ffffff;
+          border-width: 2px;
+          border-style: outset;
+          border-color: #008000;
+          font-family: "Times New Roman", Times, serif;
+        }
+
+        .conspiracy-site-retro .theme-toggle:hover {
+          border-style: inset;
+        }
+
+        /* Shared styles that work for both themes */
         .welcome-box {
-          background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1));
-          border: 2px solid #00ff41;
           padding: 15px;
           margin-bottom: 20px;
           font-size: 13px;
+          text-align: center;
+        }
+
+        .conspiracy-site-vibe .welcome-box {
+          background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1));
+          border-width: 2px;
+          border-style: solid;
+          border-color: #00ff41;
           color: #00ff41;
           text-shadow: 0 0 5px #00ff41;
           box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
           animation: welcomeBoxPulse 6s ease-in-out infinite;
+        }
+
+        .conspiracy-site-retro .welcome-box {
+          background-color: rgba(255, 255, 153, 0.9);
+          border-width: 2px;
+          border-style: solid;
+          border-color: #000000;
+          color: #000000;
         }
 
         @keyframes welcomeBoxPulse {
@@ -210,15 +374,28 @@ export default function HomePage() {
         }
 
         .stats-bar {
-          background: linear-gradient(90deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1), rgba(0, 255, 65, 0.1));
-          border: 1px solid #00ff41;
           padding: 8px;
           text-align: center;
           font-size: 11px;
           margin-bottom: 20px;
+        }
+
+        .conspiracy-site-vibe .stats-bar {
+          background: linear-gradient(90deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1), rgba(0, 255, 65, 0.1));
+          border-width: 1px;
+          border-style: solid;
+          border-color: #00ff41;
           color: #00ffff;
           text-shadow: 0 0 3px #00ffff;
           animation: statsGlow 3s ease-in-out infinite alternate;
+        }
+
+        .conspiracy-site-retro .stats-bar {
+          background-color: rgba(224, 224, 224, 0.9);
+          border-width: 1px;
+          border-style: solid;
+          border-color: #000000;
+          color: #000000;
         }
 
         @keyframes statsGlow {
@@ -231,15 +408,28 @@ export default function HomePage() {
         }
 
         .category-header {
-          background: linear-gradient(135deg, #8b008b, #4b0082, #000080);
-          color: #00ff41;
           padding: 12px;
           font-weight: bold;
           font-size: 16px;
-          border: 2px solid #00ff41;
+        }
+
+        .conspiracy-site-vibe .category-header {
+          background: linear-gradient(135deg, #8b008b, #4b0082, #000080);
+          color: #00ff41;
+          border-width: 2px;
+          border-style: solid;
+          border-color: #00ff41;
           text-shadow: 0 0 10px #00ff41;
           box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
           animation: categoryHeaderGlow 4s ease-in-out infinite alternate;
+        }
+
+        .conspiracy-site-retro .category-header {
+          background-color: #008000;
+          color: #ffffff;
+          border-width: 2px;
+          border-style: solid;
+          border-color: #000000;
         }
 
         @keyframes categoryHeaderGlow {
@@ -248,212 +438,126 @@ export default function HomePage() {
         }
 
         .cards-container {
-          background: rgba(0, 0, 0, 0.6);
-          border: 2px solid #00ff41;
           padding: 20px;
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 20px;
           align-items: stretch;
+        }
+
+        .conspiracy-site-vibe .cards-container {
+          background: rgba(0, 0, 0, 0.6);
+          border-width: 2px;
+          border-style: solid;
+          border-color: #00ff41;
+          border-top-width: 0;
           backdrop-filter: blur(5px);
         }
 
+        .conspiracy-site-retro .cards-container {
+          background-color: rgba(240, 240, 240, 0.9);
+          border-width: 2px;
+          border-style: solid;
+          border-color: #000000;
+          border-top-width: 0;
+        }
+
         .market-card {
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(75, 0, 130, 0.2));
-          border: 2px solid #00ff41;
-          padding: 15px;
           display: flex;
           flex-direction: column;
           height: 100%;
-          min-height: 220px;
+          min-height: 280px;
           position: relative;
           transition: all 0.3s ease;
+          overflow: hidden;
+        }
+
+        .conspiracy-site-vibe .market-card {
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(75, 0, 130, 0.2));
+          border-width: 2px;
+          border-style: solid;
+          border-color: #00ff41;
           box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
         }
 
-        .market-card:hover {
+        .conspiracy-site-vibe .market-card:hover {
           background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(255, 0, 255, 0.2));
           border-color: #ff00ff;
           box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
           transform: translateY(-5px) scale(1.02);
         }
 
+        .conspiracy-site-retro .market-card {
+          background-color: rgba(255, 255, 255, 0.95);
+          border-width: 2px;
+          border-style: solid;
+          border-color: #000000;
+        }
+
+        .conspiracy-site-retro .market-card:hover {
+          background-color: rgba(248, 248, 248, 0.95);
+        }
+
+        .card-image {
+          width: 100%;
+          height: 120px;
+          object-fit: cover;
+          position: relative;
+        }
+
+        .conspiracy-site-vibe .card-image {
+          border-bottom: 2px solid #00ff41;
+          filter: hue-rotate(30deg) saturate(1.2);
+          transition: all 0.3s ease;
+        }
+
+        .conspiracy-site-vibe .card-image:hover {
+          filter: hue-rotate(60deg) saturate(1.5);
+          box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+
+        .conspiracy-site-retro .card-image {
+          border-bottom: 2px solid #000000;
+        }
+
+        .card-content {
+          padding: 15px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+        }
+
         .trending-badge {
-          background: linear-gradient(45deg, #ff0000, #ff6600);
-          color: #ffffff;
           padding: 3px 8px;
           font-size: 10px;
           font-weight: bold;
           position: absolute;
           top: 10px;
           right: 10px;
-          border: 1px solid #ffffff;
           z-index: 3;
+        }
+
+        .conspiracy-site-vibe .trending-badge {
+          background: linear-gradient(45deg, #ff0000, #ff6600);
+          color: #ffffff;
+          border-width: 1px;
+          border-style: solid;
+          border-color: #ffffff;
           animation: trendingPulse 2s ease-in-out infinite;
           text-shadow: 0 0 5px #000000;
+        }
+
+        .conspiracy-site-retro .trending-badge {
+          background-color: #ff0000;
+          color: #ffffff;
+          border-width: 1px;
+          border-style: solid;
+          border-color: #000000;
         }
 
         @keyframes trendingPulse {
           0%, 100% { transform: scale(1); }
           50% { transform: scale(1.1); }
-        }
-
-        .card-content {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          padding-top: ${({ trending }) => (trending ? "25px" : "0")};
-        }
-
-        .card-header {
-          display: flex;
-          gap: 12px;
-          margin-bottom: 15px;
-        }
-
-        .card-left {
-          flex: 1;
-        }
-
-        .card-image {
-          width: 120px;
-          height: 90px;
-          object-fit: cover;
-          border: 2px solid #00ff41;
-          flex-shrink: 0;
-          filter: hue-rotate(30deg) saturate(1.2);
-          transition: all 0.3s ease;
-        }
-
-        .card-image:hover {
-          filter: hue-rotate(60deg) saturate(1.5);
-          box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
-        }
-
-        .card-title {
-          font-size: 15px;
-          font-weight: bold;
-          color: #00ff41;
-          margin-bottom: 10px;
-          text-decoration: none;
-          line-height: 1.3;
-          min-height: 40px;
-          display: flex;
-          align-items: flex-start;
-          text-shadow: 0 0 5px #00ff41;
-          transition: all 0.3s ease;
-        }
-
-        .card-title:hover {
-          color: #ff00ff;
-          text-shadow: 0 0 10px #ff00ff;
-          transform: scale(1.02);
-        }
-
-        .card-description {
-          font-size: 12px;
-          color: #00ffff;
-          margin-bottom: 15px;
-          line-height: 1.4;
-          flex-grow: 1;
-          min-height: 50px;
-          text-shadow: 0 0 3px #00ffff;
-        }
-
-        .price-section {
-          background: linear-gradient(90deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 0, 0.1));
-          border: 1px solid #00ff41;
-          padding: 8px;
-          margin-bottom: 10px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          height: 28px;
-          animation: priceGlow 5s ease-in-out infinite alternate;
-        }
-
-        @keyframes priceGlow {
-          0% { border-color: #00ff41; }
-          100% { border-color: #ff00ff; }
-        }
-
-        .price-yes {
-          color: #00ff00;
-          font-weight: bold;
-          font-size: 13px;
-          text-shadow: 0 0 5px #00ff00;
-        }
-
-        .price-no {
-          color: #ff0040;
-          font-weight: bold;
-          font-size: 13px;
-          text-shadow: 0 0 5px #ff0040;
-        }
-
-        .card-stats {
-          display: flex;
-          justify-content: space-between;
-          font-size: 11px;
-          color: #00ffff;
-          margin-bottom: 12px;
-          height: 18px;
-          align-items: center;
-          text-shadow: 0 0 3px #00ffff;
-        }
-
-        .trade-button {
-          background: linear-gradient(135deg, #8b008b, #4b0082);
-          color: #00ff41;
-          border: 2px solid #00ff41;
-          padding: 8px 10px;
-          font-size: 12px;
-          font-weight: bold;
-          cursor: pointer;
-          width: 100%;
-          text-align: center;
-          display: block;
-          text-decoration: none;
-          height: 32px;
-          line-height: 16px;
-          margin-top: auto;
-          transition: all 0.3s ease;
-          text-shadow: 0 0 5px #00ff41;
-          box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
-        }
-
-        .trade-button:hover {
-          background: linear-gradient(135deg, #ff00ff, #8b008b);
-          border-color: #ff00ff;
-          color: #ffffff;
-          text-shadow: 0 0 10px #ffffff;
-          box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
-          transform: scale(1.05);
-        }
-
-        .footer {
-          background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-          color: #00ff41;
-          text-align: center;
-          padding: 20px;
-          margin-top: 25px;
-          border: 2px solid #00ff41;
-          font-size: 12px;
-          text-shadow: 0 0 5px #00ff41;
-          position: relative;
-          z-index: 2;
-        }
-
-        .footer a {
-          color: #ff00ff;
-          text-decoration: none;
-          text-shadow: 0 0 5px #ff00ff;
-          transition: all 0.3s ease;
-        }
-
-        .footer a:hover {
-          color: #00ffff;
-          text-shadow: 0 0 10px #00ffff;
         }
 
         .blink {
@@ -465,17 +569,6 @@ export default function HomePage() {
           51%, 100% { opacity: 0; }
         }
 
-        .matrix-rain {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-          z-index: 0;
-          opacity: 0.1;
-        }
-
         /* Responsive adjustments */
         @media (max-width: 600px) {
           .cards-container {
@@ -484,110 +577,214 @@ export default function HomePage() {
           .header h1 {
             font-size: 22px;
           }
+          .theme-toggle {
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            font-size: 11px;
+          }
         }
       `}</style>
 
-      {/* Matrix Rain Effect */}
-      <div className="matrix-rain">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animation: `matrixFall ${3 + Math.random() * 4}s linear infinite`,
-              color: "#00ff41",
-              fontSize: "12px",
-              fontFamily: "Courier New, monospace",
-            }}
-          >
-            {String.fromCharCode(0x30a0 + Math.random() * 96)}
-          </div>
-        ))}
-      </div>
-
-      <style jsx>{`
-        @keyframes matrixFall {
-          0% { transform: translateY(-100vh); opacity: 1; }
-          100% { transform: translateY(100vh); opacity: 0; }
-        }
-      `}</style>
+      {/* Theme Toggle Button */}
+      <button className="theme-toggle" onClick={toggleTheme}>
+        {isVibeMode ? "🕹️ RETRO MODE" : "🌈 VIBE MODE"}
+      </button>
 
       {/* Header */}
       <div className="header">
-        <h1>🛸 CONSPIRACY PREDICTION EXCHANGE 🛸</h1>
-        <div className="tagline">✨ Betting on the Truth Behind History's Greatest Mysteries ✨</div>
+        <h1>{isVibeMode ? "🛸 CONSPIRACY PREDICTION EXCHANGE 🛸" : "CONSPIRACY PREDICTION EXCHANGE"}</h1>
+        <div className="tagline">
+          {isVibeMode
+            ? "✨ Betting on the Truth Behind History's Greatest Mysteries ✨"
+            : "Trade on the Truth Behind History's Mysteries"}
+        </div>
       </div>
 
       {/* Navigation */}
       <div className="nav-bar">
-        <a href="/">🏠 HOME</a>
-        <a href="/create">➕ CREATE A MARKET</a>
-        <a href="/markets">📊 ALL MARKETS</a>
-        <a href="/portfolio">💼 VIEW PORTFOLIO</a>
-        <a href="/connect">🔗 CONNECT WALLET</a>
+        <a href="/">{isVibeMode ? "🏠 HOME" : "HOME"}</a>
+        <a href="/create">{isVibeMode ? "➕ CREATE A MARKET" : "CREATE A MARKET"}</a>
+        <a href="/markets">{isVibeMode ? "📊 ALL MARKETS" : "ALL MARKETS"}</a>
+        <a href="/portfolio">{isVibeMode ? "💼 VIEW PORTFOLIO" : "VIEW PORTFOLIO"}</a>
+        <a href="/connect">{isVibeMode ? "🔗 CONNECT WALLET" : "CONNECT WALLET"}</a>
       </div>
 
       <div className="container">
         {/* Welcome Message */}
         <div className="welcome-box">
           <center>
-            <b>🌟 *** WELCOME TO THE CONSPIRACY PREDICTION EXCHANGE *** 🌟</b>
+            <b>
+              {isVibeMode
+                ? "🌟 *** WELCOME TO THE CONSPIRACY PREDICTION EXCHANGE *** 🌟"
+                : "*** WELCOME TO THE CONSPIRACY PREDICTION EXCHANGE ***"}
+            </b>
             <br />
             <br />
-            <span style={{ color: "#ff00ff" }}>🚀 NEW!</span> Put your money where your theories are! Trade shares in
-            historical conspiracy theories and profit from the truth. Each market represents a different theory about
-            past events. Buy "YES" if you believe the conspiracy theory is true, or "NO" if you think the official story
-            is correct.
+            {isVibeMode && <span style={{ color: "#ff00ff" }}>🚀 NEW!</span>} Put your money where your theories are!
+            Trade shares in historical conspiracy theories and profit from the truth. Each market represents a different
+            theory about past events. Buy "YES" if you believe the conspiracy theory is true, or "NO" if you think the
+            official story is correct.
             <br />
             <br />
-            <span className="blink">✨ *** UPDATED DAILY *** ✨</span>
+            {isVibeMode ? (
+              <span className="blink">✨ *** UPDATED DAILY *** ✨</span>
+            ) : (
+              <span>*** UPDATED DAILY ***</span>
+            )}
           </center>
         </div>
 
         {/* Stats */}
         <div className="stats-bar">
           <center>
-            <b>📈 *** LIVE STATS *** 📈</b>
-            <br />👥 Users Online: 1,337 | 🎯 Active Markets: 42 | 💰 24h Volume: $89,420 | 📊 Total Trades: 156,789
+            <b>{isVibeMode ? "📈 *** LIVE STATS *** 📈" : "*** LIVE STATS ***"}</b>
             <br />
-            <span style={{ fontSize: "10px" }}>⏰ Last Updated: {new Date().toLocaleString()}</span>
+            {isVibeMode ? "👥" : ""} Users Online: 1,337 | {isVibeMode ? "🎯" : ""} Active Markets: 42 |{" "}
+            {isVibeMode ? "💰" : ""} 24h Volume: $89,420 | {isVibeMode ? "📊" : ""} Total Trades: 156,789
+            <br />
+            <span style={{ fontSize: "10px" }}>
+              {isVibeMode ? "⏰" : ""} Last Updated: {new Date().toLocaleString()}
+            </span>
           </center>
         </div>
 
         {/* Market Categories */}
         {Object.entries(categories).map(([categoryName, markets]) => (
           <div key={categoryName} className="category-section">
-            <div className="category-header">🗂️ {categoryName.toUpperCase()}</div>
+            <div className="category-header">
+              {isVibeMode ? "🗂️" : ""} {categoryName.toUpperCase()}
+            </div>
             <div className="cards-container">
               {markets.map((market) => (
                 <div key={market.id} className="market-card">
-                  {market.trending && <div className="trending-badge">🔥 HOT</div>}
+                  {market.trending && <div className="trending-badge">{isVibeMode ? "🔥 HOT" : "HOT"}</div>}
 
-                  <div className="card-content" style={{ paddingTop: market.trending ? "25px" : "0" }}>
-                    <div className="card-header">
-                      <div className="card-left">
-                        <a href={`/market/${market.id}`} className="card-title">
-                          {market.title}
-                        </a>
-                        <div className="card-description">{market.description}</div>
+                  {/* Full-width image at top of card */}
+                  {market.id === 2 && <img src="/moon-landing.jpg" alt="Moon Landing" className="card-image" />}
+
+                  <div className="card-content">
+                    <a
+                      href={`/market/${market.id}`}
+                      className="card-title"
+                      style={{
+                        fontSize: "15px",
+                        fontWeight: "bold",
+                        color: isVibeMode ? "#00ff41" : "#0000ff",
+                        marginBottom: "10px",
+                        textDecoration: isVibeMode ? "none" : "underline",
+                        lineHeight: 1.3,
+                        display: "block",
+                        textShadow: isVibeMode ? "0 0 5px #00ff41" : "none",
+                        transition: "all 0.3s ease",
+                      }}
+                    >
+                      {market.title}
+                    </a>
+
+                    <div
+                      className="card-description"
+                      style={{
+                        fontSize: "12px",
+                        color: isVibeMode ? "#00ffff" : "#000000",
+                        marginBottom: "15px",
+                        lineHeight: 1.4,
+                        flexGrow: 1,
+                        textShadow: isVibeMode ? "0 0 3px #00ffff" : "none",
+                      }}
+                    >
+                      {market.description}
+                    </div>
+
+                    <div
+                      className="price-section"
+                      style={{
+                        background: isVibeMode
+                          ? "linear-gradient(90deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 0, 0.1))"
+                          : "#e0e0e0",
+                        borderWidth: isVibeMode ? "1px" : "2px",
+                        borderStyle: isVibeMode ? "solid" : "inset",
+                        borderColor: isVibeMode ? "#00ff41" : "#c0c0c0",
+                        padding: "8px",
+                        marginBottom: "10px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        height: "28px",
+                        animation: isVibeMode ? "priceGlow 5s ease-in-out infinite alternate" : "none",
+                      }}
+                    >
+                      <div
+                        className="price-yes"
+                        style={{
+                          color: isVibeMode ? "#00ff00" : "#008000",
+                          fontWeight: "bold",
+                          fontSize: "13px",
+                          textShadow: isVibeMode ? "0 0 5px #00ff00" : "none",
+                        }}
+                      >
+                        {isVibeMode ? "✅" : ""} YES: ${market.yesPrice.toFixed(2)}
                       </div>
-                      {market.id === 2 && <img src="/moon-landing.jpg" alt="Moon Landing" className="card-image" />}
+                      <div
+                        className="price-no"
+                        style={{
+                          color: isVibeMode ? "#ff0040" : "#ff0000",
+                          fontWeight: "bold",
+                          fontSize: "13px",
+                          textShadow: isVibeMode ? "0 0 5px #ff0040" : "none",
+                        }}
+                      >
+                        {isVibeMode ? "❌" : ""} NO: ${market.noPrice.toFixed(2)}
+                      </div>
                     </div>
 
-                    <div className="price-section">
-                      <div className="price-yes">✅ YES: ${market.yesPrice.toFixed(2)}</div>
-                      <div className="price-no">❌ NO: ${market.noPrice.toFixed(2)}</div>
+                    <div
+                      className="card-stats"
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        fontSize: "11px",
+                        color: isVibeMode ? "#00ffff" : "#000000",
+                        marginBottom: "12px",
+                        height: "18px",
+                        alignItems: "center",
+                        textShadow: isVibeMode ? "0 0 3px #00ffff" : "none",
+                      }}
+                    >
+                      <span>
+                        {isVibeMode ? "💰" : ""} Volume: ${market.volume.toLocaleString()}
+                      </span>
+                      <span>
+                        {isVibeMode ? "💬" : ""} Posts: {market.posts}
+                      </span>
                     </div>
 
-                    <div className="card-stats">
-                      <span>💰 Volume: ${market.volume.toLocaleString()}</span>
-                      <span>💬 Posts: {market.posts}</span>
-                    </div>
-
-                    <a href={`/trade/${market.id}`} className="trade-button">
-                      🎯 TRADE NOW
+                    <a
+                      href={`/market/${market.id}`}
+                      className="trade-button"
+                      style={{
+                        background: isVibeMode ? "linear-gradient(135deg, #8b008b, #4b0082)" : "#008000",
+                        color: isVibeMode ? "#00ff41" : "#ffffff",
+                        borderWidth: "2px",
+                        borderStyle: isVibeMode ? "solid" : "outset",
+                        borderColor: isVibeMode ? "#00ff41" : "#008000",
+                        padding: "8px 10px",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        cursor: "pointer",
+                        width: "100%",
+                        textAlign: "center",
+                        display: "block",
+                        textDecoration: "none",
+                        height: "32px",
+                        lineHeight: "16px",
+                        marginTop: "auto",
+                        transition: "all 0.3s ease",
+                        textShadow: isVibeMode ? "0 0 5px #00ff41" : "none",
+                        boxShadow: isVibeMode ? "0 0 10px rgba(0, 255, 65, 0.3)" : "none",
+                      }}
+                    >
+                      {isVibeMode ? "🎯 TRADE NOW" : "TRADE NOW"}
                     </a>
                   </div>
                 </div>
@@ -598,63 +795,86 @@ export default function HomePage() {
 
         {/* Recent Activity */}
         <div className="category-section">
-          <div className="category-header">📈 RECENT FORUM ACTIVITY</div>
+          <div className="category-header">{isVibeMode ? "📈" : ""} RECENT FORUM ACTIVITY</div>
           <div
             style={{
-              background: "rgba(0, 0, 0, 0.7)",
-              border: "2px solid #00ff41",
-              borderTop: "none",
+              background: isVibeMode ? "rgba(0, 0, 0, 0.7)" : "rgba(240, 240, 240, 0.9)",
+              borderWidth: "2px",
+              borderStyle: "solid",
+              borderColor: isVibeMode ? "#00ff41" : "#000000",
+              borderTopWidth: "0",
               padding: "20px",
-              backdropFilter: "blur(5px)",
+              backdropFilter: isVibeMode ? "blur(5px)" : "none",
             }}
           >
             <div
               style={{
-                background: "linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1))",
-                border: "1px solid #00ff41",
-                borderRadius: "8px",
+                background: isVibeMode
+                  ? "linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1))"
+                  : "rgba(255, 255, 255, 0.9)",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderColor: isVibeMode ? "#00ff41" : "#000000",
+                borderRadius: isVibeMode ? "8px" : "0",
                 padding: "12px",
                 marginBottom: "12px",
-                color: "#00ff41",
-                textShadow: "0 0 3px #00ff41",
+                color: isVibeMode ? "#00ff41" : "#000000",
+                textShadow: isVibeMode ? "0 0 3px #00ff41" : "none",
               }}
             >
-              <strong style={{ color: "#ff00ff" }}>🕵️ TruthSeeker99</strong> <em>(2 min ago)</em>
+              <strong style={{ color: isVibeMode ? "#ff00ff" : "#0000ff" }}>
+                {isVibeMode ? "🕵️" : ""} TruthSeeker99
+              </strong>{" "}
+              <em>(2 min ago)</em>
               <br />
-              <span style={{ fontSize: "11px", color: "#00ffff" }}>
+              <span style={{ fontSize: "11px", color: isVibeMode ? "#00ffff" : "#000000" }}>
                 New evidence in JFK case - Zapruder film analysis reveals inconsistencies...
               </span>
             </div>
             <div
               style={{
-                background: "linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1))",
-                border: "1px solid #00ff41",
-                borderRadius: "8px",
+                background: isVibeMode
+                  ? "linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1))"
+                  : "rgba(255, 255, 255, 0.9)",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderColor: isVibeMode ? "#00ff41" : "#000000",
+                borderRadius: isVibeMode ? "8px" : "0",
                 padding: "12px",
                 marginBottom: "12px",
-                color: "#00ff41",
-                textShadow: "0 0 3px #00ff41",
+                color: isVibeMode ? "#00ff41" : "#000000",
+                textShadow: isVibeMode ? "0 0 3px #00ff41" : "none",
               }}
             >
-              <strong style={{ color: "#ff00ff" }}>🔬 SkepticalSarah</strong> <em>(15 min ago)</em>
+              <strong style={{ color: isVibeMode ? "#ff00ff" : "#0000ff" }}>
+                {isVibeMode ? "🔬" : ""} SkepticalSarah
+              </strong>{" "}
+              <em>(15 min ago)</em>
               <br />
-              <span style={{ fontSize: "11px", color: "#00ffff" }}>
+              <span style={{ fontSize: "11px", color: isVibeMode ? "#00ffff" : "#000000" }}>
                 Moon landing hoax debunked AGAIN - here's the science...
               </span>
             </div>
             <div
               style={{
-                background: "linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1))",
-                border: "1px solid #00ff41",
-                borderRadius: "8px",
+                background: isVibeMode
+                  ? "linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1))"
+                  : "rgba(255, 255, 255, 0.9)",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderColor: isVibeMode ? "#00ff41" : "#000000",
+                borderRadius: isVibeMode ? "8px" : "0",
                 padding: "12px",
-                color: "#00ff41",
-                textShadow: "0 0 3px #00ff41",
+                color: isVibeMode ? "#00ff41" : "#000000",
+                textShadow: isVibeMode ? "0 0 3px #00ff41" : "none",
               }}
             >
-              <strong style={{ color: "#ff00ff" }}>👽 AlienHunter</strong> <em>(1 hour ago)</em>
+              <strong style={{ color: isVibeMode ? "#ff00ff" : "#0000ff" }}>
+                {isVibeMode ? "👽" : ""} AlienHunter
+              </strong>{" "}
+              <em>(1 hour ago)</em>
               <br />
-              <span style={{ fontSize: "11px", color: "#00ffff" }}>
+              <span style={{ fontSize: "11px", color: isVibeMode ? "#00ffff" : "#000000" }}>
                 Area 51 worker comes forward with new testimony about UFO tech...
               </span>
             </div>
@@ -663,19 +883,66 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <div className="footer">
-        <strong>🛸 Conspiracy Prediction Exchange v2.0 🛸</strong>
+      <div
+        className="footer"
+        style={{
+          background: isVibeMode ? "linear-gradient(135deg, #1a1a1a, #2d2d2d)" : "rgba(192, 192, 192, 0.9)",
+          color: isVibeMode ? "#00ff41" : "#000000",
+          textAlign: "center",
+          padding: "20px",
+          marginTop: "25px",
+          borderWidth: "2px",
+          borderStyle: isVibeMode ? "solid" : "inset",
+          borderColor: isVibeMode ? "#00ff41" : "#c0c0c0",
+          fontSize: "12px",
+          textShadow: isVibeMode ? "0 0 5px #00ff41" : "none",
+          position: "relative",
+          zIndex: 2,
+        }}
+      >
+        <strong>
+          {isVibeMode ? "🛸" : ""} Conspiracy Prediction Exchange v2.0 {isVibeMode ? "🛸" : ""}
+        </strong>
         <br />
         Copyright © 2001 - All Rights Reserved
         <br />
-        <em>✨ "The truth is out there... and it's profitable" ✨</em>
+        <em>
+          {isVibeMode ? "✨" : ""} "The truth is out there... and it's profitable" {isVibeMode ? "✨" : ""}
+        </em>
         <br />
         <br />
-        <a href="/about">About</a> | <a href="/rules">Rules</a> | <a href="/contact">Contact</a> |{" "}
-        <a href="/disclaimer">Disclaimer</a>
+        <a
+          href="/about"
+          style={{ color: isVibeMode ? "#ff00ff" : "#0000ff", textDecoration: isVibeMode ? "none" : "underline" }}
+        >
+          About
+        </a>{" "}
+        |{" "}
+        <a
+          href="/rules"
+          style={{ color: isVibeMode ? "#ff00ff" : "#0000ff", textDecoration: isVibeMode ? "none" : "underline" }}
+        >
+          Rules
+        </a>{" "}
+        |{" "}
+        <a
+          href="/contact"
+          style={{ color: isVibeMode ? "#ff00ff" : "#0000ff", textDecoration: isVibeMode ? "none" : "underline" }}
+        >
+          Contact
+        </a>{" "}
+        |{" "}
+        <a
+          href="/disclaimer"
+          style={{ color: isVibeMode ? "#ff00ff" : "#0000ff", textDecoration: isVibeMode ? "none" : "underline" }}
+        >
+          Disclaimer
+        </a>
         <br />
         <br />
-        <span style={{ fontSize: "10px" }}>💻 Best viewed with Internet Explorer 6.0 or Netscape 6.0</span>
+        <span style={{ fontSize: "10px" }}>
+          {isVibeMode ? "💻" : ""} Best viewed with Internet Explorer 6.0 or Netscape 6.0
+        </span>
       </div>
     </div>
   )
