@@ -1,5 +1,5 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
-import { mainnet, sepolia, hardhat, localhost } from 'wagmi/chains';
+import { base, mantle } from 'wagmi/chains';
 import { defineChain } from 'viem';
 
 // Define local anvil chain
@@ -26,8 +26,39 @@ export const anvil = defineChain({
   testnet: true,
 });
 
+// Define Flow mainnet chain
+export const flowMainnet = defineChain({
+  id: 747,
+  name: 'Flow Mainnet',
+  network: 'flow-mainnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Flow',
+    symbol: 'FLOW',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://mainnet.evm.nodes.onflow.org'],
+    },
+    public: {
+      http: ['https://mainnet.evm.nodes.onflow.org'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Flow Diver', url: 'https://evm.flowscan.io' },
+  },
+  testnet: false,
+});
+
 // Network configurations with contract addresses
-export const networkConfigs = {
+export const networkConfigs: Record<number, {
+  name: string;
+  contracts: {
+    USDC: string;
+    MarketFactory: string;
+  };
+  blockExplorer: string;
+}> = {
   [anvil.id]: {
     name: 'Anvil Local',
     contracts: {
@@ -36,21 +67,29 @@ export const networkConfigs = {
     },
     blockExplorer: 'http://localhost:8545',
   },
-  [sepolia.id]: {
-    name: 'Sepolia Testnet',
+  [base.id]: {
+    name: 'Base',
     contracts: {
-      USDC: '0x94a9D9AC8a22534E3FaCa9F4e7F2E2cf85d5E4C8', // Mock USDC on Sepolia
+      USDC: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', // USDC on Base
       MarketFactory: '0x0000000000000000000000000000000000000000', // To be deployed
     },
-    blockExplorer: 'https://sepolia.etherscan.io',
+    blockExplorer: 'https://basescan.org',
   },
-  [mainnet.id]: {
-    name: 'Ethereum Mainnet',
+  [mantle.id]: {
+    name: 'Mantle',
     contracts: {
-      USDC: '0xA0b86a33E6FE17a02CdE14C23F4A3a45B3E83E85', // Real USDC on mainnet
+      USDC: '0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9', // USDC on Mantle
       MarketFactory: '0x0000000000000000000000000000000000000000', // To be deployed
     },
-    blockExplorer: 'https://etherscan.io',
+    blockExplorer: 'https://mantlescan.xyz',
+  },
+  [flowMainnet.id]: {
+    name: 'Flow Mainnet',
+    contracts: {
+      USDC: '0xF1815bd50389c46847f0Bda824eC8da914045D14', // USDC on Flow mainnet
+      MarketFactory: '0x0000000000000000000000000000000000000000', // To be deployed
+    },
+    blockExplorer: 'https://evm.flowscan.io',
   },
 };
 
@@ -68,6 +107,6 @@ export const getCurrentNetworkContracts = (chainId: number) => {
 export const config = getDefaultConfig({
   appName: 'Conspiracy Prediction Exchange',
   projectId: 'YOUR_PROJECT_ID',
-  chains: [anvil, sepolia, mainnet],
+  chains: [anvil, base, mantle, flowMainnet],
   ssr: false,
 }); 
