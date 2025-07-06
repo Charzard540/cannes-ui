@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .conspiracy-card {
+    @apply transition-all duration-300 hover:scale-105;
+  }
+  
+  .vibe-theme {
+    @apply bg-black text-green-400;
+  }
+  
+  .retro-theme {
+    @apply bg-gray-100 text-black;
+  }
+
+  /* RainbowKit Conspiracy Theme Overrides */
+  .rainbow-kit-vibe [data-rk] {
+    --rk-colors-accentColor: #00ff00 !important;
+    --rk-colors-accentColorForeground: #000000 !important;
+    --rk-colors-actionButtonBorder: #00ff00 !important;
+    --rk-colors-actionButtonBorderMobile: #00ff00 !important;
+    --rk-colors-actionButtonSecondaryBackground: #000000 !important;
+    --rk-colors-closeButton: #00ff00 !important;
+    --rk-colors-closeButtonBackground: #000000 !important;
+    --rk-colors-connectButtonBackground: #000000 !important;
+    --rk-colors-connectButtonBackgroundError: #000000 !important;
+    --rk-colors-connectButtonInnerBackground: #000000 !important;
+    --rk-colors-connectButtonText: #00ff00 !important;
+    --rk-colors-connectButtonTextError: #ff0000 !important;
+    --rk-colors-connectionIndicator: #00ff00 !important;
+    --rk-colors-downloadBottomCardBackground: #000000 !important;
+    --rk-colors-downloadTopCardBackground: #000000 !important;
+    --rk-colors-error: #ff0000 !important;
+    --rk-colors-generalBorder: #00ff00 !important;
+    --rk-colors-generalBorderDim: #003300 !important;
+    --rk-colors-menuItemBackground: #000000 !important;
+    --rk-colors-modalBackdrop: rgba(0, 0, 0, 0.8) !important;
+    --rk-colors-modalBackground: #000000 !important;
+    --rk-colors-modalBorder: #00ff00 !important;
+    --rk-colors-modalText: #00ff00 !important;
+    --rk-colors-modalTextDim: #00aa00 !important;
+    --rk-colors-modalTextSecondary: #00ff00 !important;
+    --rk-colors-profileAction: #000000 !important;
+    --rk-colors-profileActionHover: #001100 !important;
+    --rk-colors-profileForeground: #000000 !important;
+    --rk-colors-selectedOptionBorder: #00ff00 !important;
+    --rk-colors-standby: #00ff00 !important;
+    --rk-blurs-modalOverlay: blur(8px) !important;
+    --rk-radii-actionButton: 0px !important;
+    --rk-radii-connectButton: 0px !important;
+    --rk-radii-menuButton: 0px !important;
+    --rk-radii-modal: 0px !important;
+    --rk-radii-modalMobile: 0px !important;
+    --rk-fonts-body: 'Courier New', monospace !important;
+  }
+
+  .rainbow-kit-retro [data-rk] {
+    --rk-colors-accentColor: #0066cc !important;
+    --rk-colors-accentColorForeground: #ffffff !important;
+    --rk-colors-actionButtonBorder: #000000 !important;
+    --rk-colors-actionButtonBorderMobile: #000000 !important;
+    --rk-colors-actionButtonSecondaryBackground: #ffffff !important;
+    --rk-colors-closeButton: #000000 !important;
+    --rk-colors-closeButtonBackground: #ffffff !important;
+    --rk-colors-connectButtonBackground: #ffffff !important;
+    --rk-colors-connectButtonBackgroundError: #ffffff !important;
+    --rk-colors-connectButtonInnerBackground: #ffffff !important;
+    --rk-colors-connectButtonText: #0066cc !important;
+    --rk-colors-connectButtonTextError: #cc0000 !important;
+    --rk-colors-connectionIndicator: #0066cc !important;
+    --rk-colors-downloadBottomCardBackground: #ffffff !important;
+    --rk-colors-downloadTopCardBackground: #ffffff !important;
+    --rk-colors-error: #cc0000 !important;
+    --rk-colors-generalBorder: #000000 !important;
+    --rk-colors-generalBorderDim: #666666 !important;
+    --rk-colors-menuItemBackground: #ffffff !important;
+    --rk-colors-modalBackdrop: rgba(0, 0, 0, 0.5) !important;
+    --rk-colors-modalBackground: #ffffff !important;
+    --rk-colors-modalBorder: #000000 !important;
+    --rk-colors-modalText: #000000 !important;
+    --rk-colors-modalTextDim: #666666 !important;
+    --rk-colors-modalTextSecondary: #000000 !important;
+    --rk-colors-profileAction: #ffffff !important;
+    --rk-colors-profileActionHover: #f0f0f0 !important;
+    --rk-colors-profileForeground: #ffffff !important;
+    --rk-colors-selectedOptionBorder: #0066cc !important;
+    --rk-colors-standby: #0066cc !important;
+    --rk-blurs-modalOverlay: blur(4px) !important;
+    --rk-radii-actionButton: 0px !important;
+    --rk-radii-connectButton: 0px !important;
+    --rk-radii-menuButton: 0px !important;
+    --rk-radii-modal: 0px !important;
+    --rk-radii-modalMobile: 0px !important;
+    --rk-fonts-body: 'Times New Roman', serif !important;
+  }
+
+  /* Custom styling for RainbowKit buttons */
+  .rainbow-kit-wrapper [data-rk] button {
+    border: 2px solid !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    transition: all 0.3s ease !important;
+    padding: 8px 16px !important;
+  }
+
+  .rainbow-kit-vibe [data-rk] button {
+    border-color: #00ff00 !important;
+    background-color: #000000 !important;
+    color: #00ff00 !important;
+  }
+
+  .rainbow-kit-vibe [data-rk] button:hover {
+    background-color: #00ff00 !important;
+    color: #000000 !important;
+  }
+
+  .rainbow-kit-retro [data-rk] button {
+    border-color: #000000 !important;
+    background-color: #ffffff !important;
+    color: #0066cc !important;
+  }
+
+  .rainbow-kit-retro [data-rk] button:hover {
+    background-color: #0066cc !important;
+    color: #ffffff !important;
+  }
+}
+
+/* Custom animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+} 

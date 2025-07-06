@@ -1,0 +1,39 @@
+/* App-specific styles */
+.App {
+  text-align: center;
+}
+
+/* Conspiracy theme specific styles */
+.conspiracy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.market-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.market-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Theme-specific overrides */
+.vibe-mode {
+  background: linear-gradient(135deg, #000 0%, #001a00 100%);
+  color: #00ff00;
+}
+
+.retro-mode {
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  color: #000;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .conspiracy-grid {
+    grid-template-columns: 1fr;
+  }
+} 
