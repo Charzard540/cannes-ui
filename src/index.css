@@ -268,88 +268,8 @@
     font-family: 'MS Sans Serif', sans-serif;
   }
 
-  /* RainbowKit Styling Updates */
-  .rainbow-kit-vibe [data-rk] {
-    --rk-colors-accentColor: #00ff00 !important;
-    --rk-colors-accentColorForeground: #000033 !important;
-    --rk-colors-actionButtonBorder: #00ff00 !important;
-    --rk-colors-actionButtonBorderMobile: #00ff00 !important;
-    --rk-colors-actionButtonSecondaryBackground: #1a0033 !important;
-    --rk-colors-closeButton: #00ff00 !important;
-    --rk-colors-closeButtonBackground: #1a0033 !important;
-    --rk-colors-connectButtonBackground: #1a0033 !important;
-    --rk-colors-connectButtonBackgroundError: #1a0033 !important;
-    --rk-colors-connectButtonInnerBackground: #1a0033 !important;
-    --rk-colors-connectButtonText: #00ff00 !important;
-    --rk-colors-connectButtonTextError: #ff0000 !important;
-    --rk-colors-connectionIndicator: #00ff00 !important;
-    --rk-colors-downloadBottomCardBackground: #1a0033 !important;
-    --rk-colors-downloadTopCardBackground: #1a0033 !important;
-    --rk-colors-error: #ff0000 !important;
-    --rk-colors-generalBorder: #00ff00 !important;
-    --rk-colors-generalBorderDim: #003300 !important;
-    --rk-colors-menuItemBackground: #1a0033 !important;
-    --rk-colors-modalBackdrop: rgba(26, 0, 51, 0.9) !important;
-    --rk-colors-modalBackground: #1a0033 !important;
-    --rk-colors-modalBorder: #00ff00 !important;
-    --rk-colors-modalText: #00ff00 !important;
-    --rk-colors-modalTextDim: #00aa00 !important;
-    --rk-colors-modalTextSecondary: #00ff00 !important;
-    --rk-colors-profileAction: #1a0033 !important;
-    --rk-colors-profileActionHover: #2a0044 !important;
-    --rk-colors-profileForeground: #1a0033 !important;
-    --rk-colors-selectedOptionBorder: #00ff00 !important;
-    --rk-colors-standby: #00ff00 !important;
-    --rk-blurs-modalOverlay: blur(8px) !important;
-    --rk-radii-actionButton: 0px !important;
-    --rk-radii-connectButton: 0px !important;
-    --rk-radii-menuButton: 0px !important;
-    --rk-radii-modal: 0px !important;
-    --rk-radii-modalMobile: 0px !important;
-    --rk-fonts-body: 'Courier Prime', 'Courier New', monospace !important;
-  }
-
-  .rainbow-kit-retro [data-rk] {
-    --rk-colors-accentColor: #0080ff !important;
-    --rk-colors-accentColorForeground: #ffffff !important;
-    --rk-colors-actionButtonBorder: #808080 !important;
-    --rk-colors-actionButtonBorderMobile: #808080 !important;
-    --rk-colors-actionButtonSecondaryBackground: #c0c0c0 !important;
-    --rk-colors-closeButton: #000000 !important;
-    --rk-colors-closeButtonBackground: #c0c0c0 !important;
-    --rk-colors-connectButtonBackground: #c0c0c0 !important;
-    --rk-colors-connectButtonBackgroundError: #c0c0c0 !important;
-    --rk-colors-connectButtonInnerBackground: #c0c0c0 !important;
-    --rk-colors-connectButtonText: #000000 !important;
-    --rk-colors-connectButtonTextError: #ff0000 !important;
-    --rk-colors-connectionIndicator: #0080ff !important;
-    --rk-colors-downloadBottomCardBackground: #c0c0c0 !important;
-    --rk-colors-downloadTopCardBackground: #c0c0c0 !important;
-    --rk-colors-error: #ff0000 !important;
-    --rk-colors-generalBorder: #808080 !important;
-    --rk-colors-generalBorderDim: #a0a0a0 !important;
-    --rk-colors-menuItemBackground: #c0c0c0 !important;
-    --rk-colors-modalBackdrop: rgba(0, 0, 0, 0.5) !important;
-    --rk-colors-modalBackground: #c0c0c0 !important;
-    --rk-colors-modalBorder: #808080 !important;
-    --rk-colors-modalText: #000000 !important;
-    --rk-colors-modalTextDim: #808080 !important;
-    --rk-colors-modalTextSecondary: #000000 !important;
-    --rk-colors-profileAction: #c0c0c0 !important;
-    --rk-colors-profileActionHover: #d4d0c8 !important;
-    --rk-colors-profileForeground: #c0c0c0 !important;
-    --rk-colors-selectedOptionBorder: #0080ff !important;
-    --rk-colors-standby: #0080ff !important;
-    --rk-blurs-modalOverlay: none !important;
-    --rk-radii-actionButton: 0px !important;
-    --rk-radii-connectButton: 0px !important;
-    --rk-radii-menuButton: 0px !important;
-    --rk-radii-modal: 0px !important;
-    --rk-radii-modalMobile: 0px !important;
-    --rk-fonts-body: 'MS Sans Serif', sans-serif !important;
-  }
-
-  .rainbow-kit-vibe [data-rk] button {
+  /* Wallet Styling Updates */
+  .wallet-vibe button {
     border: 2px solid #00ff00 !important;
     background: linear-gradient(45deg, #4a0e78, #0080ff) !important;
     color: #00ff00 !important;
@@ -358,9 +278,15 @@
     text-transform: uppercase !important;
     font-weight: bold !important;
     letter-spacing: 1px !important;
+    font-family: 'Courier Prime', 'Courier New', monospace !important;
   }
 
-  .rainbow-kit-retro [data-rk] button {
+  .wallet-vibe button:hover {
+    background: linear-gradient(45deg, #5a1e88, #0090ff) !important;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.5) !important;
+  }
+
+  .wallet-retro button {
     border: 1px outset #c0c0c0 !important;
     border-top-color: #dfdfdf !important;
     border-left-color: #dfdfdf !important;
@@ -375,8 +301,17 @@
     box-shadow: none !important;
   }
 
-  .rainbow-kit-retro [data-rk] button:hover {
+  .wallet-retro button:hover {
     background: #d4d0c8 !important;
+  }
+
+  .wallet-retro button:active {
+    border: 1px inset #c0c0c0 !important;
+    border-top-color: #808080 !important;
+    border-left-color: #808080 !important;
+    border-right-color: #dfdfdf !important;
+    border-bottom-color: #dfdfdf !important;
+    background: #b0b0b0 !important;
   }
 }
 

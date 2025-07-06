@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { cn } from './lib/utils'
 import './App.css'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { usePrivy } from '@privy-io/react-auth'
 import { useAccount, useChainId } from 'wagmi'
 import { useMarketFactory } from './hooks/useContracts'
 import { getNetworkConfig } from './wagmi'
 import MarketCreation from './components/MarketCreation'
 import MarketPhases from './components/MarketPhases'
+import NetworkSelector from './components/NetworkSelector'
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState<'vibe' | 'retro'>('vibe')
   const [mounted, setMounted] = useState(false)
   const [selectedMarket, setSelectedMarket] = useState<string | null>(null)
+  const { login, logout, ready, authenticated } = usePrivy()
   const { isConnected } = useAccount()
   const chainId = useChainId()
   const { allMarkets, marketCount } = useMarketFactory()
@@ -59,19 +61,29 @@ function App() {
               <div className={cn(
                 currentTheme === 'vibe' ? 'vibe-text-secondary' : 'retro-text'
               )}>
-                Network: {networkConfig?.name || 'Unknown'}
-              </div>
-              <div className={cn(
-                currentTheme === 'vibe' ? 'vibe-text-secondary' : 'retro-text'
-              )}>
                 Markets: {marketCount}
               </div>
             </div>
+            
+            <NetworkSelector isVibeMode={currentTheme === 'vibe'} />
+            
             <div className={cn(
-              'rainbow-kit-wrapper',
-              currentTheme === 'vibe' ? 'rainbow-kit-vibe' : 'rainbow-kit-retro'
+              'wallet-wrapper',
+              currentTheme === 'vibe' ? 'wallet-vibe' : 'wallet-retro'
             )}>
-              <ConnectButton />
+              {ready && (
+                <button
+                  onClick={authenticated ? logout : login}
+                  className={cn(
+                    'px-4 py-2 font-bold transition-all duration-300',
+                    currentTheme === 'vibe' 
+                      ? 'vibe-button' 
+                      : 'retro-button'
+                  )}
+                >
+                  {authenticated ? 'Logout' : 'Login'}
+                </button>
+              )}
             </div>
             <button
               onClick={toggleTheme}

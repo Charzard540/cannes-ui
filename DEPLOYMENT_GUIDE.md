@@ -87,25 +87,23 @@ forge verify-contract --chain sepolia --etherscan-api-key YOUR_API_KEY 0x[CONTRA
 
 ## 2. Frontend Configuration
 
-### RainbowKit Project ID
+### Privy App ID
 
-1. **Get a project ID from [WalletConnect Cloud](https://cloud.walletconnect.com/)**
+1. **Get an App ID from [Privy](https://dashboard.privy.io/)**
+   - Sign up for a free account
+   - Create a new app
+   - Copy the App ID
 
-2. **Update `src/wagmi.ts`:**
-```typescript
-const config = getDefaultConfig({
-  appName: 'Conspiracy Prediction Exchange',
-  projectId: 'YOUR_ACTUAL_PROJECT_ID', // Replace with your project ID
-  chains: [anvil, sepolia, mainnet],
-  ssr: false,
-})
-```
+2. **Update environment variables:**
+   - Create a `.env` file in the root directory
+   - Add: `VITE_PRIVY_APP_ID=your-privy-app-id-here`
+   - Replace `your-privy-app-id-here` with your actual Privy App ID
 
 ### Environment Variables
 
 Create a `.env.local` file:
 ```bash
-VITE_WALLETCONNECT_PROJECT_ID=your_project_id
+VITE_PRIVY_APP_ID=your_privy_app_id
 VITE_INFURA_API_KEY=your_infura_key
 VITE_ETHERSCAN_API_KEY=your_etherscan_key
 ```

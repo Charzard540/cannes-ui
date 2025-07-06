@@ -1,6 +1,10 @@
-import { getDefaultConfig } from '@rainbow-me/rainbowkit';
-import { base, mantle } from 'wagmi/chains';
+import { createConfig } from '@privy-io/wagmi';
+import { http } from 'wagmi';
+import { mantleTestnet } from 'wagmi/chains';
 import { defineChain } from 'viem';
+
+// Re-export the imported chains
+export { mantleTestnet };
 
 // Define local anvil chain
 export const anvil = defineChain({
@@ -26,11 +30,11 @@ export const anvil = defineChain({
   testnet: true,
 });
 
-// Define Flow mainnet chain
-export const flowMainnet = defineChain({
-  id: 747,
-  name: 'Flow Mainnet',
-  network: 'flow-mainnet',
+// Define Flow testnet chain
+export const flowTestnet = defineChain({
+  id: 545,
+  name: 'Flow Testnet',
+  network: 'flow-testnet',
   nativeCurrency: {
     decimals: 18,
     name: 'Flow',
@@ -38,16 +42,16 @@ export const flowMainnet = defineChain({
   },
   rpcUrls: {
     default: {
-      http: ['https://mainnet.evm.nodes.onflow.org'],
+      http: ['https://testnet.evm.nodes.onflow.org'],
     },
     public: {
-      http: ['https://mainnet.evm.nodes.onflow.org'],
+      http: ['https://testnet.evm.nodes.onflow.org'],
     },
   },
   blockExplorers: {
-    default: { name: 'Flow Diver', url: 'https://evm.flowscan.io' },
+    default: { name: 'Flow Testnet Diver', url: 'https://evm-testnet.flowscan.io' },
   },
-  testnet: false,
+  testnet: true,
 });
 
 // Network configurations with contract addresses
@@ -60,36 +64,28 @@ export const networkConfigs: Record<number, {
   blockExplorer: string;
 }> = {
   [anvil.id]: {
-    name: 'Anvil Local',
+    name: 'Anvil Testnet',
     contracts: {
       USDC: '0x0000000000000000000000000000000000000000', // To be deployed
       MarketFactory: '0x0000000000000000000000000000000000000000', // To be deployed
     },
     blockExplorer: 'http://localhost:8545',
   },
-  [base.id]: {
-    name: 'Base',
+  [mantleTestnet.id]: {
+    name: 'Mantle Testnet',
     contracts: {
-      USDC: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', // USDC on Base
+      USDC: '0x0000000000000000000000000000000000000000', // To be deployed on testnet
       MarketFactory: '0x0000000000000000000000000000000000000000', // To be deployed
     },
-    blockExplorer: 'https://basescan.org',
+    blockExplorer: 'https://sepolia.mantlescan.xyz',
   },
-  [mantle.id]: {
-    name: 'Mantle',
+  [flowTestnet.id]: {
+    name: 'Flow Testnet',
     contracts: {
-      USDC: '0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9', // USDC on Mantle
+      USDC: '0x0000000000000000000000000000000000000000', // To be deployed on testnet
       MarketFactory: '0x0000000000000000000000000000000000000000', // To be deployed
     },
-    blockExplorer: 'https://mantlescan.xyz',
-  },
-  [flowMainnet.id]: {
-    name: 'Flow Mainnet',
-    contracts: {
-      USDC: '0xF1815bd50389c46847f0Bda824eC8da914045D14', // USDC on Flow mainnet
-      MarketFactory: '0x0000000000000000000000000000000000000000', // To be deployed
-    },
-    blockExplorer: 'https://evm.flowscan.io',
+    blockExplorer: 'https://evm-testnet.flowscan.io',
   },
 };
 
@@ -104,9 +100,11 @@ export const getCurrentNetworkContracts = (chainId: number) => {
   return config?.contracts || null;
 };
 
-export const config = getDefaultConfig({
-  appName: 'Conspiracy Prediction Exchange',
-  projectId: 'YOUR_PROJECT_ID',
-  chains: [anvil, base, mantle, flowMainnet],
-  ssr: false,
+export const config = createConfig({
+  chains: [anvil, mantleTestnet, flowTestnet],
+  transports: {
+    [anvil.id]: http('http://127.0.0.1:8545'),
+    [mantleTestnet.id]: http(),
+    [flowTestnet.id]: http('https://testnet.evm.nodes.onflow.org'),
+  },
 }); 
