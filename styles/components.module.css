@@ -1,0 +1,134 @@
+/* CONTAINER STYLES */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 15px;
+  border: 2px solid;
+  position: relative;
+  z-index: 2;
+}
+
+.vibeMode .container {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: #00ff41;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.retroMode .container {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: #c0c0c0;
+  border-style: inset;
+  padding: 10px;
+}
+
+/* WELCOME BOX STYLES */
+.welcomeBox {
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  text-align: center;
+  border: 2px solid;
+}
+
+.vibeMode .welcomeBox {
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1));
+  border-color: #00ff41;
+  color: #00ff41;
+  text-shadow: 0 0 5px #00ff41;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+  animation: welcomeBoxPulse 6s ease-in-out infinite;
+}
+
+.retroMode .welcomeBox {
+  background-color: rgba(255, 255, 153, 0.9);
+  border-color: #000000;
+  color: #000000;
+}
+
+@keyframes welcomeBoxPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 65, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(0, 255, 65, 0.6); }
+}
+
+/* STATS BAR STYLES */
+.statsBar {
+  padding: 8px;
+  text-align: center;
+  font-size: 11px;
+  margin-bottom: 20px;
+  border: 1px solid;
+}
+
+.vibeMode .statsBar {
+  background: linear-gradient(90deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1), rgba(0, 255, 65, 0.1));
+  border-color: #00ff41;
+  color: #00ffff;
+  text-shadow: 0 0 3px #00ffff;
+  animation: statsGlow 3s ease-in-out infinite alternate;
+}
+
+.retroMode .statsBar {
+  background-color: rgba(224, 224, 224, 0.9);
+  border-color: #000000;
+  color: #000000;
+}
+
+@keyframes statsGlow {
+  0% { border-color: #00ff41; }
+  100% { border-color: #ff00ff; }
+}
+
+/* CATEGORY SECTION STYLES */
+.categorySection {
+  margin-bottom: 25px;
+}
+
+.categoryHeader {
+  padding: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid;
+}
+
+.vibeMode .categoryHeader {
+  background: linear-gradient(135deg, #8b008b, #4b0082, #000080);
+  color: #00ff41;
+  border-color: #00ff41;
+  text-shadow: 0 0 10px #00ff41;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+  animation: categoryHeaderGlow 4s ease-in-out infinite alternate;
+}
+
+.retroMode .categoryHeader {
+  background-color: #008000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+@keyframes categoryHeaderGlow {
+  0% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.4); }
+  100% { box-shadow: 0 0 30px rgba(255, 0, 255, 0.4); }
+}
+
+/* CARDS CONTAINER STYLES */
+.cardsContainer {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+  border: 2px solid;
+  border-top: 0;
+}
+
+.vibeMode .cardsContainer {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: #00ff41;
+  backdrop-filter: blur(5px);
+}
+
+.retroMode .cardsContainer {
+  background-color: rgba(240, 240, 240, 0.9);
+  border-color: #000000;
+} 

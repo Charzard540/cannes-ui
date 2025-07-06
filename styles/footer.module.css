@@ -1,0 +1,104 @@
+/* FOOTER STYLES */
+.footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 25px;
+  border: 2px solid;
+  font-size: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.vibeMode .footer {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  color: #00ff41;
+  border-color: #00ff41;
+  text-shadow: 0 0 5px #00ff41;
+}
+
+.retroMode .footer {
+  background-color: rgba(192, 192, 192, 0.9);
+  color: #000000;
+  border-color: #c0c0c0;
+  border-style: inset;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.vibeMode .footer a {
+  color: #ff00ff;
+}
+
+.retroMode .footer a {
+  color: #0000ff;
+  text-decoration: underline;
+}
+
+/* RECENT ACTIVITY STYLES */
+.recentActivity {
+  border: 2px solid;
+  border-top: 0;
+  padding: 20px;
+}
+
+.vibeMode .recentActivity {
+  background: rgba(0, 0, 0, 0.7);
+  border-color: #00ff41;
+  backdrop-filter: blur(5px);
+}
+
+.retroMode .recentActivity {
+  background-color: rgba(240, 240, 240, 0.9);
+  border-color: #000000;
+}
+
+.activityItem {
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid;
+}
+
+.vibeMode .activityItem {
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1));
+  border-color: #00ff41;
+  border-radius: 8px;
+  color: #00ff41;
+  text-shadow: 0 0 3px #00ff41;
+}
+
+.retroMode .activityItem {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: #000000;
+  color: #000000;
+}
+
+.activityItem:last-child {
+  margin-bottom: 0;
+}
+
+.activityUser {
+  font-weight: bold;
+}
+
+.vibeMode .activityUser {
+  color: #ff00ff;
+}
+
+.retroMode .activityUser {
+  color: #0000ff;
+}
+
+.activityContent {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.vibeMode .activityContent {
+  color: #00ffff;
+}
+
+.retroMode .activityContent {
+  color: #000000;
+} 

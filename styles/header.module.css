@@ -1,0 +1,73 @@
+/* HEADER STYLES */
+.header {
+  padding: 20px;
+  text-align: center;
+  border: 3px solid;
+  position: relative;
+  z-index: 2;
+}
+
+.header h1 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.header .tagline {
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* VIBE MODE HEADER */
+.vibeMode .header {
+  background: linear-gradient(135deg, #000080, #4b0082, #8b008b);
+  color: #00ff41;
+  border-color: #00ff41;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.5), inset 0 0 20px rgba(0, 255, 65, 0.1);
+  animation: headerGlow 3s ease-in-out infinite alternate;
+}
+
+.vibeMode .header h1 {
+  font-size: 28px;
+  text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41;
+  animation: textFlicker 2s infinite alternate;
+}
+
+.vibeMode .header .tagline {
+  font-size: 14px;
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff;
+  animation: taglineGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes headerGlow {
+  0% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.5), inset 0 0 20px rgba(0, 255, 65, 0.1); }
+  100% { box-shadow: 0 0 30px rgba(0, 255, 65, 0.8), inset 0 0 30px rgba(0, 255, 65, 0.2); }
+}
+
+@keyframes textFlicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+@keyframes taglineGlow {
+  0% { color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
+  100% { color: #00ffff; text-shadow: 0 0 10px #00ffff; }
+}
+
+/* RETRO MODE HEADER */
+.retroMode .header {
+  background-color: #000080;
+  color: #ffff00;
+  border-color: #c0c0c0;
+  padding: 10px;
+}
+
+.retroMode .header h1 {
+  font-size: 20px;
+}
+
+.retroMode .header .tagline {
+  font-size: 12px;
+  margin-top: 5px;
+} 

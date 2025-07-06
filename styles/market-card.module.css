@@ -1,0 +1,216 @@
+/* MARKET CARD STYLES */
+.marketCard {
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.vibeMode .marketCard {
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 255, 0.1));
+  border-color: #00ff41;
+  border-radius: 8px;
+  animation: cardGlow 8s ease-in-out infinite alternate;
+}
+
+.retroMode .marketCard {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: #000000;
+  border-radius: 0;
+}
+
+@keyframes cardGlow {
+  0% { box-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(255, 0, 255, 0.3); }
+}
+
+/* CARD HEADER */
+.cardHeader {
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 1px solid;
+  margin-bottom: 8px;
+}
+
+.vibeMode .cardHeader {
+  color: #00ff41;
+  border-color: #00ff41;
+  text-shadow: 0 0 5px #00ff41;
+}
+
+.retroMode .cardHeader {
+  color: #000000;
+  border-color: #000000;
+}
+
+/* CARD DESCRIPTION */
+.cardDescription {
+  padding: 0 12px;
+  font-size: 12px;
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.vibeMode .cardDescription {
+  color: #00ffff;
+  text-shadow: 0 0 3px #00ffff;
+}
+
+.retroMode .cardDescription {
+  color: #000000;
+}
+
+/* TRENDING BADGE */
+.trendingBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.vibeMode .trendingBadge {
+  background: linear-gradient(45deg, #ff00ff, #00ffff);
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff;
+}
+
+.retroMode .trendingBadge {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* PRICE SECTION */
+.priceSection {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 28px;
+}
+
+.vibeMode .priceSection {
+  background: linear-gradient(90deg, rgba(0, 255, 65, 0.1), rgba(255, 0, 0, 0.1));
+  border-color: #00ff41;
+  animation: priceGlow 5s ease-in-out infinite alternate;
+}
+
+.retroMode .priceSection {
+  background-color: #e0e0e0;
+  border-color: #c0c0c0;
+  border-style: inset;
+}
+
+@keyframes priceGlow {
+  0% { border-color: #00ff41; }
+  100% { border-color: #ff00ff; }
+}
+
+/* PRICE ELEMENTS */
+.priceYes {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.vibeMode .priceYes {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.retroMode .priceYes {
+  color: #008000;
+}
+
+.priceNo {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.vibeMode .priceNo {
+  color: #ff0040;
+  text-shadow: 0 0 5px #ff0040;
+}
+
+.retroMode .priceNo {
+  color: #ff0000;
+}
+
+/* CARD STATS */
+.cardStats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-bottom: 12px;
+  height: 18px;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.vibeMode .cardStats {
+  color: #00ffff;
+  text-shadow: 0 0 3px #00ffff;
+}
+
+.retroMode .cardStats {
+  color: #000000;
+}
+
+/* TRADE BUTTON */
+.tradeButton {
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  height: 32px;
+  line-height: 16px;
+  margin-top: auto;
+  transition: all 0.3s ease;
+  border: 2px solid;
+}
+
+.vibeMode .tradeButton {
+  background: linear-gradient(135deg, #8b008b, #4b0082);
+  color: #00ff41;
+  border-color: #00ff41;
+  text-shadow: 0 0 5px #00ff41;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.vibeMode .tradeButton:hover {
+  background: linear-gradient(135deg, #ff00ff, #8b008b);
+  border-color: #ff00ff;
+  color: #ffffff;
+  text-shadow: 0 0 10px #ffffff;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.retroMode .tradeButton {
+  background-color: #008000;
+  color: #ffffff;
+  border-color: #008000;
+  border-style: outset;
+}
+
+.retroMode .tradeButton:hover {
+  border-style: inset;
+} 
