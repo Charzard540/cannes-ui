@@ -25,36 +25,234 @@
     @apply bg-gray-100 text-black;
   }
 
-  /* RainbowKit Conspiracy Theme Overrides */
+  /* CYBERPUNK VIBE MODE EFFECTS */
+  .vibe-mode {
+    background: linear-gradient(45deg, #000000, #001100, #000000);
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  .vibe-mode::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 0, 0.03) 2px,
+        rgba(0, 255, 0, 0.03) 4px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 0, 0.03) 2px,
+        rgba(0, 255, 0, 0.03) 4px
+      );
+    pointer-events: none;
+    z-index: 1;
+    animation: scanlines 0.1s linear infinite;
+  }
+  
+  .vibe-mode::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+    pointer-events: none;
+    z-index: 2;
+    animation: sweep 3s ease-in-out infinite;
+  }
+
+  .vibe-text {
+    font-family: 'Courier New', monospace;
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px currentColor;
+    animation: textGlow 2s ease-in-out infinite alternate;
+  }
+
+  .vibe-border {
+    border-style: solid;
+    box-shadow: 
+      0 0 10px currentColor,
+      inset 0 0 10px rgba(0, 255, 0, 0.1);
+    animation: borderPulse 1.5s ease-in-out infinite alternate;
+  }
+
+  .vibe-button {
+    background: linear-gradient(45deg, #001100, #003300, #001100);
+    border: 2px solid #00ff00;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vibe-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.4), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .vibe-button:hover::before {
+    left: 100%;
+  }
+
+  .vibe-card {
+    background: linear-gradient(135deg, #001100, #002200, #001100);
+    border: 2px solid #00ff00;
+    box-shadow: 
+      0 0 20px rgba(0, 255, 0, 0.3),
+      inset 0 0 20px rgba(0, 255, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vibe-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, rgba(0, 255, 0, 0.1), transparent);
+    animation: rotate 4s linear infinite;
+    pointer-events: none;
+  }
+
+  /* 1996 RETRO MODE STYLING */
+  .retro-mode {
+    background: #c0c0c0;
+    font-family: 'MS Sans Serif', sans-serif;
+  }
+
+  .retro-window {
+    background: #c0c0c0;
+    border: 2px outset #c0c0c0;
+    border-top-color: #dfdfdf;
+    border-left-color: #dfdfdf;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+  }
+
+  .retro-title-bar {
+    background: linear-gradient(90deg, #0080ff, #0060df);
+    color: white;
+    font-weight: bold;
+    padding: 2px 4px;
+    font-size: 11px;
+    border-bottom: 1px solid #808080;
+  }
+
+  .retro-button {
+    background: #c0c0c0;
+    border: 1px outset #c0c0c0;
+    border-top-color: #dfdfdf;
+    border-left-color: #dfdfdf;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-family: 'MS Sans Serif', sans-serif;
+    cursor: pointer;
+    transition: none;
+  }
+
+  .retro-button:hover {
+    background: #d4d0c8;
+  }
+
+  .retro-button:active {
+    border: 1px inset #c0c0c0;
+    border-top-color: #808080;
+    border-left-color: #808080;
+    border-right-color: #dfdfdf;
+    border-bottom-color: #dfdfdf;
+  }
+
+  .retro-text {
+    font-family: 'MS Sans Serif', sans-serif;
+    color: #000000;
+  }
+
+  .retro-input {
+    background: white;
+    border: 1px inset #c0c0c0;
+    border-top-color: #808080;
+    border-left-color: #808080;
+    border-right-color: #dfdfdf;
+    border-bottom-color: #dfdfdf;
+    padding: 2px 4px;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 11px;
+  }
+
+  .retro-group {
+    background: #c0c0c0;
+    border: 1px inset #c0c0c0;
+    border-top-color: #808080;
+    border-left-color: #808080;
+    border-right-color: #dfdfdf;
+    border-bottom-color: #dfdfdf;
+    padding: 8px;
+  }
+
+  .retro-status-bar {
+    background: #c0c0c0;
+    border-top: 1px solid #808080;
+    padding: 2px 4px;
+    font-size: 11px;
+    font-family: 'MS Sans Serif', sans-serif;
+  }
+
+  /* RainbowKit Styling Updates */
   .rainbow-kit-vibe [data-rk] {
     --rk-colors-accentColor: #00ff00 !important;
     --rk-colors-accentColorForeground: #000000 !important;
     --rk-colors-actionButtonBorder: #00ff00 !important;
     --rk-colors-actionButtonBorderMobile: #00ff00 !important;
-    --rk-colors-actionButtonSecondaryBackground: #000000 !important;
+    --rk-colors-actionButtonSecondaryBackground: #001100 !important;
     --rk-colors-closeButton: #00ff00 !important;
-    --rk-colors-closeButtonBackground: #000000 !important;
-    --rk-colors-connectButtonBackground: #000000 !important;
-    --rk-colors-connectButtonBackgroundError: #000000 !important;
-    --rk-colors-connectButtonInnerBackground: #000000 !important;
+    --rk-colors-closeButtonBackground: #001100 !important;
+    --rk-colors-connectButtonBackground: #001100 !important;
+    --rk-colors-connectButtonBackgroundError: #001100 !important;
+    --rk-colors-connectButtonInnerBackground: #001100 !important;
     --rk-colors-connectButtonText: #00ff00 !important;
     --rk-colors-connectButtonTextError: #ff0000 !important;
     --rk-colors-connectionIndicator: #00ff00 !important;
-    --rk-colors-downloadBottomCardBackground: #000000 !important;
-    --rk-colors-downloadTopCardBackground: #000000 !important;
+    --rk-colors-downloadBottomCardBackground: #001100 !important;
+    --rk-colors-downloadTopCardBackground: #001100 !important;
     --rk-colors-error: #ff0000 !important;
     --rk-colors-generalBorder: #00ff00 !important;
     --rk-colors-generalBorderDim: #003300 !important;
-    --rk-colors-menuItemBackground: #000000 !important;
-    --rk-colors-modalBackdrop: rgba(0, 0, 0, 0.8) !important;
-    --rk-colors-modalBackground: #000000 !important;
+    --rk-colors-menuItemBackground: #001100 !important;
+    --rk-colors-modalBackdrop: rgba(0, 0, 0, 0.9) !important;
+    --rk-colors-modalBackground: #001100 !important;
     --rk-colors-modalBorder: #00ff00 !important;
     --rk-colors-modalText: #00ff00 !important;
     --rk-colors-modalTextDim: #00aa00 !important;
     --rk-colors-modalTextSecondary: #00ff00 !important;
-    --rk-colors-profileAction: #000000 !important;
-    --rk-colors-profileActionHover: #001100 !important;
-    --rk-colors-profileForeground: #000000 !important;
+    --rk-colors-profileAction: #001100 !important;
+    --rk-colors-profileActionHover: #002200 !important;
+    --rk-colors-profileForeground: #001100 !important;
     --rk-colors-selectedOptionBorder: #00ff00 !important;
     --rk-colors-standby: #00ff00 !important;
     --rk-blurs-modalOverlay: blur(8px) !important;
@@ -67,75 +265,129 @@
   }
 
   .rainbow-kit-retro [data-rk] {
-    --rk-colors-accentColor: #0066cc !important;
+    --rk-colors-accentColor: #0080ff !important;
     --rk-colors-accentColorForeground: #ffffff !important;
-    --rk-colors-actionButtonBorder: #000000 !important;
-    --rk-colors-actionButtonBorderMobile: #000000 !important;
-    --rk-colors-actionButtonSecondaryBackground: #ffffff !important;
+    --rk-colors-actionButtonBorder: #808080 !important;
+    --rk-colors-actionButtonBorderMobile: #808080 !important;
+    --rk-colors-actionButtonSecondaryBackground: #c0c0c0 !important;
     --rk-colors-closeButton: #000000 !important;
-    --rk-colors-closeButtonBackground: #ffffff !important;
-    --rk-colors-connectButtonBackground: #ffffff !important;
-    --rk-colors-connectButtonBackgroundError: #ffffff !important;
-    --rk-colors-connectButtonInnerBackground: #ffffff !important;
-    --rk-colors-connectButtonText: #0066cc !important;
-    --rk-colors-connectButtonTextError: #cc0000 !important;
-    --rk-colors-connectionIndicator: #0066cc !important;
-    --rk-colors-downloadBottomCardBackground: #ffffff !important;
-    --rk-colors-downloadTopCardBackground: #ffffff !important;
-    --rk-colors-error: #cc0000 !important;
-    --rk-colors-generalBorder: #000000 !important;
-    --rk-colors-generalBorderDim: #666666 !important;
-    --rk-colors-menuItemBackground: #ffffff !important;
+    --rk-colors-closeButtonBackground: #c0c0c0 !important;
+    --rk-colors-connectButtonBackground: #c0c0c0 !important;
+    --rk-colors-connectButtonBackgroundError: #c0c0c0 !important;
+    --rk-colors-connectButtonInnerBackground: #c0c0c0 !important;
+    --rk-colors-connectButtonText: #000000 !important;
+    --rk-colors-connectButtonTextError: #ff0000 !important;
+    --rk-colors-connectionIndicator: #0080ff !important;
+    --rk-colors-downloadBottomCardBackground: #c0c0c0 !important;
+    --rk-colors-downloadTopCardBackground: #c0c0c0 !important;
+    --rk-colors-error: #ff0000 !important;
+    --rk-colors-generalBorder: #808080 !important;
+    --rk-colors-generalBorderDim: #a0a0a0 !important;
+    --rk-colors-menuItemBackground: #c0c0c0 !important;
     --rk-colors-modalBackdrop: rgba(0, 0, 0, 0.5) !important;
-    --rk-colors-modalBackground: #ffffff !important;
-    --rk-colors-modalBorder: #000000 !important;
+    --rk-colors-modalBackground: #c0c0c0 !important;
+    --rk-colors-modalBorder: #808080 !important;
     --rk-colors-modalText: #000000 !important;
-    --rk-colors-modalTextDim: #666666 !important;
+    --rk-colors-modalTextDim: #808080 !important;
     --rk-colors-modalTextSecondary: #000000 !important;
-    --rk-colors-profileAction: #ffffff !important;
-    --rk-colors-profileActionHover: #f0f0f0 !important;
-    --rk-colors-profileForeground: #ffffff !important;
-    --rk-colors-selectedOptionBorder: #0066cc !important;
-    --rk-colors-standby: #0066cc !important;
-    --rk-blurs-modalOverlay: blur(4px) !important;
+    --rk-colors-profileAction: #c0c0c0 !important;
+    --rk-colors-profileActionHover: #d4d0c8 !important;
+    --rk-colors-profileForeground: #c0c0c0 !important;
+    --rk-colors-selectedOptionBorder: #0080ff !important;
+    --rk-colors-standby: #0080ff !important;
+    --rk-blurs-modalOverlay: none !important;
     --rk-radii-actionButton: 0px !important;
     --rk-radii-connectButton: 0px !important;
     --rk-radii-menuButton: 0px !important;
     --rk-radii-modal: 0px !important;
     --rk-radii-modalMobile: 0px !important;
-    --rk-fonts-body: 'Times New Roman', serif !important;
-  }
-
-  /* Custom styling for RainbowKit buttons */
-  .rainbow-kit-wrapper [data-rk] button {
-    border: 2px solid !important;
-    font-weight: bold !important;
-    text-transform: uppercase !important;
-    transition: all 0.3s ease !important;
-    padding: 8px 16px !important;
+    --rk-fonts-body: 'MS Sans Serif', sans-serif !important;
   }
 
   .rainbow-kit-vibe [data-rk] button {
-    border-color: #00ff00 !important;
-    background-color: #000000 !important;
+    border: 2px solid #00ff00 !important;
+    background: linear-gradient(45deg, #001100, #003300, #001100) !important;
     color: #00ff00 !important;
-  }
-
-  .rainbow-kit-vibe [data-rk] button:hover {
-    background-color: #00ff00 !important;
-    color: #000000 !important;
+    text-shadow: 0 0 10px currentColor !important;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3) !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    letter-spacing: 1px !important;
   }
 
   .rainbow-kit-retro [data-rk] button {
-    border-color: #000000 !important;
-    background-color: #ffffff !important;
-    color: #0066cc !important;
+    border: 1px outset #c0c0c0 !important;
+    border-top-color: #dfdfdf !important;
+    border-left-color: #dfdfdf !important;
+    border-right-color: #808080 !important;
+    border-bottom-color: #808080 !important;
+    background: #c0c0c0 !important;
+    color: #000000 !important;
+    font-family: 'MS Sans Serif', sans-serif !important;
+    font-size: 11px !important;
+    text-transform: none !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
   }
 
   .rainbow-kit-retro [data-rk] button:hover {
-    background-color: #0066cc !important;
-    color: #ffffff !important;
+    background: #d4d0c8 !important;
   }
+}
+
+/* CYBERPUNK ANIMATIONS */
+@keyframes scanlines {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(4px); }
+}
+
+@keyframes sweep {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: -100%; }
+}
+
+@keyframes textGlow {
+  0% { 
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px currentColor;
+  }
+  100% { 
+    text-shadow: 
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px currentColor,
+      0 0 25px currentColor;
+  }
+}
+
+@keyframes borderPulse {
+  0% { 
+    box-shadow: 
+      0 0 10px currentColor,
+      inset 0 0 10px rgba(0, 255, 0, 0.1);
+  }
+  100% { 
+    box-shadow: 
+      0 0 20px currentColor,
+      inset 0 0 15px rgba(0, 255, 0, 0.2);
+  }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
 }
 
 /* Custom animations */
@@ -150,4 +402,8 @@
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s ease-in-out infinite;
 } 

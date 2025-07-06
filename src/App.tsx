@@ -81,31 +81,30 @@ function App() {
     <div className={cn(
       'min-h-screen transition-all duration-1000',
       currentTheme === 'vibe' 
-        ? 'bg-black text-green-400' 
-        : 'bg-gray-100 text-black'
+        ? 'vibe-mode' 
+        : 'retro-mode'
     )}>
       {/* Header */}
       <header className={cn(
-        'border-b-2 p-4',
         currentTheme === 'vibe' 
-          ? 'border-green-400 bg-black' 
-          : 'border-black bg-white'
+          ? 'border-b-2 border-green-400 bg-gradient-to-r from-black via-gray-900 to-black p-4 vibe-border' 
+          : 'retro-title-bar'
       )}>
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className={cn(
-              'w-8 h-8 rounded-full',
+              'w-8 h-8',
               currentTheme === 'vibe' 
-                ? 'bg-green-400' 
-                : 'bg-blue-600'
+                ? 'bg-green-400 rounded-full animate-pulse-glow' 
+                : 'bg-gray-400 border border-gray-600'
             )} />
             <h1 className={cn(
               'text-2xl font-bold',
               currentTheme === 'vibe' 
-                ? 'text-green-400' 
-                : 'text-blue-600'
+                ? 'text-green-400 vibe-text animate-glitch' 
+                : 'text-white text-sm'
             )}>
-              CONSPIRACY PREDICTION EXCHANGE
+              {currentTheme === 'vibe' ? '>>> CONSPIRACY PREDICTION EXCHANGE <<<' : 'Conspiracy Prediction Exchange v1.0'}
             </h1>
           </div>
           
@@ -119,42 +118,51 @@ function App() {
             <button
               onClick={toggleTheme}
               className={cn(
-                'px-4 py-2 border-2 transition-all duration-300',
                 currentTheme === 'vibe' 
-                  ? 'border-green-400 text-green-400 hover:bg-green-400 hover:text-black' 
-                  : 'border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'
+                  ? 'vibe-button px-4 py-2 text-green-400' 
+                  : 'retro-button'
               )}
             >
-              {currentTheme === 'vibe' ? 'RETRO MODE' : 'VIBE MODE'}
+              {currentTheme === 'vibe' ? '[ RETRO MODE ]' : 'Vibe Mode'}
             </button>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto p-6">
+      <main className={cn(
+        'max-w-6xl mx-auto p-6 relative z-10',
+        currentTheme === 'vibe' ? '' : 'retro-text'
+      )}>
         {/* Welcome Section */}
         <div className={cn(
-          'mb-8 p-6 border-2',
+          'mb-8 p-6',
           currentTheme === 'vibe' 
-            ? 'border-green-400 bg-black' 
-            : 'border-black bg-white'
+            ? 'vibe-card' 
+            : 'retro-window'
         )}>
+          {currentTheme === 'retro' && (
+            <div className="retro-title-bar mb-2">
+              Welcome - Conspiracy Truth Market
+            </div>
+          )}
           <h2 className={cn(
-            'text-3xl font-bold mb-4',
             currentTheme === 'vibe' 
-              ? 'text-green-400' 
-              : 'text-blue-600'
+              ? 'text-3xl font-bold mb-4 text-green-400 vibe-text' 
+              : 'text-lg font-bold mb-4 text-black retro-text'
           )}>
-            Welcome to the Truth Market
+            {currentTheme === 'vibe' 
+              ? '>>> WELCOME TO THE TRUTH MATRIX <<<' 
+              : 'Welcome to the Truth Market'}
           </h2>
           <p className={cn(
-            'text-lg',
             currentTheme === 'vibe' 
-              ? 'text-green-300' 
-              : 'text-gray-700'
+              ? 'text-lg text-green-300 vibe-text' 
+              : 'text-sm text-black retro-text'
           )}>
-            Where conspiracy theories meet market forces. Place your bets on what you believe is the truth.
+            {currentTheme === 'vibe' 
+              ? 'WHERE CONSPIRACY THEORIES MEET MARKET FORCES. JACK INTO THE SYSTEM AND PLACE YOUR BETS ON REALITY ITSELF...' 
+              : 'Place your bets on what you believe is the truth. Trade shares in historical conspiracy theories.'}
           </p>
         </div>
 
@@ -164,56 +172,63 @@ function App() {
             <div 
               key={market.id}
               className={cn(
-                'border-2 p-6 cursor-pointer transition-all duration-300 hover:scale-105',
+                'p-6 cursor-pointer transition-all duration-300',
                 currentTheme === 'vibe' 
-                  ? 'border-green-400 bg-black hover:bg-green-400 hover:text-black' 
-                  : 'border-black bg-white hover:bg-gray-50'
+                  ? 'vibe-card hover:scale-105' 
+                  : 'retro-window hover:bg-gray-200'
               )}
             >
+              {currentTheme === 'retro' && (
+                <div className="retro-title-bar mb-2">
+                  {market.category.toUpperCase()} - {market.title}
+                </div>
+              )}
               <div className="flex items-center justify-between mb-4">
                 <h3 className={cn(
-                  'text-xl font-bold',
                   currentTheme === 'vibe' 
-                    ? 'text-green-400' 
-                    : 'text-blue-600'
+                    ? 'text-xl font-bold text-green-400 vibe-text' 
+                    : 'text-sm font-bold text-black retro-text'
                 )}>
-                  {market.title}
+                  {currentTheme === 'vibe' ? `>>> ${market.title.toUpperCase()} <<<` : market.title}
                 </h3>
-                <span className={cn(
-                  'text-sm px-2 py-1 border',
-                  currentTheme === 'vibe' 
-                    ? 'border-green-400 text-green-400' 
-                    : 'border-black text-black'
-                )}>
-                  {market.category.toUpperCase()}
-                </span>
+                {currentTheme === 'vibe' && (
+                  <span className="text-sm px-2 py-1 border border-green-400 text-green-400 vibe-text">
+                    {market.category.toUpperCase()}
+                  </span>
+                )}
               </div>
               
               <p className={cn(
                 'mb-4',
                 currentTheme === 'vibe' 
-                  ? 'text-green-300' 
-                  : 'text-gray-700'
+                  ? 'text-green-300 vibe-text' 
+                  : 'text-xs text-black retro-text'
               )}>
                 {market.description}
               </p>
               
-              <div className="space-y-2 mb-4">
+              <div className={cn(
+                'space-y-2 mb-4',
+                currentTheme === 'retro' ? 'retro-group' : ''
+              )}>
+                {currentTheme === 'retro' && (
+                  <div className="text-xs font-bold mb-2">Betting Options:</div>
+                )}
                 {market.options.map((option, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <span className={cn(
                       'text-sm',
                       currentTheme === 'vibe' 
-                        ? 'text-green-300' 
-                        : 'text-gray-700'
+                        ? 'text-green-300 vibe-text' 
+                        : 'text-black retro-text text-xs'
                     )}>
                       {option.name}
                     </span>
                     <span className={cn(
                       'text-sm font-bold',
                       currentTheme === 'vibe' 
-                        ? 'text-green-400' 
-                        : 'text-black'
+                        ? 'text-green-400 vibe-text' 
+                        : 'text-black retro-text text-xs'
                     )}>
                       {option.percentage}%
                     </span>
@@ -225,25 +240,27 @@ function App() {
                 <span className={cn(
                   'text-sm',
                   currentTheme === 'vibe' 
-                    ? 'text-green-300' 
-                    : 'text-gray-700'
+                    ? 'text-green-300 vibe-text' 
+                    : 'text-black retro-text text-xs'
                 )}>
                   Volume: {market.totalVolume}
                 </span>
                 <button 
                   className={cn(
-                    'px-4 py-2 border text-sm font-bold transition-all duration-300',
                     currentTheme === 'vibe' 
                       ? isConnected 
-                        ? 'border-green-400 text-green-400 hover:bg-green-400 hover:text-black' 
-                        : 'border-green-400 text-green-400 opacity-50 cursor-not-allowed'
+                        ? 'vibe-button px-4 py-2 text-green-400' 
+                        : 'vibe-button px-4 py-2 text-green-400 opacity-50 cursor-not-allowed'
                       : isConnected 
-                        ? 'border-black text-black hover:bg-black hover:text-white' 
-                        : 'border-black text-black opacity-50 cursor-not-allowed'
+                        ? 'retro-button' 
+                        : 'retro-button opacity-50 cursor-not-allowed'
                   )}
                   disabled={!isConnected}
                 >
-                  {isConnected ? 'TRADE' : 'CONNECT TO TRADE'}
+                  {currentTheme === 'vibe' 
+                    ? (isConnected ? '[ TRADE ]' : '[ CONNECT TO TRADE ]')
+                    : (isConnected ? 'Trade' : 'Connect to Trade')
+                  }
                 </button>
               </div>
             </div>
@@ -252,70 +269,77 @@ function App() {
 
         {/* Stats Section */}
         <div className={cn(
-          'mt-8 p-6 border-2',
+          'mt-8 p-6',
           currentTheme === 'vibe' 
-            ? 'border-green-400 bg-black' 
-            : 'border-black bg-white'
+            ? 'vibe-card' 
+            : 'retro-window'
         )}>
+          {currentTheme === 'retro' && (
+            <div className="retro-title-bar mb-2">
+              Market Statistics
+            </div>
+          )}
           <h3 className={cn(
-            'text-xl font-bold mb-4',
             currentTheme === 'vibe' 
-              ? 'text-green-400' 
-              : 'text-blue-600'
+              ? 'text-xl font-bold mb-4 text-green-400 vibe-text' 
+              : 'text-sm font-bold mb-4 text-black retro-text'
           )}>
-            Market Statistics
+            {currentTheme === 'vibe' ? '>>> MARKET STATISTICS <<<' : 'Current Market Data'}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="text-center">
+            <div className={cn(
+              'text-center',
+              currentTheme === 'retro' ? 'retro-group' : ''
+            )}>
               <div className={cn(
-                'text-2xl font-bold',
                 currentTheme === 'vibe' 
-                  ? 'text-green-400' 
-                  : 'text-blue-600'
+                  ? 'text-2xl font-bold text-green-400 vibe-text animate-pulse-glow' 
+                  : 'text-lg font-bold text-black retro-text'
               )}>
                 $6.25M
               </div>
               <div className={cn(
-                'text-sm',
                 currentTheme === 'vibe' 
-                  ? 'text-green-300' 
-                  : 'text-gray-700'
+                  ? 'text-sm text-green-300 vibe-text' 
+                  : 'text-xs text-black retro-text'
               )}>
                 Total Volume
               </div>
             </div>
-            <div className="text-center">
+            <div className={cn(
+              'text-center',
+              currentTheme === 'retro' ? 'retro-group' : ''
+            )}>
               <div className={cn(
-                'text-2xl font-bold',
                 currentTheme === 'vibe' 
-                  ? 'text-green-400' 
-                  : 'text-blue-600'
+                  ? 'text-2xl font-bold text-green-400 vibe-text animate-pulse-glow' 
+                  : 'text-lg font-bold text-black retro-text'
               )}>
                 1,337
               </div>
               <div className={cn(
-                'text-sm',
                 currentTheme === 'vibe' 
-                  ? 'text-green-300' 
-                  : 'text-gray-700'
+                  ? 'text-sm text-green-300 vibe-text' 
+                  : 'text-xs text-black retro-text'
               )}>
                 Active Traders
               </div>
             </div>
-            <div className="text-center">
+            <div className={cn(
+              'text-center',
+              currentTheme === 'retro' ? 'retro-group' : ''
+            )}>
               <div className={cn(
-                'text-2xl font-bold',
                 currentTheme === 'vibe' 
-                  ? 'text-green-400' 
-                  : 'text-blue-600'
+                  ? 'text-2xl font-bold text-green-400 vibe-text animate-pulse-glow' 
+                  : 'text-lg font-bold text-black retro-text'
               )}>
                 42
               </div>
               <div className={cn(
-                'text-sm',
                 currentTheme === 'vibe' 
-                  ? 'text-green-300' 
-                  : 'text-gray-700'
+                  ? 'text-sm text-green-300 vibe-text' 
+                  : 'text-xs text-black retro-text'
               )}>
                 Active Markets
               </div>
@@ -326,19 +350,21 @@ function App() {
 
       {/* Footer */}
       <footer className={cn(
-        'border-t-2 mt-12 p-6',
+        'mt-12 p-6',
         currentTheme === 'vibe' 
-          ? 'border-green-400 bg-black' 
-          : 'border-black bg-white'
+          ? 'border-t-2 border-green-400 bg-gradient-to-r from-black via-gray-900 to-black vibe-border' 
+          : 'retro-status-bar'
       )}>
         <div className="max-w-6xl mx-auto text-center">
           <p className={cn(
-            'text-sm',
             currentTheme === 'vibe' 
-              ? 'text-green-300' 
-              : 'text-gray-700'
+              ? 'text-sm text-green-300 vibe-text' 
+              : 'text-xs text-black retro-text'
           )}>
-            © 2024 Conspiracy Prediction Exchange. Trade at your own risk. Past performance does not guarantee future results.
+            {currentTheme === 'vibe' 
+              ? '© 2024 CONSPIRACY PREDICTION EXCHANGE - TRADE AT YOUR OWN RISK - THE TRUTH IS OUT THERE'
+              : '© 1996 Conspiracy Prediction Exchange v1.0 - All Rights Reserved'
+            }
           </p>
         </div>
       </footer>
