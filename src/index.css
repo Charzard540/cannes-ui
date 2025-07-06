@@ -25,117 +25,162 @@
     @apply bg-gray-100 text-black;
   }
 
-  /* CYBERPUNK VIBE MODE EFFECTS */
+  /* 90S CONSPIRACY WEBSITE VIBE MODE */
   .vibe-mode {
-    background: linear-gradient(45deg, #000000, #001100, #000000);
-    position: relative;
-    overflow-x: hidden;
-  }
-  
-  .vibe-mode::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 255, 0, 0.03) 2px,
-        rgba(0, 255, 0, 0.03) 4px
-      ),
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 255, 0, 0.03) 2px,
-        rgba(0, 255, 0, 0.03) 4px
-      );
-    pointer-events: none;
-    z-index: 1;
-    animation: scanlines 0.1s linear infinite;
-  }
-  
-  .vibe-mode::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
-    pointer-events: none;
-    z-index: 2;
-    animation: sweep 3s ease-in-out infinite;
+    background: linear-gradient(180deg, #1a0033, #0d1b4d, #1a0033);
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    min-height: 100vh;
   }
 
-  .vibe-text {
-    font-family: 'Courier New', monospace;
+  .vibe-header {
+    background: linear-gradient(90deg, #4a0e78, #0080ff, #4a0e78);
+    border-bottom: 2px solid #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  }
+
+  .vibe-title {
+    color: #00ff00;
     text-shadow: 
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 15px currentColor,
-      0 0 20px currentColor;
-    animation: textGlow 2s ease-in-out infinite alternate;
+      0 0 5px #00ff00,
+      0 0 10px #00ff00,
+      0 0 15px #00ff00;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: textPulse 2s ease-in-out infinite alternate;
   }
 
-  .vibe-border {
-    border-style: solid;
+  .vibe-section-header {
+    background: linear-gradient(90deg, #8b00ff, #ff00ff);
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-top: 2px solid #00ff00;
+    border-bottom: 2px solid #00ff00;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .vibe-welcome-box {
+    background: linear-gradient(135deg, #1a4d2e, #0d3d1a);
+    border: 2px solid #00ff00;
     box-shadow: 
-      0 0 10px currentColor,
-      inset 0 0 10px rgba(0, 255, 0, 0.1);
-    animation: borderPulse 1.5s ease-in-out infinite alternate;
+      0 0 15px rgba(0, 255, 0, 0.4),
+      inset 0 0 15px rgba(0, 255, 0, 0.1);
+  }
+
+  .vibe-market-card {
+    background: linear-gradient(135deg, #2d1b4d, #1a0d3d);
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .vibe-market-card:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+    transform: translateY(-3px);
+  }
+
+  .vibe-market-card.space {
+    background: linear-gradient(135deg, #0d1b4d, #1a0d3d);
+    border-color: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+
+  .vibe-market-card.government {
+    background: linear-gradient(135deg, #4d1b0d, #3d1a0d);
+    border-color: #ff0080;
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.3);
+  }
+
+  .vibe-market-card.ancient {
+    background: linear-gradient(135deg, #4d4d0d, #3d3d1a);
+    border-color: #ffff00;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+  }
+
+  .vibe-text-primary {
+    color: #00ff00;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.8);
+  }
+
+  .vibe-text-secondary {
+    color: #00ffaa;
+    text-shadow: 0 0 5px rgba(0, 255, 170, 0.6);
+  }
+
+  .vibe-text-space {
+    color: #00ffff;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+  }
+
+  .vibe-text-government {
+    color: #ff0080;
+    text-shadow: 0 0 8px rgba(255, 0, 128, 0.8);
+  }
+
+  .vibe-text-ancient {
+    color: #ffff00;
+    text-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
   }
 
   .vibe-button {
-    background: linear-gradient(45deg, #001100, #003300, #001100);
+    background: linear-gradient(45deg, #4a0e78, #0080ff);
     border: 2px solid #00ff00;
+    color: #00ff00;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 1px;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
   }
 
-  .vibe-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.4), transparent);
-    transition: left 0.5s ease;
+  .vibe-button:hover {
+    background: linear-gradient(45deg, #00ff00, #00ffaa);
+    color: #000033;
+    text-shadow: none;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
   }
 
-  .vibe-button:hover::before {
-    left: 100%;
+  .vibe-button.space {
+    border-color: #00ffff;
+    color: #00ffff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
   }
 
-  .vibe-card {
-    background: linear-gradient(135deg, #001100, #002200, #001100);
-    border: 2px solid #00ff00;
-    box-shadow: 
-      0 0 20px rgba(0, 255, 0, 0.3),
-      inset 0 0 20px rgba(0, 255, 0, 0.1);
-    position: relative;
-    overflow: hidden;
+  .vibe-button.government {
+    border-color: #ff0080;
+    color: #ff0080;
+    text-shadow: 0 0 5px rgba(255, 0, 128, 0.8);
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.3);
   }
 
-  .vibe-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(transparent, rgba(0, 255, 0, 0.1), transparent);
-    animation: rotate 4s linear infinite;
-    pointer-events: none;
+  .vibe-button.ancient {
+    border-color: #ffff00;
+    color: #ffff00;
+    text-shadow: 0 0 5px rgba(255, 255, 0, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+  }
+
+  .vibe-stats-section {
+    background: linear-gradient(135deg, #4d0d4d, #3d1a3d);
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+  }
+
+  .vibe-stat-box {
+    background: linear-gradient(135deg, #2d1a4d, #1a0d3d);
+    border: 1px solid #00ff00;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .vibe-footer {
+    background: linear-gradient(90deg, #1a0033, #0d1b4d, #1a0033);
+    border-top: 2px solid #00ff00;
+    color: #00ffaa;
+    text-shadow: 0 0 5px rgba(0, 255, 170, 0.6);
   }
 
   /* 1996 RETRO MODE STYLING */
@@ -226,33 +271,33 @@
   /* RainbowKit Styling Updates */
   .rainbow-kit-vibe [data-rk] {
     --rk-colors-accentColor: #00ff00 !important;
-    --rk-colors-accentColorForeground: #000000 !important;
+    --rk-colors-accentColorForeground: #000033 !important;
     --rk-colors-actionButtonBorder: #00ff00 !important;
     --rk-colors-actionButtonBorderMobile: #00ff00 !important;
-    --rk-colors-actionButtonSecondaryBackground: #001100 !important;
+    --rk-colors-actionButtonSecondaryBackground: #1a0033 !important;
     --rk-colors-closeButton: #00ff00 !important;
-    --rk-colors-closeButtonBackground: #001100 !important;
-    --rk-colors-connectButtonBackground: #001100 !important;
-    --rk-colors-connectButtonBackgroundError: #001100 !important;
-    --rk-colors-connectButtonInnerBackground: #001100 !important;
+    --rk-colors-closeButtonBackground: #1a0033 !important;
+    --rk-colors-connectButtonBackground: #1a0033 !important;
+    --rk-colors-connectButtonBackgroundError: #1a0033 !important;
+    --rk-colors-connectButtonInnerBackground: #1a0033 !important;
     --rk-colors-connectButtonText: #00ff00 !important;
     --rk-colors-connectButtonTextError: #ff0000 !important;
     --rk-colors-connectionIndicator: #00ff00 !important;
-    --rk-colors-downloadBottomCardBackground: #001100 !important;
-    --rk-colors-downloadTopCardBackground: #001100 !important;
+    --rk-colors-downloadBottomCardBackground: #1a0033 !important;
+    --rk-colors-downloadTopCardBackground: #1a0033 !important;
     --rk-colors-error: #ff0000 !important;
     --rk-colors-generalBorder: #00ff00 !important;
     --rk-colors-generalBorderDim: #003300 !important;
-    --rk-colors-menuItemBackground: #001100 !important;
-    --rk-colors-modalBackdrop: rgba(0, 0, 0, 0.9) !important;
-    --rk-colors-modalBackground: #001100 !important;
+    --rk-colors-menuItemBackground: #1a0033 !important;
+    --rk-colors-modalBackdrop: rgba(26, 0, 51, 0.9) !important;
+    --rk-colors-modalBackground: #1a0033 !important;
     --rk-colors-modalBorder: #00ff00 !important;
     --rk-colors-modalText: #00ff00 !important;
     --rk-colors-modalTextDim: #00aa00 !important;
     --rk-colors-modalTextSecondary: #00ff00 !important;
-    --rk-colors-profileAction: #001100 !important;
-    --rk-colors-profileActionHover: #002200 !important;
-    --rk-colors-profileForeground: #001100 !important;
+    --rk-colors-profileAction: #1a0033 !important;
+    --rk-colors-profileActionHover: #2a0044 !important;
+    --rk-colors-profileForeground: #1a0033 !important;
     --rk-colors-selectedOptionBorder: #00ff00 !important;
     --rk-colors-standby: #00ff00 !important;
     --rk-blurs-modalOverlay: blur(8px) !important;
@@ -261,7 +306,7 @@
     --rk-radii-menuButton: 0px !important;
     --rk-radii-modal: 0px !important;
     --rk-radii-modalMobile: 0px !important;
-    --rk-fonts-body: 'Courier New', monospace !important;
+    --rk-fonts-body: 'Courier Prime', 'Courier New', monospace !important;
   }
 
   .rainbow-kit-retro [data-rk] {
@@ -306,7 +351,7 @@
 
   .rainbow-kit-vibe [data-rk] button {
     border: 2px solid #00ff00 !important;
-    background: linear-gradient(45deg, #001100, #003300, #001100) !important;
+    background: linear-gradient(45deg, #4a0e78, #0080ff) !important;
     color: #00ff00 !important;
     text-shadow: 0 0 10px currentColor !important;
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.3) !important;
@@ -335,59 +380,33 @@
   }
 }
 
-/* CYBERPUNK ANIMATIONS */
-@keyframes scanlines {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(4px); }
-}
-
-@keyframes sweep {
-  0% { left: -100%; }
-  50% { left: 100%; }
-  100% { left: -100%; }
-}
-
-@keyframes textGlow {
+/* 90S CONSPIRACY ANIMATIONS */
+@keyframes textPulse {
   0% { 
     text-shadow: 
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 15px currentColor,
-      0 0 20px currentColor;
+      0 0 5px #00ff00,
+      0 0 10px #00ff00,
+      0 0 15px #00ff00;
   }
   100% { 
     text-shadow: 
-      0 0 10px currentColor,
-      0 0 15px currentColor,
-      0 0 20px currentColor,
-      0 0 25px currentColor;
+      0 0 10px #00ff00,
+      0 0 20px #00ff00,
+      0 0 30px #00ff00;
   }
 }
 
-@keyframes borderPulse {
-  0% { 
-    box-shadow: 
-      0 0 10px currentColor,
-      inset 0 0 10px rgba(0, 255, 0, 0.1);
-  }
-  100% { 
-    box-shadow: 
-      0 0 20px currentColor,
-      inset 0 0 15px rgba(0, 255, 0, 0.2);
-  }
+@keyframes colorShift {
+  0% { filter: hue-rotate(0deg); }
+  25% { filter: hue-rotate(90deg); }
+  50% { filter: hue-rotate(180deg); }
+  75% { filter: hue-rotate(270deg); }
+  100% { filter: hue-rotate(360deg); }
 }
 
-@keyframes rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes glitch {
-  0%, 100% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
+@keyframes neonFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
 }
 
 /* Custom animations */
@@ -404,6 +423,10 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-.animate-glitch {
-  animation: glitch 0.3s ease-in-out infinite;
+.animate-color-shift {
+  animation: colorShift 4s ease-in-out infinite;
+}
+
+.animate-neon-flicker {
+  animation: neonFlicker 3s ease-in-out infinite;
 } 
