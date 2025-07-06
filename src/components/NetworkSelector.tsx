@@ -8,9 +8,8 @@ interface NetworkSelectorProps {
 }
 
 const TESTNET_CHAINS = [
-  { id: 31337, name: 'Anvil Testnet' },
-  { id: 5001, name: 'Mantle Testnet' },
-  { id: 545, name: 'Flow Testnet' },
+  { id: 545, name: 'Flow EVM Testnet' },
+  { id: 5003, name: 'Mantle Sepolia Testnet' },
 ];
 
 export default function NetworkSelector({ isVibeMode }: NetworkSelectorProps) {
